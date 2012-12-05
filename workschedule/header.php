@@ -1,3 +1,5 @@
+<script type="text/javascript" src="../js/wsjs/header.js"></script>
+<link href="../css/wscss/header.css" rel="stylesheet" type="text/css" />
 <html>
 <input id="menu" type="text"  readonly="readonly" value="MENU" />
 <input id="name" type="text"  readonly="true" value="GUSTO調布上石原店">

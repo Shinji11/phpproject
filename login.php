@@ -1,1 +1,1 @@
-<a href="index.html">MENU</a>
+<a href="index.php">MENU</a>
