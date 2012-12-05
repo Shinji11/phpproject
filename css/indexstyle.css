@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+/*各要素の初期設定*/
+body, h1, div, ul, li, a {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	outline: 0;
+}
+
+/*全体の背景パターン*/
+body {
+	background: url(../images/background01.jpg) repeat center center fixed;
+}
+
+/*コンテンツを内包する要素*/
+#content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	min-width: 800px;
+	min-height: 680px;
+	background: -webkit-radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+	background: -moz-radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+	background: -o-radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+	background: radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+}
+
+/*タイトル*/
+#content h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 230px;
+	margin: -115px 0 0 -150px;
+}
+
+/*ナビゲーションボタン共通スタイル*/
+#nav li a {
+	position: absolute;
+	display: block;
+	width: 250px;
+	height: 120px;
+	padding-top: 90px;
+	background: url(../images/background02.jpg) repeat center center fixed;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 30px;
+	color: black;
+	text-align: center;
+	-webkit-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 3px 3px 10px rgba(0, 0, 0 ,0.5);
+	-webkit-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	-moz-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	-o-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	border: 5px solid black;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	behavior: url(../css/PIE.htc);	/*動作させるには絶対パスに修正する*/
+}
+#nav li a#logout {
+color: yellow;
+}
+
+/*ナビゲーションボタン個別スタイル*/
+#nav li:nth-child(1) a {
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	margin: -115px 0 0 -150px;
+}
+#nav li:nth-child(2) a {
+	bottom: 50%;
+	left: 14%;
+}
+#nav li:nth-child(3) a {
+	bottom: 50%;
+	right: 14%;
+}
+#nav li:nth-child(4) a {
+	bottom: 10%;
+	left: 20%;
+}
+#nav li:nth-child(5) a {
+	bottom: 10%;
+	right: 20%;
+}
+
+/*ナビゲーションボタンロールオーバー*/
+#nav li:nth-child(1) a:hover {
+	color: #fff;
+	border-color: #fff;
+}
+#nav li:nth-child(2) a:hover {
+	color: #fff;
+	border-color: blue;
+}
+#nav li:nth-child(3) a:hover {
+	color: #fff;
+	border-color: red;
+}
+#nav li:nth-child(4) a:hover {
+	color: #fff;
+	border-color: yellow;
+}
+#nav li:nth-child(5) a:hover {
+	color: #fff;
+	border-color: green;
+}
+#logout{
+    position: absolute;
+	display: block;
+	width: 120px;
+	height: 45px;
+	padding-top: 25px;
+	background: url(../images/background02.jpg) repeat center center fixed;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	-webkit-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 3px 3px 10px rgba(0, 0, 0 ,0.5);
+	-webkit-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	-moz-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	-o-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	border: 2px solid black;
+	right: 0%;
+}
+	
+a#logout:hover {
+	color: #fff;
+	border-color: #fff;
+}

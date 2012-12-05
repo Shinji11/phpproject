@@ -1,0 +1,20 @@
+body {
+	background-color: black;
+}
+
+#company {
+	color: white;
+	font-size: 140px;
+	text-align: center;
+	
+}
+
+#name {
+	color: white;
+	font-size: 150px;
+	text-align: center;
+}
+
+#botton {
+	display: none;
+}
