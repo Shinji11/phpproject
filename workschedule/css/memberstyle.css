@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+div#contents {
+	padding-bottom: 30px;
+	width: 950px;
+	background-color: white;
+}
+
+div#memberlist {
+	margin: 0 auto;
+	padding-top: 50px;
+	width: 90%;
+}
+
+table#member {
+	margin: 0 auto;
+	width: 100%;
+	color: black;
+	text-align: center;
+}

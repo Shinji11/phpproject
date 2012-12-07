@@ -1,9 +1,21 @@
 <html>
-<h1>LOGIN</h1>
-<p>UserId</p>
-<input type="text" id="userid">
-<p>PassWord</p>
-<input type="password" id="password"><br/>
-<a href="menu.php"><image src="../images/login_button.jpg" alt="login"></a>
-<a href="signup.php">sighnup</a>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;
+	 charset=utf-8" />
+	<title>LOGIN</title>
+	<link rel="stylesheet" type="text/css" href="css/loginstyle.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<p id="title" align="center">Work&nbspSchedule&nbspMangement</p>
+		</div>
+		<div id-"contents">
+			<a id="login" href="menu.php">LOGIN</a>
+		</div>
+		<div id="footer">
+		</div>
+	</div>
+</body>
 </html>
+

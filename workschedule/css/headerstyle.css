@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+body {
+	width: 100%;
+	background-color: #404040;
+	padding: 0;
+	margin: 0;
+}
+
+div#wrapper {
+	margin: 0 auto;
+	width: 950px;
+}
+
+div#header {
+	background: url("../images/wooden01.png");
+	width: 950px;
+	height: 290px;
+}
+
+div#headerinfo {
+	overflow: hidden;
+}
+
+table#info {
+	width: 950px;
+}
+
+div#headermenu {
+	overflow: hidden;
+	width: 950px;
+}
+
+div#headerinfo input {
+	background-color: transparent;
+	color: white;
+	border: none;
+}
+
+#menu {
+	font-family: impact;
+	padding-left: 50px;
+	font-size: 50px;
+}
+
+#com-bra {
+	font-family: impact;
+	font-size: 50px;
+}
+
+#userid {
+	text-align: center;
+	width: 180px;
+	font-size: 20px;
+	font-family: gothic;
+}
+
+#username {
+	text-align: center;
+	width: 180px;
+	font-size: 20px;
+	font-family: HG行書体;
+}
+
+div#headermenu ul {
+	padding: 0;
+	margin-top: 20px;
+}
+
+div#headermenu ul li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	list-style-position: outside;
+	list-style-type: none;
+}
+
+div#headermenu ul li a {
+	display: block;
+	background: url("../images/wooden02.png") no-repeat left top;
+	background-size: 100% 100%;
+	text-decoration: none;
+	width: 190px;
+	color: yellow;
+	text-align: center;
+	font: menu;
+	font-size: 20px;
+}
+
+a.twoline {
+	height: 58px;
+	padding-top: 12px;
+}
+
+a.oneline {
+	height: 70px;
+	line-height: 70px;
+}
+
+a:hover {
+	color: white;
+	background-color: yellow;
+}
