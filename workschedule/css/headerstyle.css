@@ -2,7 +2,7 @@
 
 body {
 	width: 100%;
-	background-color: #404040;
+	background: url("../images/background01.jpg") repeat center center fixed;
 	padding: 0;
 	margin: 0;
 }
@@ -99,5 +99,5 @@ a.oneline {
 
 a:hover {
 	color: white;
-	background-color: yellow;
+	opacity: 0.5;
 }

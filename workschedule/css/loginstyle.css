@@ -35,7 +35,17 @@ div#wrapper {
 	font-family: impact;
 }
 
-#login {
+div#form {
+	margin: 0 auto;
+	width: 30%;
+}
+
+table#loginform {
+	margin: 0 auto;
+	color: white;
+}
+
+a#login {
 	font-size: 30px;
 	color: yellow;
 

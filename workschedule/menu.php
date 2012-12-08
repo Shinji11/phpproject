@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <script type="text/javascript" src="../workschedule/js/headr.js"></script>
 <link href="../workschedule/css/headerstyle.css" rel="stylesheet" type="text/css" />
+<link href="../workschedule/css/menustyle.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 <div id="wrapper">

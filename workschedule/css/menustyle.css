@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+div#contents {
+	width: 950px;
+	background: url("../images/background02.jpg") repeat center center fixed;
+	height: 580px;
+
+}

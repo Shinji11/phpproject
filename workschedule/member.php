@@ -48,6 +48,7 @@
 				<th>ID</th>
 				<th>NAME</th>
 				<th>AOUTHORITY</th>
+				<th>UPDATE</th>
 				<th>DELETE</th>
 			</tr>
 			<form action="member.php" method="POST">
@@ -56,13 +57,15 @@
 				<td>28025</td>
 				<td>萩原　慎司</td>
 				<td>MANAGER</td>
+				<td><input type="submit" name="update" value="UPDATE"/></td>
 				<td><input type="submit" name="delete" value="DELETE"/></td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td>28026</td>
-				<td>砂川　恒</td>
+				<td>28024</td>
+				<td>森廣　紗矢</td>
 				<td>NORMAL</td>
+				<td><input type="submit" name="update" value="UPDATE"/></td>
 				<td><input type="submit" name="delete" value="DELETE"/></td>
 			</tr>
 			</form>
