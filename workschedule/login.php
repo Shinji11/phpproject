@@ -10,15 +10,15 @@
 		<div id="header">
 			<p id="title" align="center">Work&nbspSchedule&nbspMangement</p>
 		</div><!-- header -->
-		<div id-"contents">
-			<div id="form">
-			<form method="POST">
-			<table id="loginform">
+		<div id-"contents">			
+			<form method="POST" action="menu.php">
+			<div id="loginform">
+			<table id="logininfo">
 				<tr>
 					<th><label>UserId</label></th>
 				</tr>
 				<tr>
-					<td><input type="text" id="userid" name="userid" size="20" maxlength="30"/></td>
+					<td><input type="text" id="userid" name="userid" size="20" maxlength="30" value="GT296928025"/></td>
 				</tr>
 				<tr>
 					<th><label>PassWord</label></th>
@@ -27,12 +27,16 @@
 					<td><input type="password" id="password" name="password" size="20" maxlength="30"/></td>
 				</tr>
 				<tr>
-					<td><input type="submit" name="login" value="LOGIN"/></td>
+					<td><input type="submit" value="LOGIN"/></td>
 				</tr>
 			</table>
-			<a href="menu.php" id="login">LOGIN</a>
-			</form>
 			</div>
+			</form>
+			<br/><br/>
+			<a href="menu.php" class="login">LOGIN</a><br/>
+			<a href="schedule_record.php" class="login">データベース</a>
+			
+			
 		</div><!-- contents -->
 		<div id="footer">
 		</div><!-- footer -->

@@ -1,3 +1,14 @@
+<?php
+require_once 'Encode.php';
+$rownum = 1;
+try {
+  $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+  $stt = $db->prepare('SELECT * FROM AM_MEMBER WHERE COM_CD = "GT" AND BRA_CD = "2969" ORDER BY USER_CD');
+  $stt->execute();
+} catch(PDOException $e) {
+  die('エラーメッセージ：'.$e->getMessage());
+}
+?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;
@@ -51,23 +62,17 @@
 				<th>UPDATE</th>
 				<th>DELETE</th>
 			</tr>
+			<?php while ($row = $stt->fetch()) { ?>
 			<form action="member.php" method="POST">
 			<tr>
-				<td>1</td>
-				<td>28025</td>
-				<td>萩原　慎司</td>
-				<td>MANAGER</td>
+				<td><?php print($rownum); ?></td>
+				<td><?php print(e($row['USER_CD'])); ?></td>
+				<td><?php print(e($row['LAST_NM'])); print(e($row['FIRST_NM'])); ?></td>
+				<td><?php print(e($row['AUTHORITY_CD'])); ?></td>
 				<td><input type="submit" name="update" value="UPDATE"/></td>
 				<td><input type="submit" name="delete" value="DELETE"/></td>
 			</tr>
-			<tr>
-				<td>2</td>
-				<td>28024</td>
-				<td>森廣　紗矢</td>
-				<td>NORMAL</td>
-				<td><input type="submit" name="update" value="UPDATE"/></td>
-				<td><input type="submit" name="delete" value="DELETE"/></td>
-			</tr>
+			<?php $rownum++; } ?>
 			</form>
 		</table>
 		</div><!--memberlist-->
