@@ -15,7 +15,7 @@ div#wrapper {
 div#header {
 	background: url("../images/wooden01.png");
 	width: 950px;
-	height: 290px;
+	height: 294px;
 }
 
 div#headerinfo {
@@ -26,7 +26,7 @@ table#info {
 	width: 950px;
 }
 
-div#headermenu {
+div#nav {
 	overflow: hidden;
 	width: 950px;
 }
@@ -37,14 +37,16 @@ div#headerinfo input {
 	border: none;
 }
 
-#menu {
+#title {
 	font-family: impact;
 	padding-left: 50px;
 	font-size: 50px;
 }
 
 #com-bra {
+	text-align: center;
 	font-family: impact;
+	width: 100%;
 	font-size: 50px;
 }
 
@@ -62,12 +64,12 @@ div#headerinfo input {
 	font-family: HG行書体;
 }
 
-ul {
+ul#navlist {
 	padding: 0;
 	margin-top: 20px;
 }
 
-ul li {
+ul#navlist li {
 	float: left;
 	margin: 0;
 	padding: 0;
@@ -75,7 +77,8 @@ ul li {
 	list-style-type: none;
 }
 
-a {
+li a,
+#logout {
 	display: block;
 	background: url("../images/wooden02.png") no-repeat left top;
 	background-size: 100% 100%;
@@ -92,12 +95,14 @@ a.twoline {
 	padding-top: 12px;
 }
 
-a.oneline {
+a.oneline,
+#logout {
 	height: 70px;
 	line-height: 70px;
 }
 
-a:hover {
+li a:hover,
+a#logout:hover {
 	color: white;
 	opacity: 0.5;
 }

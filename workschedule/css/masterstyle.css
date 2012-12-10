@@ -1,25 +1,52 @@
 @charset "UTF-8";
 
 div#contents {
-	padding-bottom: 30px;
+	padding-bottom: 50px;
 	width: 950px;
 	background: url("../images/background02.jpg") repeat center center fixed;
 
 }
 
-div#memberlist {
+div#registerinfo {
 	margin: 0 auto;
 	padding-top: 50px;
 	width: 90%;
 }
 
-table#member {
+table.registration {
 	margin: 0 auto;
 	width: 100%;
 	color: white;
 	text-align: center;
 }
 
-th {
-	background-color: ;
+tr {
+	height: 40px;
+
+}
+
+th.title {
+	background: url('../images/wooden01.png');
+    height: 40px;
+}
+.registration {
+	padding-top: 30px;
+}
+
+p {
+	text-align: center;
+
+}
+
+div#managerlist {
+	margin: 0 auto;
+	padding-top: 50px;
+	width: 90%;
+}
+
+table#manager {
+	margin: 0 auto;
+	width: 100%;
+	color: white;
+	text-align: center;
 }

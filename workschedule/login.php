@@ -15,26 +15,21 @@
 			<div id="loginform">
 			<table id="logininfo">
 				<tr>
-					<th><label>UserId</label></th>
+					<th id="left"><label>UserId</label></th>
 				</tr>
 				<tr>
-					<td><input type="text" id="userid" name="userid" size="20" maxlength="30" value="GT296928025"/></td>
+					<td><input type="text" id="userid" name="userid" size="20" maxlength="30" value="BR0001489"/></td>
 				</tr>
 				<tr>
-					<th><label>PassWord</label></th>
+					<th id="right"><label>PassWord</label></th>
 				</tr>
 				<tr>
 					<td><input type="password" id="password" name="password" size="20" maxlength="30"/></td>
 				</tr>
-				<tr>
-					<td><input type="submit" value="LOGIN"/></td>
-				</tr>
 			</table>
 			</div>
+			<p><input type="submit" value="LOGIN"/></p>
 			</form>
-			<br/><br/>
-			<a href="menu.php" class="login">LOGIN</a><br/>
-			<a href="schedule_record.php" class="login">データベース</a>
 			
 			
 		</div><!-- contents -->
