@@ -77,9 +77,16 @@ tr td.clickbox {
 }
 
 p {
-	text-align: right;
+	text-align: center;
 }
 
+#calendar_hm3_icon {
+	background: url("../images/calender.jpg");
+	background-size: 100% 100%;
+	width: 25px;
+}
 
-
-
+#scheduledate {
+	font-size: 20px;
+	color: white;
+}

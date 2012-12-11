@@ -27,7 +27,7 @@ try {
 </head>
 <body>
 <div id="wrapper">
-	<?php require("menuheader.php"); ?>
+	<?php require("common/menuheader.php"); ?>
 
 	<div id="contents">
 		
