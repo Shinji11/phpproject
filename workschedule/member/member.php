@@ -39,7 +39,7 @@ try {
         <th>ID</th>
         <th>NAME</th>
         <th>AOUTHORITY</th>
-        <th>UPDATE</th>
+        <th>EDIT</th>
         <th>DELETE</th>
       </tr>
       <?php while ($row = $stt->fetch()) { ?>
@@ -49,7 +49,7 @@ try {
         <td><?php print(e($row['USER_CD'])); ?></td>
         <td><?php print(e($row['LAST_NM'])); ?>&nbsp&nbsp<?php print(e($row['FIRST_NM'])); ?></td>
         <td><?php print(e($row['CHAR_ITEM1'])); ?></td>
-        <td><input type="submit" name="update" value="UPDATE"/></td>
+        <td><input type="submit" name="EDIT" value="EDIT"/></td>
         <td><input type="submit" name="delete" value="DELETE"/></td>
       </tr>
       <?php $rownum++; } ?>

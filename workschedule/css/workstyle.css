@@ -26,6 +26,11 @@ div#workschedule {
 	width: 98%;
 }
 
+div.calender-code {
+	margin: 0 auto;
+	padding-top: 50px;
+	text-align: center;
+}
 
 div#scheduling {
 	margin: 0 auto;
