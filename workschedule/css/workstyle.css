@@ -90,3 +90,8 @@ p {
 	font-size: 20px;
 	color: white;
 }
+
+input#calendar_hm3 {
+	width: 70px;
+
+}

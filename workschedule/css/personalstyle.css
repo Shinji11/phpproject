@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-div#contents {
+#contents {
+	padding-top: 50px;
 	padding-bottom: 30px;
 	width: 950px;
 	background: url("../images/background02.jpg") repeat center center fixed;
@@ -14,42 +15,46 @@ div#contents {
 }
 
 .color1 {
-	background-color: yellow;
+	background-color: #ff6347;
 	width: 30px;
 	height: 22px;
 }
 
-div#workschedule {
+#calender {
+	overflow: hidden;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#workschedule {
 	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	width: 98%;
 }
 
-
-div#scheduling {
+#scheduling {
 	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	width: 98%;
 }
 
-#name {
+#date {
 	background-color: transparent;
-	border: none;
 	color: white;
-	width: 60px;
+	width: 90px;
 }
 
-table#table,
-table#table2 {
+#table,
+#table2 {
 	background: url("../images/background01.jpg");
 	margin: 0 auto;
 	width: 100%;
 	color: white;
 	text-align: center;
 }
-tr#clickbox {
+#clickbox {
 	width: 30px;
 	height: 22px;
 }
@@ -72,7 +77,12 @@ tr td.clickbox {
 	height: 20px;
 }
 
-p {
+p.left {
+	float: left;
+	text-align: left;
+}
+
+p.right {
 	text-align: right;
 }
 
@@ -88,12 +98,17 @@ div.calender-code {
 	text-align: center;
 }
 
-input#calendar_hm3 {
+#calendar_hm3 {
 	width: 70px;
 
 }
-
-#nameselect {
+#name {
 	background-color: transparent;
 	color: white;
+	width: 40px;
+}
+
+#entry {
+	margin-top: 6px;
+
 }

@@ -1,13 +1,10 @@
-<?php 
-$title = $_GET['title'];
-?>
 <html>
 <div id="header">
 <div id="headerinfo">
 <table id="info" align="center" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td align="left"　colspan="2"><input id="title" type="text"  readonly="readonly" value="<?php print($title); ?>" tabindex="-1"/></td>
-		<td align="right"><a id="logout" class="oneline" href="../login.php">LOGOUT</a></td>
+		<td align="right"><a class="oneline" href="../login.php">LOGOUT</a></td>
 	</tr>
 	<tr>
 		<td align="center" colspan="3">
@@ -27,19 +24,19 @@ $title = $_GET['title'];
 </div><!-- headerinfo -->
 <div id="nav">
 	<ul id="navlist">
-		<li><a class="twoline" href="../personal/personal.php?title=PERSONAL SCHEDULE">PERSONAL<br/>SCHEDULE</a><li/>
-		<li><a class="twoline" href="../work/work.php?title=WORK SCHEDULE">WORK<br/>SCHEDULE</a><li/>
+		<li><a class="twoline" href="../personal/personal.php">PERSONAL<br/>SCHEDULE</a><li/>
+		<li><a class="twoline" href="../work/work.php">WORK<br/>SCHEDULE</a><li/>
 		<?php if ($_SESSION['authority'] == 1
 					|| $_SESSION['authority'] == 2) { ?>
-			<li><a class="oneline" href="../member/member.php?title=MEMBER">MEMBER</a><li/>
-			<li><a class="oneline" href="../scheduling/scheduling.php?title=SCHEDULING">SCHEDULING</a><li/>
+			<li><a class="oneline" href="../member/member.php">MEMBER</a><li/>
+			<li><a class="oneline" href="../scheduling/scheduling.php">SCHEDULING</a><li/>
 		<?php } else { ?>
-			<li><a class="oneline"></a><li/>
-			<li><a class="oneline"></a><li/>
+			<li><a class="noline"></a><li/>
+			<li><a class="noline"></a><li/>
 		<?php } if ($_SESSION['authority'] == 1) { ?>
-			<li><a class="oneline" href="../master/master.php?title=MASTER">MASTER</a><li/>
+			<li><a class="oneline" href="../master/master.php">MASTER</a><li/>
 		<?php } else { ?>
-			<li><a class="oneline"></a><li/>
+			<li><a class="noline"></a><li/>
 		<?php } ?>
 	</ul>
 </div><!-- headermenu -->

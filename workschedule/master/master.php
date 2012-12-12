@@ -1,6 +1,7 @@
 <?php
 require_once '../Encode.php';
 session_start();
+$title = "MASTER";
 $rownum = 1;
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');

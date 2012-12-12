@@ -21,6 +21,10 @@ table#member {
 	height: 40px;
 }
 
-th {
-	background-color: ;
+div#newmember {
+	width: 950px;
 }
+ #newmebertable {
+ 	margin: 0 auto;
+ 	color: white;
+ }

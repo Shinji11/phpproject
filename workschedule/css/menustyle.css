@@ -6,3 +6,16 @@ div#contents {
 	height: 580px;
 
 }
+
+div#logomark {
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+}
+
+#logo {
+	background-size: 100% 100%;
+	margin-top: 170px;	
+	width: 100%;
+	height: 100%;
+}
