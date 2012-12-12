@@ -113,3 +113,23 @@ a.twoline:hover {
 	font-size: 20px;
 	color: white;
 }
+
+input.read {
+	position:relative;
+	width: 140px;
+	height: 25px;
+	border: 3px solid #caeff2;
+	border-radius: 20px;
+	background-color: transparent;
+	color: white;
+	outline: none;
+
+}
+
+input.read:hover {
+	border-color: #d3da21;
+}
+
+input.read:focus {
+	border-color: #0c93c6;
+}

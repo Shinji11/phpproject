@@ -6,10 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="css/loginstyle.css">
 </head>
 <body>
-	<div id="wrapper">
-		<div id="header">
+	<div id="header">
 			<p id="title" align="center">Work&nbspSchedule&nbspMangement</p>
-		</div><!-- header -->
+	</div><!-- header -->
+	<div id="wrapper">
 		<div id-"contents">			
 			<form method="POST" action="menu.php">
 			<div id="loginform">
@@ -18,20 +18,18 @@
 					<th id="left"><label>UserId</label></th>
 				</tr>
 				<tr>
-					<td><input type="text" id="userid" name="userid" size="20" maxlength="30" value="BR0001489"/></td>
+					<td><input type="text" class="read" id="userid" name="userid" value="BR0001489"/></td>
 				</tr>
 				<tr>
 					<th id="right"><label>PassWord</label></th>
 				</tr>
 				<tr>
-					<td><input type="password" id="password" name="password" size="20" maxlength="30"/></td>
+					<td><input type="password" class="read" id="password" name="password"/></td>
 				</tr>
 			</table>
 			</div>
 			<p><input type="submit" value="LOGIN"/></p>
 			</form>
-			
-			
 		</div><!-- contents -->
 		<div id="footer">
 		</div><!-- footer -->
