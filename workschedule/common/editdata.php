@@ -13,7 +13,7 @@ $editdata[16] = e($row['SIXTEEN']);
 $editdata[17] = e($row['SEVENTEEN']);
 $editdata[18] = e($row['EIGHTEEN']);
 $editdata[19] = e($row['NINETEEN']);
-$editdata[20] - e($row['TWENTY']);
+$editdata[20] = e($row['TWENTY']);
 $editdata[21] = e($row['TWENTY_ONE']);
 $editdata[22] = e($row['TWENTY_TWO']);
 $editdata[23] = e($row['TWENTY_THREE']);

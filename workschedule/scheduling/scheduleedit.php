@@ -6,7 +6,7 @@ $editselect = $_POST['editselect'];
 $editdate = $_POST['editdate'];
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  require("../sql/workschedulesql2.php");
+  require("../sql/editworkschedulesql.php");
   $stt4->bindValue(':usercd', $editselect);
   $stt4->bindValue(':comcd', $_SESSION['comcd']);
   $stt4->bindValue(':bracd', $_SESSION['bracd']);
@@ -76,10 +76,10 @@ try {
 	</div><!--contents-->
 
 	<div id="footer">
-		<?php for ($i = 6; $i < 25;  $i++) { ?>
+		<?php for ($i = 6; $i < 26;  $i++) { ?>
 		<script type="text/javascript">
 		<!--
-			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>);
+			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>, 1);
 		// -->
 		</script>
 <?php } ?>

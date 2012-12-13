@@ -2,20 +2,21 @@
 require_once '../Encode.php';
 session_start();
 $title = "PERSONAL SCHEDULE";
-$editselect = $_POST['editselect'];
-$editdate = $_POST['editdate'];
+$year = $_POST['edityear'];
+$date = explode("/", $_POST["editdate"]);
+$month = $date[0];
+$day = $date[1];
+$usernm = $_SESSION['username'];
+
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  require("../sql/workschedulesql2.php");
-  $stt4->bindValue(':usercd', $editselect);
-  $stt4->bindValue(':comcd', $_SESSION['comcd']);
-  $stt4->bindValue(':bracd', $_SESSION['bracd']);
-  $stt4->bindValue(':scheduledate', $editdate);
-  $stt4->execute();
-  $row = $stt4->fetch();
-  $lastnm = e($row['LAST_NM']);
-  $firstnm = e($row['FIRST_NM']);
-  $usernm = $lastnm."  ".$firstnm;
+  require("../sql/editpersonalschedulesql.php");
+  $stt5->bindValue(':userid', $_SESSION['userid']);
+  $stt5->bindValue(':year', $year);
+  $stt5->bindValue(':month', $month);
+  $stt5->bindValue(':day', $day);
+  $stt5->execute();
+  $row = $stt5->fetch();
   require("../common/editdata.php");
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
@@ -28,7 +29,7 @@ try {
 <title>SCHEDULING</title>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
-<link href="../css/schedulingstyle.css" rel="stylesheet" type="text/css" />
+<link href="../css/personalstyle.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/headr.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 </head>
@@ -37,7 +38,7 @@ try {
 	<?php require("../common/header.php"); ?>
 	<div id="contents">
 		<div id="scheduling">
-			<p class="scheduletitle"><?php print(date_ja($editdate)."  ".$usernm); ?></p>
+			<p class="scheduletitle"><?php print(date_ja($year."/".$month."/".$day)."  ".$usernm); ?></p>
 			<form method="POST" action="personal.php">
 			<table id="table2" border="1">
 				<tr>
@@ -51,11 +52,11 @@ try {
 					<?php } ?>					
 				</tr>
 				<tr id="clickbox">
-					<td><input id="name" type="text" readonly="readonly" value="<?php print($usernm); ?>" /></td>
+					<td><input id="name" type="text" readonly="readonly" value="<?php print($month."/".$day); ?>" /></td>
 					<td></td>
 					<?php for ($num = 6; $num < 26; $num++) { ?>
 					<td class="clickbox" colspan="2">
-						<input type="button" id="bt<?php print($num); ?>" class="bt" onclick="changeCheckbox('cb<?php print($num); ?>', 'bt<?php print($num); ?>', 1)"/>
+						<input type="button" id="bt<?php print($num); ?>" class="bt" onclick="changeCheckbox('cb<?php print($num); ?>', 'bt<?php print($num); ?>', 2)"/>
 						<input type="hidden" name="cb<?php print($num); ?>" value="0"/>
 						<input type="checkbox" id="cb<?php print($num); ?>" name="cb<?php print($num); ?>" class="checkbox" value="1"/>
 					</td>
@@ -67,17 +68,18 @@ try {
 			</table>
 			<p><input type="submit" value="EDIT"/></p>
 			<p><input type="submit" value="DELETE"/></p>
-	         	<input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/><br/>
+	         	<input type="hidden" id="personaldate" name="personaldate" value="<?php print($year."/".$month); ?>"/><br/>
 	          	<input type="submit" value="RETURN"/>
 	        </form>
 		</div><!-- scheduling -->
 	</div><!--contents-->
 
 	<div id="footer">
-		<?php for ($i = 6; $i < 25;  $i++) { ?>
+		<input type="text" value="<?php print($editdata[19]); ?>"/>
+		<?php for ($i = 6; $i < 26;  $i++) { ?>
 		<script type="text/javascript">
 		<!--
-			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>);
+			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>, 2);
 		// -->
 		</script>
 <?php } ?>

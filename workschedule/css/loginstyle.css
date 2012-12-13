@@ -57,6 +57,11 @@ p {
 table#logininfo {
 	margin: 0 auto;
 	color: white;
+
+}
+
+table#logininfo tr {
+	height: 30px;
 }
 
 a.login {

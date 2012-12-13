@@ -48,12 +48,17 @@ function allClear() {
 	}
 }
 
-function changeEditData(data, num) {
+function changeEditData(data, num, flg) {
 	if (data == 1) {
 		var checkbox = document.getElementById("cb" + num);
 		var button = document.getElementById("bt" + num);
 		checkbox.checked = true;
+		if (flg == 1) {
 		button.style.backgroundColor = "yellow";
+	} else {
+		button.style.backgroundColor = "tomato";
+
+	}
 	}
 
 }

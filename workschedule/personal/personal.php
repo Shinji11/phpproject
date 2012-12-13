@@ -103,7 +103,7 @@ try {
 			</table>
 			<?php if ($counter != 0) { ?>
 			<form method="POST" action="personaledit.php">
-			<select id="date" name="date">
+			<select id="date" name="editdate">
 			    <?php 
 			        for ($day = 1; $day < $datenum; $day++) {
 			      		print('<option value="'.$datelist[$day].'"');
@@ -111,6 +111,7 @@ try {
 			      }
 			    ?>
 			</select>
+			<input type="hidden" name="edityear" value="<?php print($year); ?>" />
 			<input type="submit" value="EDIT"/>
 			</form>
 			<?php } ?>

@@ -30,6 +30,7 @@ try {
   <?php require("../common/header.php"); ?>
   <div id="contents">
     <div id="memberlist">
+    <p class="scheduletitle">MEMBER LIST</p>
     <table id="member" border="1">
       <tr>
         <th>NO</th>
@@ -60,11 +61,11 @@ try {
       <table id="newmebertable">
         <tr>
           <th>ID:</th>
-          <td><input type="text"/></td>
+          <td><input type="text" class="read" /></td>
           <th>LAST NAME:</th>
-          <td><input type="text"/></td>
+          <td><input type="text" class="read" /></td>
           <th>FIRST NAME:</th>
-          <td><input type="text"/></td>
+          <td><input type="text" class="read" /></td>
           <th>AUTHORITY:</th>
           <td>
             <select>
