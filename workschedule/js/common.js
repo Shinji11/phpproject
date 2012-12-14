@@ -62,3 +62,24 @@ function changeEditData(data, num, flg) {
 	}
 
 }
+
+function changeSqlFlg(flg) {
+	
+	var sqlflg = document.getElementById("sqlflg");
+	if (flg == 3) {
+		if (window.confirm('本当に削除されますか？')) {
+			sqlflg.value = flg;
+			return true;
+		} else {
+			window.alert('キャンセルされました');
+			return false;
+		}
+	} else {
+		sqlflg.value = flg;
+		return true;
+	}
+
+}
+
+
+

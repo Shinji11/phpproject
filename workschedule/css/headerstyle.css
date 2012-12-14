@@ -114,6 +114,12 @@ a.twoline:hover {
 	color: white;
 }
 
+.error {
+	font-size: 20px;
+	color: yellow;
+	text-align: left;
+}
+
 input.read {
 	position:relative;
 	width: 100px;

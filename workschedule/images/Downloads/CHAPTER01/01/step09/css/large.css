@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/**
+ * レスポンシブ スタイル
+ * ラージサイズ（920px以上）
+ */
+/* window width 920px over */
+#header {
+  width: 888px;
+  height: 60px;
+}
+
+#area-visual .container {
+  width: 888px;
+  height: 276px;
+}
+#area-visual .container .content {
+  width: 47.297%;
+}
+
+#area-content .container {
+  width: 888px;
+}
+#area-content .container .content {
+  padding: 12px 0 12px 12px;
+}

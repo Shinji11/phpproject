@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+/*各要素の初期設定*/
+body, h1, div, ul, li, a {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	outline: 0;
+}
+
+/*全体の背景パターン*/
+body {
+	background: url(../images/background01.jpg) repeat center center fixed;
+}
+
+/*コンテンツを内包する要素*/
+#content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	min-width: 800px;
+	min-height: 680px;
+	background: -webkit-radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+	background: -moz-radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+	background: -o-radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+	background: radial-gradient(center, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 100%);
+}
+
+/*タイトル*/
+#content h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 230px;
+	margin: -115px 0 0 -150px;
+}
+
+/*ナビゲーションボタン共通スタイル*/
+#nav li a {
+	position: absolute;
+	display: block;
+	width: 170px;
+	height: 95px;
+	padding-top: 75px;
+	background: url(../images/background02.jpg) repeat center center fixed;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	-webkit-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 3px 3px 10px rgba(0, 0, 0 ,0.5);
+	-webkit-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	-moz-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	-o-text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	border: 5px solid #6c7376;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	behavior: url(../css/PIE.htc);	/*動作させるには絶対パスに修正する*/
+}
+
+/*ナビゲーションボタン個別スタイル*/
+#nav li:nth-child(1) a {
+	top: 21%;
+	left: 6%;
+}
+#nav li:nth-child(2) a {
+	bottom: 11%;
+	left: 14%;
+}
+#nav li:nth-child(3) a {
+	bottom: 3%;
+	right: 36%;
+}
+#nav li:nth-child(4) a {
+	bottom: 21%;
+	right: 6%;
+}
+#nav li:nth-child(5) a {
+	top: 11%;
+	right: 14%;
+}
+#nav li:nth-child(6) a {
+	top: 3%;
+	left: 36%;
+}
+
+/*ナビゲーションボタンロールオーバー*/
+#nav li:nth-child(1) a:hover {
+	color: #ff0;
+	border-color: #ff0;
+}
+#nav li:nth-child(2) a:hover {
+	color: #f06;
+	border-color: #f06;
+}
+#nav li:nth-child(3) a:hover {
+	color: #39f;
+	border-color: #39f;
+}
+#nav li:nth-child(4) a:hover {
+	color: #66c;
+	border-color: #66c;
+}
+#nav li:nth-child(5) a:hover {
+	color: #9c0;
+	border-color: #9c0;
+}
+#nav li:nth-child(6) a:hover {
+	color: #f90;
+	border-color: #f90;
+}

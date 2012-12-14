@@ -33,7 +33,7 @@ try {
 
 	<div id="contents">
     <div id="logomark">
-      <img id="logo" src="images/<?php print($com); ?>.jpg">
+      <img id="logo" src="images/<?php print($com); ?>.png">
     </div>
 		
 	</div><!--contents-->

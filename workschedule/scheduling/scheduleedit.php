@@ -65,12 +65,12 @@ try {
 				<tr>
 				</tr>
 			</table>
-			<p><input type="submit" value="EDIT"/></p>
-			<p><input type="submit" value="DELETE"/></p>
-			<form method="POST" action="scheduling.php"/>
-	         	<input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/><br/>
-	          	<input type="submit" value="RETURN"/>
-	        </form>
+			<input type="hidden" name="sqlflg" id="sqlflg"/>
+	        <input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/><br/>
+	        <input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/><br/>
+			<p><input type="submit" class="button" id="editbutton" value="" onclick="changeSqlFlg(2)"/></p>
+			<p><input type="submit" class="button" id="daletebutton" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
+	        <P><input type="submit" class="button" id="returnbutton" value=""/></P>
 			</form>
 		</div><!-- scheduling -->
 	</div><!--contents-->

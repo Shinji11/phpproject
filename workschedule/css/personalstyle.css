@@ -35,22 +35,30 @@
 
 #scheduling {
 	margin: 0 auto;
-	padding-top: 50px;
+	margin-top: 100px;
 	padding-bottom: 50px;
 	width: 98%;
 }
 
-#date {
+#date,
+#insertdate {
 	background-color: transparent;
 	color: white;
-	width: 90px;
 }
 
-#table,
+
 #table2 {
 	background: url("../images/background01.jpg");
 	margin: 0 auto;
 	width: 100%;
+	color: white;
+	text-align: center;
+}
+
+#personalscheduletable {
+	background: url("../images/background01.jpg");
+	margin: 0 auto;
+	width: 830px;
 	color: white;
 	text-align: center;
 }
@@ -108,8 +116,68 @@ div.calender-code {
 	width: 40px;
 }
 
-#entry {
-	margin-top: 6px;
-
+#editselect {
+	text-align: center;
+	vertical-align: middle;
 }
 
+.button {
+	background-size: 100% 100%;
+	height: 36px;
+	border: none;
+}
+
+#entrybutton {
+	background: url("../images/btn_work.png");
+	width: 181px;
+	margin-top: 6px;
+}
+
+#editbutton {
+	background: url("../images/btn_edit.png");
+	width: 83px;
+}
+
+#allbutton {
+	background: url("../images/btn_all.png");
+	width: 102px;
+}
+
+#clearbutton {
+	background: url("../images/btn_clear.png");
+	width: 97px;
+}
+
+#registerbutton {
+	background: url("../images/btn_register.png");
+	width: 124px;
+}
+
+#returnbutton {
+	background: url("../images/btn_return.png");
+	width: 107px;
+}
+
+#entrybutton:hover {
+	background: url("../images/btn_work_on.png");
+}
+
+#editbutton:hover {
+	background: url("../images/btn_edit_on.png");
+}
+
+#allbutton:hover {
+	background: url("../images/btn_all_on.png");
+}
+
+#registerbutton:hover {
+	background: url("../images/btn_register_on.png");
+}
+
+#clearbutton:hover {
+	opacity: 0.5;
+}
+
+#returnbutton {
+	background: url("../images/btn_return_on.png");
+}

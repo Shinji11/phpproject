@@ -45,7 +45,7 @@ div#scheduling {
 	width: 90px;
 }
 
-table#table,
+
 table#table2 {
 	background: url("../images/background01.jpg");
 	margin: 0 auto;
@@ -53,6 +53,17 @@ table#table2 {
 	color: white;
 	text-align: center;
 }
+
+table#workscheduletable {
+	background: url("../images/background01.jpg");
+	margin: 0 auto;
+	width: 830px;
+	color: white;
+	text-align: center;
+
+}
+
+
 tr#clickbox {
 	width: 30px;
 	height: 22px;
@@ -95,3 +106,4 @@ input#calendar_hm3 {
 	width: 70px;
 
 }
+

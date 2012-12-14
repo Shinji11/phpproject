@@ -76,7 +76,7 @@ try {
           </td>
         </tr>
       </table>
-      <input type="submit" value="REGISTER"/>
+      <P id="centerbutton"><input type="submit" value="REGISTER"/></P>
       </form>
     </div><!-- newmember -->
 

@@ -6,8 +6,17 @@ $pesonaldate = $_POST["personaldate"];
 $date = explode("/", $_POST["personaldate"]);
 $year = $date[0];
 $month = $date[1];
-try {
+$sqlflg = $_POST["sqlflg"];
+try {	
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+  if ($sqlflg == 1) {
+  require("../sql/insertpersonalschedulesql.php");	
+  } else if ($sqlflg == 2) {
+  require("../sql/updatepersonalschedulesql.php");	
+  } else if ($sqlflg == 3) {
+  require("../sql/deletepersonalschedulesql.php");	
+  }
+
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
@@ -54,27 +63,32 @@ try {
 			      }
 			    ?>
 			</select><br/><br/>
-			<input id="entry" type="submit" value="WORK SCHEDULE"/>
+			<input id="entrybutton" class="button" type="submit" value=""/>
         </form>
 		</div><!-- calender -->
-
+		<?php if (!$message == "") { ?>
+			<ul class="message">
+				<li><p class="message"><?php print($message); ?></p></li>
+			</ul>
+		<?php } ?>
 		
 		<?php if(!($pesonaldate == "")) { 
                 $counter = 0;
         ?>
 		<div id="workschedule">
 			<p class="scheduletitle" ><?php print($year."年".$month."月"); ?></p>
-			<table id="table">
+			<table id="personalscheduletable">
 				<tr>
-					<th></th>
+					<th>[DATE]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } 
 						  for ($num = 0; $num < 3; $num++) {
 					?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } ?>					
+					<?php } ?>
 				</tr>
+
 				<?php $datenum = 1;
 				while ($row = $stt3->fetch()) { 
 	      			$monthdata = e($row['MONTH']);
@@ -83,7 +97,7 @@ try {
 	      			
 	      			$datelist[$datenum] = $toptag;
 	      			
-					require("../common/scheduledata.php");
+					require("../common/personalscheduledata.php");
 					$datenum++;
 					$counter++; } 
 	         		if ($counter == 0) {
@@ -98,9 +112,12 @@ try {
 						  for ($num = 0; $num < 3; $num++) {
 					?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } ?>					
+					<?php } ?>
 				</tr>
 			</table>
+		</div><!-- workschedule -->
+
+		<div id="editselect">
 			<?php if ($counter != 0) { ?>
 			<form method="POST" action="personaledit.php">
 			<select id="date" name="editdate">
@@ -111,11 +128,11 @@ try {
 			      }
 			    ?>
 			</select>
-			<input type="hidden" name="edityear" value="<?php print($year); ?>" />
-			<input type="submit" value="EDIT"/>
+			<input type="hidden" class="button" name="edityear" value="<?php print($year); ?>" />
+			<input type="submit" class="button" id="editbutton" value=""/>
 			</form>
 			<?php } ?>
-		</div><!-- workschedule -->
+		</div><!-- editselect -->
 
 		<div id="scheduling">
 			<form method="POST" action="personal.php">
@@ -131,8 +148,7 @@ try {
 					<?php } ?>					
 				</tr>
 				<tr id="clickbox">
-					<td><select id="date" name="date">
-						<option value=""></option>
+					<td><select id="insertdate" name="insertdate">
 					    <?php 
 					      for ($day = 1; $day < 32; $day++) {
 					      	if ($day == 29 && $month == 2) {
@@ -166,9 +182,11 @@ try {
 				<tr>
 				</tr>
 			</table>
-			<p class="left"><input type="button" id="all" value="ALL OK" onclick="allChange()"/></p>
-			<p class="left"><input type="button" id="clear" value="CLEAR" onclick="allClear()"/></p>
-			<p class="right"><input type="submit" value="REGISTER"/></p>
+			<input type="hidden" name="personaldate" value="<?php print($year."/".$month); ?>" />
+			<p class="left"><input type="button" class="button" id="allbutton" onclick="allChange()"/></p>
+			<p class="left"><input type="button"  class="button"id="clearbutton" onclick="allClear()"/></p>
+			<input type="hidden" name="sqlflg" value="1"/>
+			<p class="right"><input type="submit" class="button" id="registerbutton" value=""/></p>
 			</form>
 		</div><!-- scheduling -->
 		<?php } ?>

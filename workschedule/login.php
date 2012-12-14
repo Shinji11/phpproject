@@ -28,7 +28,7 @@
 				</tr>
 			</table>
 			</div>
-			<p><input type="submit" value="LOGIN"/></p>
+			<p><input type="submit" id="loginbutton" value=""/></p>
 			</form>
 		</div><!-- contents -->
 		<div id="footer">

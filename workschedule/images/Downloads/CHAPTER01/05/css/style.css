@@ -1,0 +1,219 @@
+/**** Base styles ****/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	font: 13px 'Helvetica Neue', Arial, sans-serif;
+	color: #222;
+	line-height: 1.6em;
+	background-color: #F7F5F4;
+}
+a {
+	color: #A2C;
+	text-decoration: none;
+}
+a:hover {
+	color: #D26;
+}
+a:active {
+	background: hsla( 0, 100%, 100%, 0.5 );
+}
+h1, h2 {
+	font-weight: 100;
+	line-height: 1.2em;
+	margin-bottom: 0.6em;
+}
+h1 {
+	font-size: 28px;
+	color: #366C81;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+	text-decoration: underline;
+}
+h2 {
+	font-size: 24px;
+}
+h3 {
+	font-size: 17px;
+	font-weight: bold;
+}
+h3, p, ul, ol, pre, dl {
+	margin-bottom: 1.0em;
+}
+strong {
+	font-weight: bold;
+}
+
+/* screens smaller than 640 */
+@media screen and (max-width: 640px) {
+ #content {
+ padding: 10px;
+}
+}
+a img {
+	border: none;
+}
+blockquote {
+	margin: 0;
+	font: italic 18px Georgia, serif;
+}
+dt {
+	font-weight: bold;
+	font-size: 14px;
+}
+dd + dt {
+	margin-top: 0.5em;
+}
+dd {
+	margin-left: 1.0em;
+}
+
+
+
+#container {
+	background: #FFF;
+	padding: 5px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	clear: both;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/**** Transitions ****/
+
+.transitions-enabled.masonry,
+.transitions-enabled.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.transitions-enabled.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.transitions-enabled.masonry  .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}
+
+
+/* content */
+
+.col1 {
+	width: 80px;
+}
+.col2 {
+	width: 180px;
+}
+.col3 {
+	width: 280px;
+}
+.col4 {
+	width: 380px;
+}
+.col5 {
+	width: 480px;
+}
+.col1 img {
+	max-width: 80px;
+}
+.col2 img {
+	max-width: 180px;
+}
+.col3 img {
+	max-width: 280px;
+}
+.col4 img {
+	max-width: 380px;
+}
+.col5 img {
+	max-width: 480px;
+}
+
+.homepage .item {
+	width: 200px;
+	float: left;
+	padding: 10px;
+	margin: 10px;
+	font-weight: 300;
+	/* 角丸 */
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #CCCCCC;
+}
+
+.homepage .big-text, .homepage .link {
+	font-size: 20px;
+	line-height: 1.2em;
+}
+.homepage .big-text{
+	 height:50px;
+	 /* 表示しきれないテキストを...で表示させる */
+	 text-overflow: ellipsis; 
+	 white-space: nowrap;
+	 -o-text-overflow: ellipsis; 
+	 overflow: hidden; 
+}
+
+.homepage .link {
+	 padding: 0;
+	/* 長い英単語を強制的に折り返す */
+	 word-wrap: break-word ;
+	 -moz-word-wrap: break-word ;
+}
+.homepage .link a {
+	display: block;
+	padding: 15px;
+	width: 190px;
+	background: #BEDAE4;
+	color: #FFFFFF;
+	/* 角丸 */
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 10px;
+}
+.homepage .link a:hover {
+	background-color: #A0C9D8;
+}
+.homepage .col2 {
+	width: 440px;
+}
+
+/**** Clearfix ****/
+.clearfix:before, .clearfix:after {
+	content: "";
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix {
+	zoom: 1;
+}
+.item link img {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

@@ -4,8 +4,16 @@ session_start();
 $title = "SCHEDULING";
 $rownum = 1;
 $scheduledate = $_POST['scheduledate'];
+$sqlflg = $_POST['sqlflg'];
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+  if ($sqlflg == 1) {
+  require("../sql/insertworkschedulesql.php");	
+  } else if ($sqlflg == 2) {
+  require("../sql/updateworkschedulesql.php");	
+  } else if ($sqlflg == 3) {
+  require("../sql/deleteworkschedulesql.php");	
+  }
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
@@ -56,18 +64,23 @@ try {
 	        </form>
 	        <form method="POST" action="scheduling.php"/>
 	          <input type="hidden" id="scheduledate" name="scheduledate"/><br/>
-	          <input type="submit" value="WORK SCHEDULE" onClick="changeDate()"/>
+	          <input type="submit" class="button" id="entrybubtton" onClick="changeDate()"/>
 	        </form>
     	</div><!-- calender-code -->
-    	
+    	<?php if (!$message == "") { ?>
+			<ul class="message">
+				<li><p class="message"><?php print($message); ?></p></li>
+			</ul>
+		<?php } ?>
     	<?php if(!($scheduledate == "")) { 
                 $counter = 0;
         ?>
 		<div id="workschedule">
 			<p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
-			<table id="table">
+			<table id="workscheduletable">
 				<tr>
-					<th></th>
+					<th>[NAME]</th>
+					<th>[HOURS]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } 
@@ -83,7 +96,7 @@ try {
 	      			$usercd = e($row['USER_CD']);
 	      			$usercdlist[$counter] =  $usercd;
 	      			$namelist[$counter] = $toptag;
-					require("../common/scheduledata.php");
+					require("../common/workscheduledata.php");
 					
 					$counter++; } 
 	         		if ($counter == 0) {
@@ -91,6 +104,7 @@ try {
          		<tr><td colspan="43"><p class="scheduletitle">--まだデータは存在しません--</p></td></tr>
          		<?php } ?>
 				<tr>
+					<th></th>
 					<th></th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
@@ -101,6 +115,7 @@ try {
 					<?php } ?>					
 				</tr>
 			</table>
+			<div id="editselect">
 			<?php if ($counter != 0) { ?>
 			<form method="POST" action="scheduleedit.php">
 			<select id="editselect" name="editselect">
@@ -112,9 +127,10 @@ try {
 			    ?>
 			</select>
 			<input type="hidden" id="editdate" name="editdate" value="<?php print($scheduledate); ?>"/>
-			<input type="submit" value="EDIT"/>
+			<input type="submit" class="button" id="editbutton" value=""/>
 			</form>
 			<?php } ?>
+			</div>
 		</div><!-- workschedule -->
 
 		<div id="scheduling">
@@ -132,7 +148,6 @@ try {
 				</tr>
 				<tr id="clickbox">
 					<td><select id="nameselect" name="nameselect">
-						<option value=""></option>
 					    <?php 
 					      while ($row = $stt->fetch()) {
 					      	$usercd = e($row['USER_CD']);
@@ -157,7 +172,9 @@ try {
 				<tr>
 				</tr>
 			</table>
-			<p><input type="submit" value="REGISTER"/></p>
+			<input type="hidden" name="scheduledate" value="<?php print($scheduledate); ?>"/>
+			<input type="hidden" name="sqlflg" value="1"/>
+			<p><input type="submit" class="button" id="registerbutton" value=""/></p>
 			</form>
 		</div><!-- scheduling -->
 		<?php } ?>

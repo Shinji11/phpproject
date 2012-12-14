@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/** レスポンシブ スタイル */
+/********************************************************** base */
+/* ヘッダーエリア */
+#header { *zoom: 1; margin: 0 auto; }
+#header:after { content: ""; display: block; clear: both; }
+#header .logo { float: left; }
+#header .nav { *zoom: 1; float: right; padding-top: 30px; }
+#header .nav:after { content: ""; display: block; clear: both; }
+#header .nav li { padding: 0 1em; float: left; font-weight: bold; border-right: 1px solid #ccc; }
+#header .nav li:first-child { border-left: 1px solid #ccc; }
+
+/* メインビジュアルエリア */
+#area-visual { background: #ffe24d; box-shadow: 0 -1px 3px #cccccc inset; -moz-box-shadow: 0 -1px 3px #e3c945 inset; -webkit-box-shadow: 0 -1px 3px #e3c945 inset; }
+#area-visual .container { margin: 0 auto; background: url(../img/visual.jpg) no-repeat right top #ffe24d; }
+#area-visual .container h1 { padding: 60px 0 10px; color: #2e2e2e; font-size: 30px; line-height: 1.2em; font-weight: bold; }
+
+/* コンテンツエリア */
+#area-content { margin-top: -336px; }
+#area-content .container { position: relative; margin: -40px auto 0; }
+#area-content .panel { padding: 12px; }
+
+/********************************************************** タブナビゲーション */
+.page { padding-top: 296px; }
+.page .tab { position: absolute; width: 12em; height: 52px; top: 296px; background-color: #333; box-shadow: 2px 0 2px rgba(0, 0, 0, 0.75); border-radius: 10px 10px 0 0; -webkit-transition-duration: 400ms; -moz-transition-duration: 400ms; }
+.page .tab a { display: block; color: #ccc; line-height: 40px; text-align: center; text-decoration: none; text-shadow: 0 -1px 3px rgba(0, 0, 0, 0.5); font-weight: bold; }
+.page .tab:hover a { color: #fff; }
+.page .content { position: absolute; top: 336px; background-color: #fff; opacity: 0; }
+.page#page-1 .tab { margin-top: -12px; background-color: #666; box-shadow: 2px 0 4px rgba(51, 51, 51, 0.75); }
+.page#page-1 .tab a { color: #999; }
+.page#page-1 .content { z-index: 4; opacity: 1; }
+
+/********************************************************** ページごとの設定 */
+#page-1 .tab { left: 0; z-index: 3; }
+#page-1 .content { z-index: 13; }
+
+#page-2 .tab { left: 11em; z-index: 2; }
+#page-2 .content { z-index: 12; }

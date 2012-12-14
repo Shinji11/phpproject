@@ -61,34 +61,39 @@ try {
       ?>
       <div id="workschedule">
       <p id="scheduledate" ><?php print(date_ja($scheduledate)); ?></p>
-      <table id="table">
+      <table id="workscheduletable">
         <tr>
-          <th></th>
+          <th>[NAME]</th>
+          <th>[HOURS]</th>
           <?php for ($num = 6; $num < 24; $num++) { ?>
           <th colspan="2"><?php print($num); ?></th>
           <?php } 
-              for ($num = 0; $num < 4; $num++) {
+              for ($num = 0; $num < 3; $num++) {
           ?>
           <th colspan="2"><?php print($num); ?></th>
           <?php } ?>          
         </tr>
         <?php while ($row = $stt2->fetch()) { 
-            $lastnm = e($row['LAST_NM']);
-            $firstnm = e($row['FIRST_NM']);
-            $toptag = $lastnm."  ".$firstnm;
-
-            require("../common/scheduledata.php");
-         $counter++; } 
-         if ($counter == 0) {
-          ?>
-          <tr><td colspan="44"><p>--まだデータは存在しません--</p></td></tr>
-         <?php } ?>
+              $lastnm = e($row['LAST_NM']);
+              $firstnm = e($row['FIRST_NM']);
+              $toptag = $lastnm."  ".$firstnm;
+              $usercd = e($row['USER_CD']);
+              $usercdlist[$counter] =  $usercd;
+              $namelist[$counter] = $toptag;
+          require("../common/workscheduledata.php");
+          
+          $counter++; } 
+              if ($counter == 0) {
+              ?>
+            <tr><td colspan="43"><p class="scheduletitle">--まだデータは存在しません--</p></td></tr>
+            <?php } ?>
         <tr>
+          <th></th>
           <th></th>
           <?php for ($num = 6; $num < 24; $num++) { ?>
           <th colspan="2"><?php print($num); ?></th>
           <?php } 
-              for ($num = 0; $num < 4; $num++) {
+              for ($num = 0; $num < 3; $num++) {
           ?>
           <th colspan="2"><?php print($num); ?></th>
           <?php } ?>          

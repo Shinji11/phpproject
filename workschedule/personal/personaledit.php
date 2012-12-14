@@ -7,7 +7,6 @@ $date = explode("/", $_POST["editdate"]);
 $month = $date[0];
 $day = $date[1];
 $usernm = $_SESSION['username'];
-
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
   require("../sql/editpersonalschedulesql.php");
@@ -32,12 +31,19 @@ try {
 <link href="../css/personalstyle.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/headr.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
+<script language="javascript" type="text/javascript" src="../js/jquery-1.5.min.js"></script>
+<script language="javascript" type="text/javascript" src="../js/jquery.validate.js"></script>
+<script language="javascript" type="text/javascript" src="../js/messages_ja.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#sqlflg").validate();
+  });
+</script>
 </head>
 <body onload="hidden()">
 <div id="wrapper">
 	<?php require("../common/header.php"); ?>
 	<div id="contents">
-		<div id="scheduling">
 			<p class="scheduletitle"><?php print(date_ja($year."/".$month."/".$day)."  ".$usernm); ?></p>
 			<form method="POST" action="personal.php">
 			<table id="table2" border="1">
@@ -52,7 +58,7 @@ try {
 					<?php } ?>					
 				</tr>
 				<tr id="clickbox">
-					<td><input id="name" type="text" readonly="readonly" value="<?php print($month."/".$day); ?>" /></td>
+					<td><input id="name" name="editdate" type="text" readonly="readonly" value="<?php print($month."/".$day); ?>" /></td>
 					<td></td>
 					<?php for ($num = 6; $num < 26; $num++) { ?>
 					<td class="clickbox" colspan="2">
@@ -66,16 +72,16 @@ try {
 				<tr>
 				</tr>
 			</table>
-			<p><input type="submit" value="EDIT"/></p>
-			<p><input type="submit" value="DELETE"/></p>
+				<input type="hidden" name="sqlflg" id="sqlflg" />
 	         	<input type="hidden" id="personaldate" name="personaldate" value="<?php print($year."/".$month); ?>"/><br/>
-	          	<input type="submit" value="RETURN"/>
+			<p><input type="submit" value="EDIT" onclick="changeSqlFlg(2)"/></p>
+			<p><input type="submit" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
+			<p><input type="submit" value="RETURN" onclick="changeSqlFlg('')"/></p>
 	        </form>
 		</div><!-- scheduling -->
 	</div><!--contents-->
 
 	<div id="footer">
-		<input type="text" value="<?php print($editdata[19]); ?>"/>
 		<?php for ($i = 6; $i < 26;  $i++) { ?>
 		<script type="text/javascript">
 		<!--

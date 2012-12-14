@@ -88,3 +88,19 @@ input.read:hover {
 input.read:focus {
 	border-color: #0c93c6;
 }
+
+#loginbutton {
+	background: url("../images/btn_login.png");
+	background-size: 100% 100%;
+	width: 94px;
+	height: 36px;
+	border: none;
+}
+
+#loginbutton:hover {
+	background: url("../images/btn_login_on.png");
+}
+
+
+
+

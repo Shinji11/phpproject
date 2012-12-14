@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/**
+ * レスポンシブ スタイル
+ * スモールサイズ（360px以下）
+ */
+/* window width 360px under */
+#header {
+  width: 336px;
+  padding: 0 12px;
+}
+#header .nav {
+  float: left;
+  padding: 14px 0 18px;
+}
+
+#area-visual {
+  height: 204px;
+}
+#area-visual .container {
+  padding: 0 12px;
+  width: 336px;
+  height: 204px;
+  background: #ffe24d;
+}
+#area-visual .container h1 {
+  padding-top: 24px;
+  font-size: 18px;
+}
+#area-visual .container p {
+  font-size: 10px;
+}
+
+#area-content .container {
+  width: 336px;
+}
+#area-content .container .content {
+  padding: 36px 12px;
+  text-align: center;
+}
