@@ -29,3 +29,14 @@ div#newmember {
  	color: white;
  }
 
+#registerbutton {
+	background: url("../images/btn_register.png");
+	background-size: 100% 100%;
+	border: none;
+	width: 124px;
+	height: 36px;
+}
+
+#registerbutton:hover {
+	background: 
+}

@@ -47,8 +47,8 @@ try {
         <td><?php print(e($row['USER_CD'])); ?></td>
         <td><?php print(e($row['LAST_NM'])); ?>&nbsp&nbsp<?php print(e($row['FIRST_NM'])); ?></td>
         <td><?php print(e($row['CHAR_ITEM1'])); ?></td>
-        <td><input type="submit" name="EDIT" value="EDIT"/></td>
-        <td><input type="submit" name="delete" value="DELETE"/></td>
+        <td><input type="submit" class="button" id="editbutton" value=""/></td>
+        <td><input type="submit" class="button" id="deletebutton" value="DELETE"/></td>
       </tr>
       <?php $rownum++; } ?>
       </form>
@@ -76,7 +76,7 @@ try {
           </td>
         </tr>
       </table>
-      <P id="centerbutton"><input type="submit" value="REGISTER"/></P>
+      <P id="centerbutton"><input class="button" id="registerbutton" type="submit" value=""/></P>
       </form>
     </div><!-- newmember -->
 

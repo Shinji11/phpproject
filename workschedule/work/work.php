@@ -52,7 +52,7 @@ try {
         </form>
         <form method="POST" action="work.php"/>
           <input type="hidden" id="scheduledate" name="scheduledate"/><br/>
-          <input type="submit" value="WORK SCHEDULE" onClick="changeDate()"/>
+          <input type="submit" class="button" id="entrybutton" value="" onClick="changeDate()"/>
         </form>
       </div><!-- calender-code -->
       
