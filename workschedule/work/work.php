@@ -56,11 +56,12 @@ try {
         </form>
       </div><!-- calender-code -->
       
-      <?php if(!($scheduledate == "")) { 
+      <?php if (!($scheduledate == "")) { 
                 $counter = 0;
       ?>
       <div id="workschedule">
       <p id="scheduledate" ><?php print(date_ja($scheduledate)); ?></p>
+      <?php if ($row = $stt2->fetch()) { ?>
       <table id="workscheduletable">
         <tr>
           <th>[NAME]</th>
@@ -80,16 +81,12 @@ try {
               $usercd = e($row['USER_CD']);
               $usercdlist[$counter] =  $usercd;
               $namelist[$counter] = $toptag;
+              $sumhours = $sumhours + e($row['HOURS']);
           require("../common/workscheduledata.php");
-          
-          $counter++; } 
-              if ($counter == 0) {
-              ?>
-            <tr><td colspan="43"><p class="scheduletitle">--まだデータは存在しません--</p></td></tr>
-            <?php } ?>
+         } ?>
         <tr>
           <th></th>
-          <th></th>
+          <th>TOTAL:<?php print($sumhours); ?></th>
           <?php for ($num = 6; $num < 24; $num++) { ?>
           <th colspan="2"><?php print($num); ?></th>
           <?php } 
@@ -99,6 +96,9 @@ try {
           <?php } ?>          
         </tr>
       </table>
+      <?php } else { ?>
+      <p class="scheduletitle">--まだデータは存在しません--</p>
+      <?php } ?>
     </div><!-- workschedule -->
     <?php } ?>
       <div>

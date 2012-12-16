@@ -3,6 +3,7 @@ require_once '../Encode.php';
 session_start();
 $title = "SCHEDULING";
 $rownum = 1;
+$namenum = 0;
 $scheduledate = $_POST['scheduledate'];
 $sqlflg = $_POST['sqlflg'];
 try {
@@ -64,7 +65,7 @@ try {
 	        </form>
 	        <form method="POST" action="scheduling.php"/>
 	          <input type="hidden" id="scheduledate" name="scheduledate"/><br/>
-	          <input type="submit" class="button" id="entrybubtton" onClick="changeDate()"/>
+	          <input type="submit" class="button" id="entrybutton" value="" onClick="changeDate()"/>
 	        </form>
     	</div><!-- calender-code -->
     	<?php if (!$message == "") { ?>
@@ -73,10 +74,10 @@ try {
 			</ul>
 		<?php } ?>
     	<?php if(!($scheduledate == "")) { 
-                $counter = 0;
         ?>
 		<div id="workschedule">
 			<p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
+			<?php if ($row = $stt2->fetch()) { ?> 
 			<table id="workscheduletable">
 				<tr>
 					<th>[NAME]</th>
@@ -94,18 +95,15 @@ try {
 	      			$firstnm = e($row['FIRST_NM']);
 	      			$toptag = $lastnm."  ".$firstnm;
 	      			$usercd = e($row['USER_CD']);
-	      			$usercdlist[$counter] =  $usercd;
-	      			$namelist[$counter] = $toptag;
+	      			$usercdlist[$namenum] =  $usercd;
+	      			$namelist[$namenum] = $toptag;
+	      			$sumhours = $sumhours + e($row['HOURS']);
 					require("../common/workscheduledata.php");
 					
-					$counter++; } 
-	         		if ($counter == 0) {
-          		?>
-         		<tr><td colspan="43"><p class="scheduletitle">--まだデータは存在しません--</p></td></tr>
-         		<?php } ?>
-				<tr>
+					 $namenum++;} ?>
+         		<tr>
 					<th></th>
-					<th></th>
+					<th>TOTAL:<?php print($sumhours); ?></th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } 
@@ -116,11 +114,10 @@ try {
 				</tr>
 			</table>
 			<div id="editselect">
-			<?php if ($counter != 0) { ?>
 			<form method="POST" action="scheduleedit.php">
 			<select id="editselect" name="editselect">
 			    <?php 
-			      for ($i = 0; $i < $counter; $i++) {
+			      for ($i = 0; $i < $namenum; $i++) {
 			        print('<option value="'.$usercdlist[$i].'"');
 			        print('>'.$namelist[$i].'</option>');
 			      }
@@ -129,8 +126,10 @@ try {
 			<input type="hidden" id="editdate" name="editdate" value="<?php print($scheduledate); ?>"/>
 			<input type="submit" class="button" id="editbutton" value=""/>
 			</form>
-			<?php } ?>
 			</div>
+			<?php } else { ?>
+			<p class="scheduletitle">--まだデータは存在しません--</p>
+			<?php } ?>
 		</div><!-- workschedule -->
 
 		<div id="scheduling">

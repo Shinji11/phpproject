@@ -3,8 +3,12 @@ require_once '../Encode.php';
 session_start();
 $title = "MASTER";
 $rownum = 1;
+$sqlflg = $_POST['sqlflg'];
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+  if ($sqlflg == 1) {
+  require("../sql/insertmanagersql.php");	
+  } 
   $stt = $db->prepare('SELECT * FROM AM_MEMBER ME 
   	                      INNER JOIN AM_COM CO
   	                              ON CO.BRA_CD = ME.BRA_CD
@@ -32,6 +36,11 @@ try {
 
 	<div id="contents">
 		<div id="registerinfo">
+	    <?php if (!$message == "") { ?>
+	      <ul class="message">
+    	    <li><p class="message"><?php print($message); ?></p></li>
+      	  </ul>
+    	<?php } ?>
 		<form method="POST" action="master.php">
 		<table class="registration" >
 			<tr>
@@ -56,36 +65,21 @@ try {
 				<th class="title" colspan="6">MANAGER</th>
 			</tr>
 				<th>EmployeeNumber:</th>
-				<td><input id="comid" name="comid" type="text"></td>
+				<td><input id="usercd" name="usercd" type="text"></td>
 				<th>LastName:</th>
 				<td><input id="lastnm" name="lastnm" type="text"></td>
 				<th>FirstName:</th>
 				<td><input id="firstnm" name="firstnm" type="text"></td>
 			</tr>
 			<tr>
-				<th>Sex:</th>
-				<td><select id="sexcd" name="sexcd" >
-					<?php
-					$sexes = array('男','女');
-					foreach ($sexes as $sex) {
-						if ($sex == '男') { 
-							print('<option value="1" selected >'.$sex.'</option>');
-						} elseif ($sex == '女') { 
-							print('<option value="2" >'.$sex.'</option>');
-						}
-					}
-					?>
-					</select>
-					<input id="authority" name="authority" type="hidden" value="2">
-					<input id="title" name="title" type="hidden" value="MASTERs">
-				</td>
 				<th>Password</th>
 				<td><input id="password" name="password" type="password"/></td>
 				<th>Confirm Password</th>
 				<td><input id="password2" type="password"/></td>
 			<tr>
 		</table>
-		<p><input id="register" type="submit" value="REGISTER"></p>
+		<input type="hidden" name="sqlflg" value="1"/>
+		<p><input class="button" id="registerbutton" type="submit" value=""></p>
 		</form>
 		</div><!-- registerinfo -->
 
@@ -110,8 +104,8 @@ try {
 					<td><?php print(e($row['COM_NM'])); ?></td>
 					<td><?php print(e($row['BRA_NM'])); ?></td>
 					<td><?php print($name); ?></td>
-					<td><input id="edit" type="submit" value="EDIT"/></td>
-					<td><input id="delete" type="submit" value="DELETE"/></td>
+					<td><input class="button" id="editbutton" type="submit" value=""/></td>
+					<td><input class="button" id="deletebutton" type="submit" value="DELETE"/></td>
 				</tr>
 				</form>
 				<?php $rownum++; } ?>

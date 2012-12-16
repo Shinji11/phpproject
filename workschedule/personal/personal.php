@@ -72,11 +72,12 @@ try {
 			</ul>
 		<?php } ?>
 		
-		<?php if(!($pesonaldate == "")) { 
+		<?php if (!($pesonaldate == "")) { 
                 $counter = 0;
         ?>
 		<div id="workschedule">
 			<p class="scheduletitle" ><?php print($year."年".$month."月"); ?></p>
+			<?php if ($row = $stt3->fetch()) { ?>
 			<table id="personalscheduletable">
 				<tr>
 					<th>[DATE]</th>
@@ -98,12 +99,7 @@ try {
 	      			$datelist[$datenum] = $toptag;
 	      			
 					require("../common/personalscheduledata.php");
-					$datenum++;
-					$counter++; } 
-	         		if ($counter == 0) {
-          		?>
-         		<tr><td colspan="44"><p class="scheduletitle">--まだデータは存在しません--</p></td></tr>
-         		<?php } ?>
+					$datenum++; } ?>
 				<tr>
 					<th></th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
@@ -118,7 +114,6 @@ try {
 		</div><!-- workschedule -->
 
 		<div id="editselect">
-			<?php if ($counter != 0) { ?>
 			<form method="POST" action="personaledit.php">
 			<select id="date" name="editdate">
 			    <?php 
@@ -131,8 +126,10 @@ try {
 			<input type="hidden" class="button" name="edityear" value="<?php print($year); ?>" />
 			<input type="submit" class="button" id="editbutton" value=""/>
 			</form>
-			<?php } ?>
 		</div><!-- editselect -->
+		<?php } else { ?>
+			<p class="scheduletitle">--まだデータは存在しません--</p>
+		<?php } ?>
 
 		<div id="scheduling">
 			<form method="POST" action="personal.php">

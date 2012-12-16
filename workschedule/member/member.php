@@ -3,8 +3,12 @@ require_once '../Encode.php';
 session_start();
 $title = "MEMBER";
 $rownum = 1;
+$sqlflg = $_POST['sqlflg'];
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+  if ($sqlflg == 1) {
+  require("../sql/insertmembersql.php");  
+  } 
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
@@ -30,6 +34,11 @@ try {
   <?php require("../common/header.php"); ?>
   <div id="contents">
     <div id="memberlist">
+    <?php if (!$message == "") { ?>
+      <ul class="message">
+        <li><p class="message"><?php print($message); ?></p></li>
+      </ul>
+    <?php } ?>
     <p class="scheduletitle">MEMBER LIST</p>
     <table id="member" border="1">
       <tr>
@@ -61,14 +70,14 @@ try {
       <table id="newmebertable">
         <tr>
           <th>ID:</th>
-          <td><input type="text" class="read" /></td>
+          <td><input name="usercd" type="text" class="read" /></td>
           <th>LAST NAME:</th>
-          <td><input type="text" class="read" /></td>
+          <td><input name="lastnm" type="text" class="read" /></td>
           <th>FIRST NAME:</th>
-          <td><input type="text" class="read" /></td>
+          <td><input name="firstnm" type="text" class="read" /></td>
           <th>AUTHORITY:</th>
           <td>
-            <select>
+            <select name="authority">
             <option value="3" selected>NORMAL</option>
             <option value="2">MANAGER</option>
             <option value="4">ABNORMAL</option>
@@ -76,7 +85,8 @@ try {
           </td>
         </tr>
       </table>
-      <P id="centerbutton"><input class="button" id="registerbutton" type="submit" value=""/></P>
+      <input type="hidden" id="sqlflg" name="sqlflg" value="1"/>
+      <P class="centerbutton"><input class="button" id="registerbutton" type="submit" value="" onclick=""/></P>
       </form>
     </div><!-- newmember -->
 

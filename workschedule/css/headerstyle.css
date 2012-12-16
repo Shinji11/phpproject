@@ -108,6 +108,14 @@ a.twoline:hover {
 	opacity: 0.5;
 }
 
+
+
+
+
+
+
+
+
 .scheduletitle {
 	text-align: center;
 	font-size: 20px;
@@ -142,15 +150,15 @@ input.read:focus {
 }
 
 .centerbutton {
-
+	text-align: center;
 }
 
 .leftbutton {
-
+	text-align: left;
 }
 
 .rightbutton {
-	
+	text-align: right;
 }
  
 .button {

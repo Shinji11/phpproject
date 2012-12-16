@@ -50,7 +50,7 @@
 				<li><a class="oneline" href="member/member.php?title=MEMBER">MEMBER</a><li/>
 				<li><a class="oneline" href="scheduling/scheduling.php?title=SCHEDULING">SCHEDULING</a><li/>
 			<?php } else { ?>
-				<li><a class="noline"></a><li/>
+				<li><a class="oneline" href="../member/setting.php">SETTING</a><li/>
 				<li><a class="noline"></a><li/>
 			<?php } if ($row['AUTHORITY_CD'] == 1) { ?>
 				<li><a class="oneline" href="master/master.php?title=MASTER">MASTER</a><li/>
