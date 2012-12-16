@@ -1,5 +1,4 @@
 <html>
-<div id="header">
 <div id="headerinfo">
 <table id="info" align="center" border="0" cellspacing="0" cellpadding="0">
 	<tr>
@@ -40,5 +39,4 @@
 		<?php } ?>
 	</ul>
 </div><!-- headermenu -->
-</div><!-- header -->
 </html>

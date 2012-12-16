@@ -21,53 +21,61 @@ try {
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional-dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;
- charset=utf-8" />
 <title>MEMBER</title>
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<script type="text/javascript" src="../js/headr.js"></script>
-<link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
+<?php require("../common/head.php"); ?>
 <link href="../css/memberstyle.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="wrapper">
-  <?php require("../common/header.php"); ?>
+  <div id="header">
+    <?php require("../common/header.php"); ?>
+  </div><!-- header -->
+
   <div id="contents">
     <div id="memberlist">
-    <?php if (!$message == "") { ?>
-      <ul class="message">
-        <li><p class="message"><?php print($message); ?></p></li>
-      </ul>
-    <?php } ?>
-    <p class="scheduletitle">MEMBER LIST</p>
-    <table id="member" border="1">
-      <tr>
-        <th>NO</th>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>AOUTHORITY</th>
-        <th>EDIT</th>
-        <th>DELETE</th>
-      </tr>
-      <?php while ($row = $stt->fetch()) { ?>
-      <form action="member.php" method="POST">
-      <tr>
-        <td><?php print($rownum); ?></td>
-        <td><?php print(e($row['USER_CD'])); ?></td>
-        <td><?php print(e($row['LAST_NM'])); ?>&nbsp&nbsp<?php print(e($row['FIRST_NM'])); ?></td>
-        <td><?php print(e($row['CHAR_ITEM1'])); ?></td>
-        <td><input type="submit" class="button" id="editbutton" value=""/></td>
-        <td><input type="submit" class="button" id="deletebutton" value="DELETE"/></td>
-      </tr>
-      <?php $rownum++; } ?>
-      </form>
-    </table>
-    </div><!--memberlist-->
+      <?php if (!$message == "") { ?>
+        <ul class="message">
+          <li><p class="message"><?php print($message); ?></p></li>
+        </ul>
+      <?php } ?>
+      <p class="scheduletitle">MEMBER LIST</p>
+      <table id="member" border="1">
+        <tr>
+          <th>NO</th>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>AOUTHORITY</th>
+          <th>EDIT</th>
+        </tr>
+        <?php while ($row = $stt->fetch()) { 
+          $lastnm = e($row['LAST_NM']);
+          $firstnm = e($row['FIRST_NM']);
+          $usernm = $lastnm."  ".$firstnm;
+          ?>
+        <form action="memberedit.php" method="POST">
+        <tr>
+          <td><?php print($rownum); ?></td>
+          <td><input type="text" name="usercd" class="transparent" readonly="readonly" value="<?php print(e($row['USER_CD'])); ?>" /></td>
+          <td>
+            <input type="hidden" name="lastnm" value="<?php print($lastnm); ?>"/>
+            <input type="hidden" name="firstnm" value="<?php print($firstnm); ?>"/>
+            <input type="text" name="usernm" class="transparent" readonly="readonly" value="<?php print($usernm); ?>"/>
+          </td>
+          <td>
+            <input type="hidden" name="authority" value="<?php print(e($row['AUTHORITY_CD'])); ?>" />
+            <input type-"text" name="autoritynm" class="transparent" readonly="readonly" value="<?php print(e($row['CHAR_ITEM1'])); ?>"/>
+          </td>
+          <td><input type="submit" class="button" id="editbutton" value=""/></td>
+        </tr>
+        </form>
+        <?php $rownum++; } ?>
+      </table>
+    </div><!-- memberlist -->
 
     <div id="newmember">
-      <p class="scheduletitle">NEW MEMBER</p>
       <form method="POST" action="member.php">
       <table id="newmebertable">
+        <tr><th class="registertitle" colspan="8">NEW MEMBER</th></tr>
         <tr>
           <th>ID:</th>
           <td><input name="usercd" type="text" class="read" /></td>
@@ -86,15 +94,14 @@ try {
         </tr>
       </table>
       <input type="hidden" id="sqlflg" name="sqlflg" value="1"/>
-      <P class="centerbutton"><input class="button" id="registerbutton" type="submit" value="" onclick=""/></P>
+      <P class="center"><input class="button" id="registerbutton" type="submit" value="" onclick=""/></P>
       </form>
     </div><!-- newmember -->
-
-  </div><!--contents-->
+  </div><!-- contents -->
 
   <div id="footer">
-  </div><!--footer-->
-</div><!--wrapper-->
+  </div><!-- footer -->
+</div><!-- wrapper -->
 </body>
 
 </html>

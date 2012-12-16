@@ -6,13 +6,14 @@
 	<link rel="stylesheet" type="text/css" href="css/loginstyle.css">
 </head>
 <body>
+<div id="wrapper">
 	<div id="header">
-			<p id="title" align="center">Work&nbspSchedule&nbspMangement</p>
+		<p id="logintitle">Work Schedule Mangement</p>
 	</div><!-- header -->
-	<div id="wrapper">
-		<div id-"contents">			
+	
+	<div id="contents">			
+		<div id="loginform">
 			<form method="POST" action="menu.php">
-			<div id="loginform">
 			<table id="logininfo">
 				<tr>
 					<th id="left"><label>UserId</label></th>
@@ -27,13 +28,15 @@
 					<td><input type="password" class="read" id="password" name="password"/></td>
 				</tr>
 			</table>
-			</div>
 			<p><input type="submit" id="loginbutton" value=""/></p>
 			</form>
-		</div><!-- contents -->
-		<div id="footer">
+		</div><!-- loginform -->
+	</div><!-- contents -->
+
+	<div id="footer">
 		</div><!-- footer -->
 	</div><!-- contents -->
+</div><!-- wrapper -->
 </body>
 </html>
 

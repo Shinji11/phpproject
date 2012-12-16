@@ -1,73 +1,69 @@
 @charset "UTF-8";
 
 body {
+	background-image: url("../images/sky.jpg");
+	background-size: 100% 100%;
+}
+
+#wrapper {
 	background-image: url("../images/wooden01.png");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
+	vertical-align: middle;
+	margin: 0 auto;
+	padding-top: 40px;
+	border-radius: 15px;
+	width: 1000px;
+	height: 90%;
+	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
-div#wrapper {
-	background-color: black;
+#header {
+	background: url("../images/sky.jpg");
+	overflow: hidden;
+	margin: 0 auto;
+	width: 100%;
+	height: 50px;
+}
+
+p {
+	margin: 8px auto;
+	text-align: center;
+}
+
+#logintitle {
+	font-size: 30px;
+	color: yellow;
+	font-family: impact;
+}
+
+#contents {
 	background-image: url("../images/sky.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	width: 60%;
 	height: 60%;
-	margin: 15% 20% 20% 20%;
+	margin: 10% 20% 20% 20%;
 	border-radius: 15px;
 }
 
-#title {
-	background: url("../images/sky.jpg");
-	position: absolute; 
-	padding: 10px 0;
-	width: 100%;
-	top: 5%;
-	left: 0;
-	color: white;
-	font-size: 1.2em;
-	line-height: 1.3em;
-	font-family: impact;
-}
-
-div#loginform {
+#loginform {
 	padding-top: 120px;
 	margin: 0 auto;
-	width: 30%;
 }
 
-th#left {
+#logininfo {
+	margin: 0 auto;
+	color: white;
+}
+
+#left {
 	text-align: left;
 }
 
-th#right {
+#right {
 	text-align: right;
-}
-
-p {
-	text-align: center;
-}
-
-table#logininfo {
-	margin: 0 auto;
-	color: white;
-
-}
-
-table#logininfo tr {
-	height: 30px;
-}
-
-a.login {
-	font-size: 30px;
-	color: yellow;
-
 }
 
 input.read {
@@ -92,6 +88,7 @@ input.read:focus {
 #loginbutton {
 	background: url("../images/btn_login.png");
 	background-size: 100% 100%;
+	margin-top: 30px;
 	width: 94px;
 	height: 36px;
 	border: none;

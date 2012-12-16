@@ -26,22 +26,22 @@ try {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <title>SCHEDULING</title>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
+<?php require("../common/head.php"); ?>
 <link href="../css/schedulingstyle.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/headr.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
 </head>
 <body onload="hidden()">
 <div id="wrapper">
-	<?php require("../common/header.php"); ?>
+	<div id="header">
+		<?php require("../common/header.php"); ?>
+	</div><!-- header -->
+
 	<div id="contents">
 		<div id="scheduling">
 			<p class="scheduletitle"><?php print(date_ja($editdate)."  ".$usernm); ?></p>
 			<form method="POST" action="scheduling.php">
 			<table id="table2" border="1">
 				<tr>
-					<th></th>
+					<th>[NAME]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } 
@@ -66,14 +66,14 @@ try {
 				</tr>
 			</table>
 			<input type="hidden" name="sqlflg" id="sqlflg"/>
-	        <input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/><br/>
-	        <input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/><br/>
-			<p><input type="submit" class="button" id="editbutton" value="" onclick="changeSqlFlg(2)"/></p>
-			<p><input type="submit" class="button" id="daletebutton" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
-	        <P><input type="submit" class="button" id="returnbutton" value=""/></P>
+	        <input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/>
+	        <input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/>
+	        <P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
+			<p class="right"><input type="submit" class="button" id="daletebutton" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
+			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="changeSqlFlg(2)"/></p>
 			</form>
 		</div><!-- scheduling -->
-	</div><!--contents-->
+	</div><!-- contents -->
 
 	<div id="footer">
 		<?php for ($i = 6; $i < 26;  $i++) { ?>
@@ -82,9 +82,8 @@ try {
 			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>, 1);
 		// -->
 		</script>
-<?php } ?>
-	</div><!--footer-->
-</div><!--wrapper-->
+		<?php } ?>
+	</div><!-- footer -->
+</div><!-- wrapper -->
 </body>
-
 </html>

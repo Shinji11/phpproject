@@ -33,22 +33,15 @@ try {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> 
 <title>SCHEDULING</title>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<link id="calendar_style" href="../protocalendar/stylesheets/simple.css" media="screen" rel="Stylesheet" type="text/css" />
-<link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
+<?php require("../common/head.php"); ?>
 <link href="../css/schedulingstyle.css" rel="stylesheet" type="text/css" />
-<script src="../protocalendar/lib/prototype.js" type="text/javascript"></script>
-<script src="../protocalendar/lib/effects.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/protocalendar.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/lang_ja.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/lang_zh-cn.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/lang_zh-tw.js" type="text/javascript"></script>
-<script type="text/javascript" src="../js/headr.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
 </head>
 <body onload="hidden()">
 <div id="wrapper">
-	<?php require("../common/header.php"); ?>
+	<div id="header">
+		<?php require("../common/header.php"); ?>
+	</div><!-- header -->
+
 	<div id="contents">
 		<div class="calender-code">
 	        <form action="javascript:void(0);">
@@ -68,6 +61,7 @@ try {
 	          <input type="submit" class="button" id="entrybutton" value="" onClick="changeDate()"/>
 	        </form>
     	</div><!-- calender-code -->
+
     	<?php if (!$message == "") { ?>
 			<ul class="message">
 				<li><p class="message"><?php print($message); ?></p></li>
@@ -76,57 +70,60 @@ try {
     	<?php if(!($scheduledate == "")) { 
         ?>
 		<div id="workschedule">
-			<p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
-			<?php if ($row = $stt2->fetch()) { ?> 
-			<table id="workscheduletable">
-				<tr>
-					<th>[NAME]</th>
-					<th>[HOURS]</th>
-					<?php for ($num = 6; $num < 24; $num++) { ?>
-					<th colspan="2"><?php print($num); ?></th>
-					<?php } 
-						  for ($num = 0; $num < 3; $num++) {
-					?>
-					<th colspan="2"><?php print($num); ?></th>
-					<?php } ?>					
-				</tr>
-				<?php while ($row = $stt2->fetch()) { 
-	      			$lastnm = e($row['LAST_NM']);
-	      			$firstnm = e($row['FIRST_NM']);
-	      			$toptag = $lastnm."  ".$firstnm;
-	      			$usercd = e($row['USER_CD']);
-	      			$usercdlist[$namenum] =  $usercd;
-	      			$namelist[$namenum] = $toptag;
-	      			$sumhours = $sumhours + e($row['HOURS']);
-					require("../common/workscheduledata.php");
-					
-					 $namenum++;} ?>
-         		<tr>
-					<th></th>
-					<th>TOTAL:<?php print($sumhours); ?></th>
-					<?php for ($num = 6; $num < 24; $num++) { ?>
-					<th colspan="2"><?php print($num); ?></th>
-					<?php } 
-						  for ($num = 0; $num < 3; $num++) {
-					?>
-					<th colspan="2"><?php print($num); ?></th>
-					<?php } ?>					
-				</tr>
-			</table>
+			<div id="schedulelist">
+				<p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
+				<?php if ($row = $stt2->fetch()) { ?> 
+				<table id="workscheduletable">
+					<tr>
+						<th>[NAME]</th>
+						<th>[h]</th>
+						<?php for ($num = 6; $num < 24; $num++) { ?>
+						<th colspan="2"><?php print($num); ?></th>
+						<?php } 
+							  for ($num = 0; $num < 3; $num++) {
+						?>
+						<th colspan="2"><?php print($num); ?></th>
+						<?php } ?>					
+					</tr>
+					<?php while ($row = $stt2->fetch()) { 
+		      			$lastnm = e($row['LAST_NM']);
+		      			$firstnm = e($row['FIRST_NM']);
+		      			$toptag = $lastnm."  ".$firstnm;
+		      			$usercd = e($row['USER_CD']);
+		      			$usercdlist[$namenum] =  $usercd;
+		      			$namelist[$namenum] = $toptag;
+		      			$sumhours = $sumhours + e($row['HOURS']);
+						require("../common/workscheduledata.php");
+						 $namenum++;} ?>
+	         		<tr>
+						<th></th>
+						<th>TOTAL:<?php print($sumhours); ?></th>
+						<?php for ($num = 6; $num < 24; $num++) { ?>
+						<th colspan="2"><?php print($num); ?></th>
+						<?php } 
+							  for ($num = 0; $num < 3; $num++) {
+						?>
+						<th colspan="2"><?php print($num); ?></th>
+						<?php } ?>					
+					</tr>
+				</table>
+			</div><!-- shedulelist -->
+
 			<div id="editselect">
-			<form method="POST" action="scheduleedit.php">
-			<select id="editselect" name="editselect">
-			    <?php 
-			      for ($i = 0; $i < $namenum; $i++) {
-			        print('<option value="'.$usercdlist[$i].'"');
-			        print('>'.$namelist[$i].'</option>');
-			      }
-			    ?>
-			</select>
-			<input type="hidden" id="editdate" name="editdate" value="<?php print($scheduledate); ?>"/>
-			<input type="submit" class="button" id="editbutton" value=""/>
-			</form>
-			</div>
+				<form method="POST" action="scheduleedit.php">
+				<select id="editselect" name="editselect">
+				    <?php 
+				      for ($i = 0; $i < $namenum; $i++) {
+				        print('<option value="'.$usercdlist[$i].'"');
+				        print('>'.$namelist[$i].'</option>');
+				      }
+				    ?>
+				</select>
+				<input type="hidden" id="editdate" name="editdate" value="<?php print($scheduledate); ?>"/>
+				<input type="submit" class="button" id="editbutton" value=""/>
+				</form>
+			</div><!-- editselect -->
+
 			<?php } else { ?>
 			<p class="scheduletitle">--まだデータは存在しません--</p>
 			<?php } ?>
@@ -135,8 +132,9 @@ try {
 		<div id="scheduling">
 			<form method="POST" action="scheduling.php">
 			<table id="table2" border="1">
+				<tr><th class="registertitle" colspan="43">NEW SCHEDULE</th></tr>
 				<tr>
-					<th></th>
+					<th>[NAME]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } 
@@ -167,21 +165,20 @@ try {
 					</td>
 					<?php } ?>
 					<td></td>
-				    </tr>
-				<tr>
 				</tr>
+				<tr></tr>
 			</table>
 			<input type="hidden" name="scheduledate" value="<?php print($scheduledate); ?>"/>
 			<input type="hidden" name="sqlflg" value="1"/>
 			<p><input type="submit" class="button" id="registerbutton" value=""/></p>
 			</form>
 		</div><!-- scheduling -->
+
 		<?php } ?>
-	</div><!--contents-->
+	</div><!-- contents -->
 
 	<div id="footer">
-	</div><!--footer-->
-</div><!--wrapper-->
+	</div><!-- footer -->
+</div><!-- wrapper -->
 </body>
-
 </html>

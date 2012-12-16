@@ -22,25 +22,24 @@ try {
  charset=utf-8" />
 <title>MENU</title>
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<script type="text/javascript" src="../workschedule/js/headr.js"></script>
-<link href="../workschedule/css/headerstyle.css" rel="stylesheet" type="text/css" />
-<link href="../workschedule/css/menustyle.css" rel="stylesheet" type="text/css" />
-
+<link type="text/css" href="../workschedule/css/headerstyle.css" rel="stylesheet" />
+<link type="text/css" href="../workschedule/css/menustyle.css" rel="stylesheet" />
+<script type="text/javascript" language="javascript" src="../workschedule/js/common.js"></script>
 </head>
 <body>
-<div id="wrapper">
-	<?php require("common/menuheader.php"); ?>
+<div id="wrapper"> 
+  <div id="header">
+    <?php require("common/menuheader.php"); ?>
+  </div><!-- header -->
 
 	<div id="contents">
     <div id="logomark">
       <img id="logo" src="images/<?php print($com); ?>.png">
-    </div>
-		
-	</div><!--contents-->
+    </div><!-- logomark -->
+	</div><!-- contents -->
 
 	<div id="footer">
-	</div><!--footer-->
-</div><!--wrapper-->
+	</div><!-- footer -->
+</div><!-- wrapper -->
 </body>
-
 </html>

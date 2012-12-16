@@ -8,6 +8,10 @@
 
 }
 
+#entrybutton {
+	margin-top: 10px;
+}
+
 .color0 {
 	background-color: transparent;
 	width: 30px;
@@ -85,30 +89,6 @@ tr td.clickbox {
 	height: 20px;
 }
 
-p.left {
-	float: left;
-	text-align: left;
-}
-
-p.right {
-	text-align: right;
-}
-
-#calendar_hm3_icon {
-	background: url("../images/calender.jpg");
-	background-size: 100% 100%;
-	width: 25px;
-}
-
-div.calender-code {
-	margin: 0 auto;
-	padding-top: 50px;
-	text-align: center;
-}
-
-#calendar_hm3 {
-	width: 70px;
-
 }
 #name {
 	background-color: transparent;
@@ -118,7 +98,6 @@ div.calender-code {
 
 #editselect {
 	text-align: center;
-	vertical-align: middle;
 }
 
 

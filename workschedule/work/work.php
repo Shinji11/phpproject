@@ -20,22 +20,15 @@ try {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title>WORK SCHEDULE</title>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<link id="calendar_style" href="../protocalendar/stylesheets/simple.css" media="screen" rel="Stylesheet" type="text/css" />
-<link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
+<?php require("../common/head.php"); ?>
 <link href="../css/workstyle.css" rel="stylesheet" type="text/css" />
-<script src="../protocalendar/lib/prototype.js" type="text/javascript"></script>
-<script src="../protocalendar/lib/effects.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/protocalendar.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/lang_ja.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/lang_zh-cn.js" type="text/javascript"></script>
-<script src="../protocalendar/javascripts/lang_zh-tw.js" type="text/javascript"></script>
-<script type="text/javascript" src="../js/headr.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
 </head>
 <body>
   <div id="wrapper">
+    <div id="header">
     <?php require("../common/header.php"); ?>
+    </div><!-- header -->
+
     <div id="contents">
       <div class="calender-code">
         <form action="javascript:void(0);">
@@ -60,50 +53,52 @@ try {
                 $counter = 0;
       ?>
       <div id="workschedule">
-      <p id="scheduledate" ><?php print(date_ja($scheduledate)); ?></p>
-      <?php if ($row = $stt2->fetch()) { ?>
-      <table id="workscheduletable">
-        <tr>
-          <th>[NAME]</th>
-          <th>[HOURS]</th>
-          <?php for ($num = 6; $num < 24; $num++) { ?>
-          <th colspan="2"><?php print($num); ?></th>
-          <?php } 
-              for ($num = 0; $num < 3; $num++) {
-          ?>
-          <th colspan="2"><?php print($num); ?></th>
-          <?php } ?>          
-        </tr>
-        <?php while ($row = $stt2->fetch()) { 
-              $lastnm = e($row['LAST_NM']);
-              $firstnm = e($row['FIRST_NM']);
-              $toptag = $lastnm."  ".$firstnm;
-              $usercd = e($row['USER_CD']);
-              $usercdlist[$counter] =  $usercd;
-              $namelist[$counter] = $toptag;
-              $sumhours = $sumhours + e($row['HOURS']);
-          require("../common/workscheduledata.php");
-         } ?>
-        <tr>
-          <th></th>
-          <th>TOTAL:<?php print($sumhours); ?></th>
-          <?php for ($num = 6; $num < 24; $num++) { ?>
-          <th colspan="2"><?php print($num); ?></th>
-          <?php } 
-              for ($num = 0; $num < 3; $num++) {
-          ?>
-          <th colspan="2"><?php print($num); ?></th>
-          <?php } ?>          
-        </tr>
-      </table>
-      <?php } else { ?>
-      <p class="scheduletitle">--まだデータは存在しません--</p>
-      <?php } ?>
-    </div><!-- workschedule -->
+        <p id="scheduledate" ><?php print(date_ja($scheduledate)); ?></p>
+        <?php if ($row = $stt2->fetch()) { ?>
+        <table id="workscheduletable">
+          <tr>
+            <th>[NAME]</th>
+            <th>[h]</th>
+            <?php for ($num = 6; $num < 24; $num++) { ?>
+            <th colspan="2"><?php print($num); ?></th>
+            <?php } 
+                for ($num = 0; $num < 3; $num++) {
+            ?>
+            <th colspan="2"><?php print($num); ?></th>
+            <?php } ?>          
+          </tr>
+          <?php while ($row = $stt2->fetch()) { 
+                $lastnm = e($row['LAST_NM']);
+                $firstnm = e($row['FIRST_NM']);
+                $toptag = $lastnm."  ".$firstnm;
+                $usercd = e($row['USER_CD']);
+                $usercdlist[$counter] =  $usercd;
+                $namelist[$counter] = $toptag;
+                $sumhours = $sumhours + e($row['HOURS']);
+            require("../common/workscheduledata.php");
+           } ?>
+          <tr>
+            <th></th>
+            <th>計:<?php print($sumhours); ?></th>
+            <?php for ($num = 6; $num < 24; $num++) { ?>
+            <th colspan="2"><?php print($num); ?></th>
+            <?php } 
+                for ($num = 0; $num < 3; $num++) {
+            ?>
+            <th colspan="2"><?php print($num); ?></th>
+            <?php } ?>          
+          </tr>
+        </table>
+        <?php } else { ?>
+        <p class="scheduletitle">--まだデータは存在しません--</p>
+        <?php } ?>
+      </div><!-- workschedule -->
+
     <?php } ?>
-      <div>
-      </div><!-- footer -->
     </div><!-- contents -->
+
+    <div id="footer">
+    </div><!-- footer -->
   </div><!-- wrapper -->
 </body>
 </html>

@@ -38,18 +38,16 @@ try {
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional-dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;
- charset=utf-8" />
 <title>PERSONAL SCHEDULE</title>
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<script type="text/javascript" src="../js/headr.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
-<link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
+<?php require("../common/head.php"); ?>
 <link href="../css/personalstyle.css" rel="stylesheet" type="text/css" />
 </head>
 <body onload="hidden()">
 <div id="wrapper">
-	<?php require("../common/header.php"); ?>
+	<div id="header">
+		<?php require("../common/header.php"); ?>
+	</div><!-- header -->
+
 	<div id="contents">
 		<div id="calender">
 			<form method="POST" action="personal.php"/>
@@ -66,6 +64,7 @@ try {
 			<input id="entrybutton" class="button" type="submit" value=""/>
         </form>
 		</div><!-- calender -->
+
 		<?php if (!$message == "") { ?>
 			<ul class="message">
 				<li><p class="message"><?php print($message); ?></p></li>
@@ -127,6 +126,7 @@ try {
 			<input type="submit" class="button" id="editbutton" value=""/>
 			</form>
 		</div><!-- editselect -->
+
 		<?php } else { ?>
 			<p class="scheduletitle">--まだデータは存在しません--</p>
 		<?php } ?>
@@ -134,8 +134,9 @@ try {
 		<div id="scheduling">
 			<form method="POST" action="personal.php">
 			<table id="table2" border="1">
+				<tr><th class="registertitle" colspan="43">NEW PERSONAL SCHEDULE</th></tr>
 				<tr>
-					<th></th>
+					<th>[DATE]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } 
@@ -186,12 +187,12 @@ try {
 			<p class="right"><input type="submit" class="button" id="registerbutton" value=""/></p>
 			</form>
 		</div><!-- scheduling -->
+
 		<?php } ?>
-	</div><!--contents-->
+	</div><!-- contents -->
 
 	<div id="footer">
-	</div><!--footer-->
-</div><!--wrapper-->
+	</div><!-- footer -->
+</div><!-- wrapper -->
 </body>
-
 </html>

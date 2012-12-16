@@ -1,5 +1,5 @@
 <tr >
-	<td><input type="text" id="name" readonly="readonly" value="<?php print($toptag);?> "/></td>
+	<td><input type="text" id="name" class="transparent" readonly="readonly" value="<?php print($toptag);?> "/></td>
 	<td></td>
 	<td class="color<?php print(e($row['SIX']))?>" colspan="2"></td>
 	<td class="color<?php print(e($row['SEVEN']))?>" colspan="2"></td>

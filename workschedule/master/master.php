@@ -22,68 +22,66 @@ try {
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;
- charset=utf-8" />
 <title>MEMBER</title>
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<script type="text/javascript" src="../js/headr.js"></script>
-<link href="../css/headerstyle.css" rel="stylesheet" type="text/css" />
+<?php require("../common/head.php"); ?>
 <link href="../css/masterstyle.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="wrapper">
-	<?php require("../common/header.php"); ?>
+	<div id="header">
+		<?php require("../common/header.php"); ?>
+	</div><!-- header -->
 
 	<div id="contents">
 		<div id="registerinfo">
-	    <?php if (!$message == "") { ?>
-	      <ul class="message">
-    	    <li><p class="message"><?php print($message); ?></p></li>
-      	  </ul>
-    	<?php } ?>
-		<form method="POST" action="master.php">
-		<table class="registration" >
-			<tr>
-				<th class="title" colspan="4">COMPANY&BRANCH-OFFICE</th>
-			</tr>
-			<tr>
-				<th>CompanyCode:</th>
-				<td><input id="comcd" name="comcd" type="text"></td>
-				<th>CompanyName:</th>
-				<td><input id="comnm" name="comnm" type="text"></td>
-			</tr>
-			<tr>	
-				<th>BranchCode:</th>
-				<td><input id="bracd" name="bracd" type="text"></td>
-				<th>BranchName:</th>
-				<td><input id="branm" name="branm" type="text"></td>
-			</tr>
-		</table>
-		<br/>
-		<table class="registration" >	
-			<tr>
-				<th class="title" colspan="6">MANAGER</th>
-			</tr>
-				<th>EmployeeNumber:</th>
-				<td><input id="usercd" name="usercd" type="text"></td>
-				<th>LastName:</th>
-				<td><input id="lastnm" name="lastnm" type="text"></td>
-				<th>FirstName:</th>
-				<td><input id="firstnm" name="firstnm" type="text"></td>
-			</tr>
-			<tr>
-				<th>Password</th>
-				<td><input id="password" name="password" type="password"/></td>
-				<th>Confirm Password</th>
-				<td><input id="password2" type="password"/></td>
-			<tr>
-		</table>
-		<input type="hidden" name="sqlflg" value="1"/>
-		<p><input class="button" id="registerbutton" type="submit" value=""></p>
-		</form>
+		    <?php if (!$message == "") { ?>
+		      <ul class="message">
+	    	    <li><p class="message"><?php print($message); ?></p></li>
+	      	  </ul>
+	    	<?php } ?>
+			<form method="POST" action="master.php">
+			<table class="registration" >
+				<tr>
+					<th class="registertitle" colspan="4">COMPANY&BRANCH-OFFICE</th>
+				</tr>
+				<tr>
+					<th>CompanyCode:</th>
+					<td><input id="comcd" name="comcd" class="read" type="text"></td>
+					<th>CompanyName:</th>
+					<td><input id="comnm" name="comnm" class="read" type="text"></td>
+				</tr>
+				<tr>	
+					<th>BranchCode:</th>
+					<td><input id="bracd" name="bracd" class="read" type="text"></td>
+					<th>BranchName:</th>
+					<td><input id="branm" name="branm" class="read" type="text"></td>
+				</tr>
+			</table>
+			<br/>
+			<table class="registration" >	
+				<tr>
+					<th class="registertitle" colspan="6">MANAGER</th>
+				</tr>
+					<th>EmployeeNumber:</th>
+					<td><input id="usercd" name="usercd" class="read" type="text"></td>
+					<th>LastName:</th>
+					<td><input id="lastnm" name="lastnm" class="read" type="text"></td>
+					<th>FirstName:</th>
+					<td><input id="firstnm" name="firstnm" class="read" type="text"></td>
+				</tr>
+				<tr>
+					<th>Password</th>
+					<td><input id="password" name="password" class="read" type="password"/></td>
+					<th>Confirm Password</th>
+					<td><input id="password2" class="read" type="password"/></td>
+				<tr>
+			</table>
+			<input type="hidden" name="sqlflg" value="1"/>
+			<p><input class="button" id="registerbutton" type="submit" value=""></p>
+			</form>
 		</div><!-- registerinfo -->
 
-				<div id="managerlist">
+		<div id="managerlist">
 			<table id="manager" border="1">
 				<tr>
 					<th>NO</th>
@@ -117,5 +115,4 @@ try {
 	</div><!-- footer -->
 </div><!-- wrapper -->
 </body>
-
 </html>
