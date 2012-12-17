@@ -8,7 +8,11 @@ try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
   if ($sqlflg == 1) {
   require("../sql/insertmembersql.php");  
-  } 
+  } else if ($sqlflg == 2) {
+  require("../sql/updatemembersql.php");  
+  } else if ($sqlflg == 3) {
+  require("../sql/deletemembersql.php");  
+  }
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);

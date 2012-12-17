@@ -2,20 +2,7 @@
 require_once '../Encode.php';
 session_start();
 $title = "MEMBER";
-$rownum = 1;
-$sqlflg = $_POST['sqlflg'];
-try {
-  $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  if ($sqlflg == 1) {
-  require("../sql/insertmembersql.php");  
-  } 
-  require("../sql/membersql.php");
-  $stt->bindValue(':comcd', $_SESSION['comcd']);
-  $stt->bindValue(':bracd', $_SESSION['bracd']);
-  $stt->execute();
-} catch(PDOException $e) {
-  die('エラーメッセージ：'.$e->getMessage());
-}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional-dtd">
@@ -38,7 +25,10 @@ try {
         <tr><th class="registertitle" colspan="8"><?php print($_POST['usernm']); ?></th></tr>
         <tr>
           <th>ID:</th>
-          <td><input name="usercd" type="text" class="read" value="<?php print($_SESSION['usercd']); ?>"/></td>
+          <td>
+            <input name="editusercd" type="hidden" value="<?php print($_POST['usercd']); ?>"/>
+            <input name="usercd" type="text" class="read" value="<?php print($_POST['usercd']); ?>"/>
+          </td>
           <th>LAST NAME:</th>
           <td><input name="lastnm" type="text" class="read" value="<?php print($_POST['lastnm']); ?>" /></td>
           <th>FIRST NAME:</th>
@@ -64,9 +54,9 @@ try {
         </tr>
         <tr>
           <th>NEW PASSWORD:</th>
-          <td><input name="password" type="text" class="read" /></td>
+          <td><input name="password" type="password" class="read" /></td>
           <th>CONFIRM PASSWORD:</th>
-          <td><input name="password2" type="text" class="read" /></td>
+          <td><input name="password2" type="password" class="read" /></td>
           <td colspan="4"></td>
         </tr>
       </table>
