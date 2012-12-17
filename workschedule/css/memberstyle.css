@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 div#contents {
-	padding-bottom: 30px;
+	padding-bottom: 100px;
 	width: 950px;
 	background: url("../images/background02.jpg") repeat center center fixed;
 
@@ -46,4 +46,5 @@ div#newmember {
 	margin: 0 auto;
 	padding-top: 50px;
 	width: 90%;
+
 }

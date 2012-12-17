@@ -69,7 +69,7 @@ try {
 	        <input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/>
 	        <input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/>
 	        <P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
-			<p class="right"><input type="submit" class="button" id="daletebutton" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
+			<p class="right"><input type="submit" class="button" id="deletebutton" value="" onclick="return changeSqlFlg(3)"/></p>
 			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="changeSqlFlg(2)"/></p>
 			</form>
 		</div><!-- scheduling -->

@@ -1,18 +1,14 @@
 <?php
 require_once '../Encode.php';
 session_start();
-$title = "MEMBER";
+$title = "SETTING";
 $rownum = 1;
 $sqlflg = $_POST['sqlflg'];
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  if ($sqlflg == 1) {
-  require("../sql/insertmembersql.php");  
+  if ($sqlflg == 2) {
+  require("../sql/updatemembersql.php");  
   } 
-  require("../sql/membersql.php");
-  $stt->bindValue(':comcd', $_SESSION['comcd']);
-  $stt->bindValue(':bracd', $_SESSION['bracd']);
-  $stt->execute();
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
 }
@@ -35,44 +31,23 @@ try {
     <div id="editmember">
       <form method="POST" action="member.php">
       <table id="newmebertable">
-        <tr><th class="registertitle" colspan="8"><?php print($_POST['usernm']); ?></th></tr>
         <tr>
           <th>ID:</th>
           <td><input name="usercd" type="text" class="read" value="<?php print($_SESSION['usercd']); ?>"/></td>
           <th>LAST NAME:</th>
-          <td><input name="lastnm" type="text" class="read" value="<?php print($_POST['lastnm']); ?>" /></td>
+          <td><input name="lastnm" type="text" class="read" value="<?php print($_SESSION['lastnm']); ?>" /></td>
           <th>FIRST NAME:</th>
-          <td><input name="firstnm" type="text" class="read" value="<?php print($_POST['firstnm']); ?>" /></td>
-          <th>AUTHORITY:</th>
-          <td>
-            <select name="authority">
-            <?php if ($_POST['authority'] == 3) {?>
-            <option value="3" selected>NORMAL</option>
-            <option value="2">MANAGER</option>
-            <option value="4">ABNORMAL</option>
-            <?php } else if ($_POST['authority'] == 2) { ?>
-            <option value="3">NORMAL</option>
-            <option value="2" selected>MANAGER</option>
-            <option value="4">ABNORMAL</option>
-            <?php } else { ?>
-            <option value="3">NORMAL</option>
-            <option value="2">MANAGER</option>
-            <option value="4" selected>ABNORMAL</option>
-            <?php } ?>
-            </select>
-          </td>
+          <td><input name="firstnm" type="text" class="read" value="<?php print($_SESSION['firstnm']); ?>" /></td>
         </tr>
         <tr>
           <th>NEW PASSWORD:</th>
           <td><input name="password" type="text" class="read" /></td>
           <th>CONFIRM PASSWORD:</th>
           <td><input name="password2" type="text" class="read" /></td>
-          <td colspan="4"></td>
+          <td colspan="2"></td>
         </tr>
       </table>
       <input type="hidden" id="sqlflg" name="sqlflg"/>
-      <p class="left"><input type="submit" id="returnbutton" class="button" value=""/></p>
-      <P class="right"><input class="button" id="deletebutton" type="submit" value="" onclick="changeSqlFlg(3)"/></P>
       <P class="right"><input class="button" id="updatebutton" type="submit" value="" onclick="changeSqlFlg(2)"/></P>
       </form>
     </div><!-- edit -->

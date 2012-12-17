@@ -105,6 +105,11 @@ input.transparent {
 	width: 107px;
 }
 
+#deletebutton {
+	background: url("../images/btn_delete.png");
+	width: 104px;
+}
+
 #entrybutton:hover {
 	background: url("../images/btn_work_on.png");
 }
@@ -126,10 +131,15 @@ input.transparent {
 }
 
 #clearbutton:hover {
-	opacity: 0.5;
+	background: url("../images/btn_clear_on.png");
 }
 
 #returnbutton:hover {
 	background: url("../images/btn_return_on.png");
 }
+
+#deletebutton:hover {
+	background: url("../images/btn_delete_on.png");
+}
+
 

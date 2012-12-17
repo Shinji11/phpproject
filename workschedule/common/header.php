@@ -30,7 +30,7 @@
 			<li><a class="oneline" href="../member/member.php">MEMBER</a><li/>
 			<li><a class="oneline" href="../scheduling/scheduling.php">SCHEDULING</a><li/>
 		<?php } else { ?>
-			<li><a class="oneline" href="../member/setting.php">SETTING</a><li/>
+			<li><a class="oneline" href="../setting/setting.php">SETTING</a><li/>
 			<li><a class="noline"></a><li/>
 		<?php } if ($_SESSION['authority'] == 1) { ?>
 			<li><a class="oneline" href="../master/master.php">MASTER</a><li/>

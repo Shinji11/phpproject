@@ -4,6 +4,7 @@
 		$com = $row['COM_NM'];
 		$bra = $row['BRA_NM'];
 		$combra = $com.$bra;
+		$usercd = $row['USER_CD'];
 		$lastnm = $row['LAST_NM'];
 		$firstnm = $row['FIRST_NM'];
 		$username = $lastnm."  ".$firstnm;
@@ -11,7 +12,10 @@
 		$_SESSION['bracd'] = $row['BRA_CD'];
 		$_SESSION['combra'] = $combra;
 		$_SESSION['authority'] = $row['AUTHORITY_CD'];
+		$_SESSION['usercd'] = $usercd;		
 		$_SESSION['userid'] = $userid;
+		$_SESSION['lastnm'] = $lastnm;
+		$_SESSION['firstnm'] = $firstnm;
 		$_SESSION['username'] = $username;
 	?>
 	<div id="headerinfo">
@@ -43,17 +47,17 @@
 	</div><!--headerinfo-->
 	<div id="nav">
 		<ul id="navlist">
-			<li><a class="twoline" href="personal/personal.php?title=PERSONAL SCHEDULE">PERSONAL<br/>SCHEDULE</a><li/>
-			<li><a class="twoline" href="work/work.php?title=WORK SCHEDULE">WORK<br/>SCHEDULE</a><li/>
+			<li><a class="twoline" href="personal/personal.php">PERSONAL<br/>SCHEDULE</a><li/>
+			<li><a class="twoline" href="work/work.php">WORK<br/>SCHEDULE</a><li/>
 			<?php if ($row['AUTHORITY_CD'] == 1
 						|| $row['AUTHORITY_CD'] == 2) { ?>
-				<li><a class="oneline" href="member/member.php?title=MEMBER">MEMBER</a><li/>
-				<li><a class="oneline" href="scheduling/scheduling.php?title=SCHEDULING">SCHEDULING</a><li/>
+				<li><a class="oneline" href="member/member.php">MEMBER</a><li/>
+				<li><a class="oneline" href="scheduling/scheduling.php">SCHEDULING</a><li/>
 			<?php } else { ?>
-				<li><a class="oneline" href="../member/setting.php">SETTING</a><li/>
+				<li><a class="oneline" href="setting/setting.php">SETTING</a><li/>
 				<li><a class="noline"></a><li/>
 			<?php } if ($row['AUTHORITY_CD'] == 1) { ?>
-				<li><a class="oneline" href="master/master.php?title=MASTER">MASTER</a><li/>
+				<li><a class="oneline" href="master/master.php">MASTER</a><li/>
 			<?php } else { ?>
 				<li><a class="noline"></a><li/>
 			<?php } ?>

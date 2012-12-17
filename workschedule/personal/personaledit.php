@@ -67,7 +67,7 @@ try {
 			</table>
 			<input type="hidden" name="sqlflg" id="sqlflg" />
 	        <input type="hidden" id="personaldate" name="personaldate" value="<?php print($year."/".$month); ?>"/>
-			<p class="left"><input type="submit" id="returnbutton" class="button" value="" onclick="changeSqlFlg('')"/></p>
+			<p class="left"><input type="submit" id="returnbutton" class="button" value="" /></p>
 			<p class="right"><input type="submit" id="deletebutton" class="button" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
 			<p class="right"><input type="submit" id="updatebutton" class="button" value="" onclick="changeSqlFlg(2)"/></p>
 	        </form>
