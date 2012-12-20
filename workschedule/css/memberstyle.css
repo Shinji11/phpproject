@@ -1,50 +1,49 @@
 @charset "UTF-8";
 
-div#contents {
+/*div*/
+#contents {
 	padding-bottom: 100px;
 	width: 950px;
 	background: url("../images/background02.jpg") repeat center center fixed;
 
 }
 
-div#memberlist {
+/*div*/
+#memberlist {
 	margin: 0 auto;
 	padding-top: 50px;
+	padding-bottom: 50px;
 	width: 90%;
 }
 
-table#member {
+/*table*/
+#member {
 	margin: 0 auto;
 	width: 100%;
 	color: white;
 	text-align: center;
-	height: 40px;
 }
 
-div#newmember {
+td input {
+	font-size: 15px;
+	text-align: center;
+}
+
+/*div*/
+#newmember {
 	padding-top: 50px;
 	width: 950px;
 }
+
+/*table*/
  #newmebertable {
  	margin: 0 auto;
  	color: white;
  }
 
-#registerbutton {
-	background: url("../images/btn_register.png");
-	background-size: 100% 100%;
-	border: none;
-	width: 124px;
-	height: 36px;
-}
-
-#registerbutton:hover {
-	background: 
-}
-
 #editmember {
 	margin: 0 auto;
-	padding-top: 50px;
+	padding-top: 100px;
 	width: 90%;
 
 }

@@ -58,7 +58,7 @@ try {
                 $counter = 0;
       ?>
       <div id="workschedule">
-        <p id="scheduledate" ><?php print(date_ja($scheduledate)); ?></p>
+        <p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
         <?php if ($row = $stt2->fetch()) { ?>
         <table id="workscheduletable">
           <tr>

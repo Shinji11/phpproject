@@ -6,8 +6,12 @@ $rownum = 1;
 $namenum = 0;
 $scheduledate = $_POST['scheduledate'];
 $sqlflg = $_POST['sqlflg'];
+$messagelist = array();
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+    require("../common/checkscheduling.php");
+
+if (count($messagelist) == 0) { 
   if ($sqlflg == 1) {
   require("../sql/insertworkschedulesql.php");	
   } else if ($sqlflg == 2) {
@@ -15,6 +19,7 @@ try {
   } else if ($sqlflg == 3) {
   require("../sql/deleteworkschedulesql.php");	
   }
+}
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
@@ -67,11 +72,15 @@ try {
 	        </form>
     	</div><!-- calender-code -->
 
-    	<?php if (!$message == "") { ?>
+    	<!--  メッセージリスト  -->
+		<?php if (count($messagelist) > 0) { 
+			foreach ($messagelist as $message) {
+			?>
 			<ul class="message">
 				<li><p class="message"><?php print($message); ?></p></li>
 			</ul>
-		<?php } ?>
+		<?php } }?>
+		
     	<?php if(!($scheduledate == "")) { 
         ?>
 		<div id="workschedule">
@@ -136,7 +145,7 @@ try {
 
 		<div id="scheduling">
 			<form method="POST" action="scheduling.php">
-			<table id="table2" border="1">
+			<table id="schedulingtable" border="1">
 				<tr><th class="registertitle" colspan="43">NEW SCHEDULE</th></tr>
 				<tr>
 					<th>[NAME]</th>
@@ -175,7 +184,7 @@ try {
 			</table>
 			<input type="hidden" name="scheduledate" value="<?php print($scheduledate); ?>"/>
 			<input type="hidden" name="sqlflg" value="1"/>
-			<p><input type="submit" class="button" id="registerbutton" value=""/></p>
+			<p class="right"><input type="submit" class="button" id="registerbutton" value=""/></p>
 			</form>
 		</div><!-- scheduling -->
 

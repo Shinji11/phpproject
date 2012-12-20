@@ -39,7 +39,7 @@ try {
 		<div id="scheduling">
 			<p class="scheduletitle"><?php print(date_ja($editdate)."  ".$usernm); ?></p>
 			<form method="POST" action="scheduling.php">
-			<table id="table2" border="1">
+			<table id="schedulingtable" border="1">
 				<tr>
 					<th>[NAME]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
@@ -51,7 +51,7 @@ try {
 					<?php } ?>					
 				</tr>
 				<tr id="clickbox">
-					<td><input id="name" type="text" readonly="readonly" value="<?php print($usernm); ?>" /></td>
+					<td><input id="editname" type="text" readonly="readonly" value="<?php print($usernm); ?>" /></td>
 					<td></td>
 					<?php for ($num = 6; $num < 26; $num++) { ?>
 					<td class="clickbox" colspan="2">
@@ -70,7 +70,7 @@ try {
 	        <input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/>
 	        <P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
 			<p class="right"><input type="submit" class="button" id="deletebutton" value="" onclick="return changeSqlFlg(3)"/></p>
-			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="changeSqlFlg(2)"/></p>
+			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="return checkUpdateSchedule(2)"/></p>
 			</form>
 		</div><!-- scheduling -->
 	</div><!-- contents -->

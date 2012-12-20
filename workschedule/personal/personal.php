@@ -7,16 +7,21 @@ $date = explode("/", $_POST["personaldate"]);
 $year = $date[0];
 $month = $date[1];
 $sqlflg = $_POST["sqlflg"];
+$messagelist = array();
 try {	
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  if ($sqlflg == 1) {
-  require("../sql/insertpersonalschedulesql.php");	
-  } else if ($sqlflg == 2) {
-  require("../sql/updatepersonalschedulesql.php");	
-  } else if ($sqlflg == 3) {
-  require("../sql/deletepersonalschedulesql.php");	
-  }
+  
+  require("../common/checkpersonalschedule.php");
 
+  if (count($messagelist) == 0) { 
+	  if ($sqlflg == 1) {
+	  require("../sql/insertpersonalschedulesql.php");	
+	  } else if ($sqlflg == 2) {
+	  require("../sql/updatepersonalschedulesql.php");	
+	  } else if ($sqlflg == 3) {
+	  require("../sql/deletepersonalschedulesql.php");	
+	  }
+ }
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
@@ -29,6 +34,7 @@ try {
   $stt3->bindValue(':year', $year);
   $stt3->bindValue(':month', $month);
   $stt3->execute();
+
 
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
@@ -49,7 +55,7 @@ try {
 	</div><!-- header -->
 
 	<div id="contents">
-		<div id="calender">
+		<div id="monthlist">
 			<form method="POST" action="personal.php"/>
 			<select id="personaldate" name="personaldate" value="<?php print($personaldate); ?>">
 				<option value="<?php print(date("Y/m")); ?>" selected><?php print(date("Y/m")); ?></option>
@@ -62,14 +68,18 @@ try {
 			    ?>
 			</select><br/><br/>
 			<input id="entrybutton" class="button" type="submit" value=""/>
-        </form>
+        	</form>
 		</div><!-- calender -->
 
-		<?php if (!$message == "") { ?>
+		<!--  メッセージリスト  -->
+		<?php if (count($messagelist) > 0) { 
+			foreach ($messagelist as $message) {
+			?>
 			<ul class="message">
 				<li><p class="message"><?php print($message); ?></p></li>
 			</ul>
-		<?php } ?>
+		<?php } }?>
+
 		
 		<?php if (!($pesonaldate == "")) { 
                 $counter = 0;
@@ -116,14 +126,14 @@ try {
 			<form method="POST" action="personaledit.php">
 			<select id="date" name="editdate">
 			    <?php 
-			        for ($day = 1; $day < $datenum; $day++) {
-			      		print('<option value="'.$datelist[$day].'"');
-			        	print('>'.$datelist[$day].'</option>');		
+			        for ($daynum = 1; $daynum < $datenum; $daynum++) {
+			      		print('<option value="'.$datelist[$daynum].'"');
+			        	print('>'.$datelist[$daynum].'</option>');		
 			      }
 			    ?>
 			</select>
-			<input type="hidden" class="button" name="edityear" value="<?php print($year); ?>" />
-			<input type="submit" class="button" id="editbutton" value=""/>
+			<input type="hidden" name="edityear" class="button" value="<?php print($year); ?>" />
+			<input type="submit" id="editbutton" class="button" value=""/>
 			</form>
 		</div><!-- editselect -->
 
@@ -133,7 +143,7 @@ try {
 
 		<div id="scheduling">
 			<form method="POST" action="personal.php">
-			<table id="table2" border="1">
+			<table id="schedulingtable" border="1">
 				<tr><th class="registertitle" colspan="43">NEW PERSONAL SCHEDULE</th></tr>
 				<tr>
 					<th>[DATE]</th>
@@ -145,14 +155,15 @@ try {
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } ?>					
 				</tr>
-				<tr id="clickbox">
+				<tr>
 					<td><select id="insertdate" name="insertdate">
 					    <?php 
 					      for ($day = 1; $day < 32; $day++) {
 					      	if ($day == 29 && $month == 2) {
-					      		if(($year % 4) == 0) {
-					      			print('<option value="'.$month."/".$day.'"');
-					        		print('>'.$month."/".$day.'</option>');
+					      		if (($year % 4) == 0) {
+					      			$date = $month."/".$day;
+					      			print('<option value="'.$date.'"');
+					        		print('>'.$date.'</option>');
 					        		break;
 					      		} else {
 					      			break;	
@@ -160,10 +171,10 @@ try {
 					      	} else if ($day == 31 && $month == 4) { 
 					      		break;
 					      	}
-					        print('<option value="'.$month."/".$day.'"');
-					        print('>'.$month."/".$day.'</option>');
-
-					      }
+					      	$date = $month."/".$day;
+					        print('<option value="'.$date.'"');
+					        print('>'.$date.'</option>');
+					  	}
 					    ?>
 					    </select>
 					</td>
@@ -181,10 +192,10 @@ try {
 				</tr>
 			</table>
 			<input type="hidden" name="personaldate" value="<?php print($year."/".$month); ?>" />
-			<p class="left"><input type="button" class="button" id="allbutton" onclick="allChange()"/></p>
-			<p class="left"><input type="button"  class="button"id="clearbutton" onclick="allClear()"/></p>
+			<p class="left"><input type="button" id="allbutton" class="button" onclick="allChange()"/></p>
+			<p class="left"><input type="button" id="clearbutton" class="button" onclick="allClear()"/></p>
 			<input type="hidden" name="sqlflg" value="1"/>
-			<p class="right"><input type="submit" class="button" id="registerbutton" value=""/></p>
+			<p class="right"><input type="submit"  id="registerbutton" class="button" value=""/></p>
 			</form>
 		</div><!-- scheduling -->
 

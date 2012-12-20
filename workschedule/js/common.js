@@ -81,5 +81,21 @@ function changeSqlFlg(flg) {
 
 }
 
+function checkUpdateSchedule(flg) {
+	var count = 0;
+	for(var i = 6; i < 26; i = i + 1) {
+		if (document.getElementById("cb" + i).checked) {
+			count = count + 1;
+		}
+	}
+	if (count == 0) {
+		var errormessage = "削除される場合はDELETEボタンを押下してください";
+		alert(errormessage)
+		return false;
+	} else {
+	   changeSqlFlg(flg);
+	   return true;
+	}
 
+}
 

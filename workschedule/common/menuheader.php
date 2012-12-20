@@ -17,6 +17,8 @@
 		$_SESSION['lastnm'] = $lastnm;
 		$_SESSION['firstnm'] = $firstnm;
 		$_SESSION['username'] = $username;
+		$_SESSION['idnum'] = $row['ID_NUM'];
+
 	?>
 	<div id="headerinfo">
 	<table id="info" align="center" border="0" cellspacing="0" cellpadding="0">

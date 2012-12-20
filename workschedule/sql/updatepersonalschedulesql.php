@@ -24,29 +24,6 @@ $twentythree = $_POST['cb23'];
 $zero = $_POST['cb24'];
 $one = $_POST['cb25'];
 
-if ($six == 0 
-		&& $seven == 0
-		&& $eight == 0
-		&& $nine == 0
-		&& $ten == 0
-		&& $eleven == 0
-		&& $twelve == 0
-		&& $thirteen == 0
-		&& $fourteen == 0
-		&& $fifteen == 0
-		&& $sixteen == 0
-		&& $seventeen == 0
-		&& $eighteen == 0
-		&& $nineteen == 0
-		&& $twenty == 0
-		&& $twentyone == 0
-		&& $twentytwo == 0
-		&& $twentythree == 0
-		&& $zero == 0
-		&& $one == 0 ) {
-	$message = "削除される時はDELETEボタンを押してください";
-} else {
-
 $stmt = $db->prepare("UPDATE PERSONAL_SCHEDULE 
  							  SET SIX = :six 
  								, SEVEN = :seven 
@@ -101,10 +78,10 @@ $stmt = $db->prepare("UPDATE PERSONAL_SCHEDULE
  $stmt->bindValue(':upduserid', $userid);
  $flag = $stmt->execute();
   
-	if ($flag) {
-		$message = "データは正しく更新できました。";
-	} else {
-		$message = "データは正しく更新できませんでした。";
-	}
+if ($flag) {
+	$messagelist[] = "データは正しく更新できました。";
+} else {
+	$messagelist[] = "データは正しく更新できませんでした。";
 }
+
  ?>

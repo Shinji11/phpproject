@@ -32,6 +32,7 @@ input.read {
 	color: white;
 	outline: none;
 	font-size: 15px;
+	text-align: center;
 	vertical-align: middle;
 
 }
@@ -67,6 +68,18 @@ input.transparent {
 	background-size: 100% 100%;
 	height: 36px;
 	border: none;
+}
+
+.color0 {
+	background-color: transparent;
+	width: 30px;
+	height: 22px;
+}
+
+.color1 {
+	background-color: yellow;
+	width: 30px;
+	height: 22px;
 }
 
 #entrybutton {
@@ -142,4 +155,7 @@ input.transparent {
 	background: url("../images/btn_delete_on.png");
 }
 
+label.error {
+    color: yellow;
+}
 

@@ -1,25 +1,14 @@
 @charset "UTF-8";
 
-div#contents {
-	padding-bottom: 30px;
-	width: 950px;
+/*div*/
+#contents {
 	background: url("../images/background02.jpg") repeat center center fixed;
-
+	padding-bottom: 100px;
+	width: 950px;
 }
 
-.color0 {
-	background-color: transparent;
-	width: 30px;
-	height: 22px;
-}
-
-.color1 {
-	background-color: yellow;
-	width: 30px;
-	height: 22px;
-}
-
-div#workschedule {
+/*div*/
+#workschedule {
 	margin: 0 auto;
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -32,78 +21,40 @@ div.calender-code {
 	text-align: center;
 }
 
-div#scheduling {
-	margin: 0 auto;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	width: 98%;
+/*input*/
+#calendar_hm3 {
+	width: 70px;
 }
 
-#name {
-	background-color: transparent;
-	color: white;
-	width: 90px;
-}
-
-
-table#table2 {
-	background: url("../images/background01.jpg");
-	margin: 0 auto;
-	width: 100%;
-	color: white;
-	text-align: center;
-}
-
-table#workscheduletable {
-	background: url("../images/background01.jpg");
-	margin: 0 auto;
-	width: 830px;
-	color: white;
-	text-align: center;
-
-}
-
-
-tr#clickbox {
-	width: 30px;
-	height: 22px;
-}
-tr th {
-	border: none;
-}
-
-tr td.clickbox {
-	padding-top: 0;
-	background: url("../images/background02.jpg");
-	width: 30px;
-	height: 22px;
-
-}
-
-.bt {
-	background-color: transparent;
-	border: none;
-	width: 30px;
-	height: 20px;
-}
-
-p {
-	text-align: center;
-}
-
+/*input*/
 #calendar_hm3_icon {
 	background: url("../images/calender.jpg");
 	background-size: 100% 100%;
 	width: 25px;
 }
 
-#scheduledate {
-	font-size: 20px;
+/*input*/
+#dataname {
+	background-color: transparent;
 	color: white;
+	width: 90px;
+	text-align: center;	
 }
 
-input#calendar_hm3 {
-	width: 70px;
+/*input*/
+#hours {
+	background-color: transparent;
+	color: white;
+	font-size: 15px;
+	width: 25px;
+	text-align: center;
+}
 
+/*table*/
+#workscheduletable {
+	background: url("../images/background01.jpg");
+	margin: 0 auto;
+	width: 830px;
+	color: white;
 }
 

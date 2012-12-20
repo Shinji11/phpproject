@@ -4,16 +4,22 @@ session_start();
 $title = "SETTING";
 $rownum = 1;
 $sqlflg = $_POST['sqlflg'];
+$messagelist = array();
 if ($sqlflg == 2) {
   try {
     $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+    require("../common/checksetting.php");
+    
+if (count($messagelist) == 0) { 
+  if($sqlflg == 2) {
     require("../sql/updatemembersql.php");
     $_SESSION['usercd'] =  $usercd;
     $_SESSION['userid'] =  $adduserid;
     $_SESSION['lastnm'] =  $lastnm;
     $_SESSION['firstnm'] =  $firstnm;
     $_SESSION['username'] =  $lastnm."  ".$firstnm;
-
+  }
+}
   } catch(PDOException $e) {
     die('エラーメッセージ：'.$e->getMessage());
   }
@@ -35,16 +41,19 @@ if ($sqlflg == 2) {
 
   <div id="contents">
     <div id="editmember">
-      <?php if (!$message == "") { ?>
-        <ul class="message">
-          <li><p class="message"><?php print($message); ?></p></li>
-        </ul>
-      <?php } else { ?>
+      <!--  メッセージリスト  -->
+    <?php if (count($messagelist) > 0) { 
+      foreach ($messagelist as $message) {
+      ?>
+      <ul class="message">
+        <li><p class="message"><?php print($message); ?></p></li>
+      </ul>
+    <?php } } else {?>
+
       <form method="POST" action="setting.php">
       <table id="newmebertable">
         <tr>
           <th>ID:</th>
-
           <td>
             <input name="editusercd" type="hidden" value="<?php print($_SESSION['usercd']); ?>"/>
             <input name="usercd" type="text" class="read" readonly="readonly" value="<?php print($_SESSION['usercd']); ?>"/>

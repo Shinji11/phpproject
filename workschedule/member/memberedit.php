@@ -41,9 +41,7 @@ $title = "MEMBER";
             <option value="2">MANAGER</option>
             <option value="4">ABNORMAL</option>
             <?php } else if ($_POST['authority'] == 2) { ?>
-            <option value="3">NORMAL</option>
             <option value="2" selected>MANAGER</option>
-            <option value="4">ABNORMAL</option>
             <?php } else { ?>
             <option value="3">NORMAL</option>
             <option value="2">MANAGER</option>

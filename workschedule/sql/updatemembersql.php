@@ -33,9 +33,9 @@ $stmt = $db->prepare("UPDATE AM_MEMBER
  $flag = $stmt->execute();
   
 if ($flag) {
-	$message = "データは正しく更新されました。";
+	$messagelist[] = "データは正しく更新されました。";
 } else {
-	$message = "データは正しく更新できませんでした。";
+	$messagelist[] = "データは正しく更新できませんでした。";
 }
 
  ?>

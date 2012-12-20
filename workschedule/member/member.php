@@ -4,15 +4,22 @@ session_start();
 $title = "MEMBER";
 $rownum = 1;
 $sqlflg = $_POST['sqlflg'];
+$messagelist = array();
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  if ($sqlflg == 1) {
-  require("../sql/insertmembersql.php");  
-  } else if ($sqlflg == 2) {
-  require("../sql/updatemembersql.php");  
-  } else if ($sqlflg == 3) {
-  require("../sql/deletemembersql.php");  
-  }
+  if (!$sqlflg == "") {
+  require("../common/checknewmember.php");
+}
+
+  if (count($messagelist) == 0) { 
+    if ($sqlflg == 1) {
+    require("../sql/insertmembersql.php");  
+    } else if ($sqlflg == 2) {
+    require("../sql/updatemembersql.php");  
+    } else if ($sqlflg == 3) {
+    require("../sql/deletemembersql.php");  
+    }
+}
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
@@ -37,11 +44,14 @@ try {
 
   <div id="contents">
     <div id="memberlist">
-      <?php if (!$message == "") { ?>
+      <!--  メッセージリスト  -->
+      <?php if (count($messagelist) > 0) { 
+        foreach ($messagelist as $message) {
+        ?>
         <ul class="message">
           <li><p class="message"><?php print($message); ?></p></li>
         </ul>
-      <?php } ?>
+      <?php } }?>
       <p class="scheduletitle">MEMBER LIST</p>
       <table id="member" border="1">
         <tr>
@@ -81,7 +91,7 @@ try {
       <table id="newmebertable">
         <tr><th class="registertitle" colspan="8">NEW MEMBER</th></tr>
         <tr>
-          <th>ID:</th>
+          <th>BRANCH ID:</th>
           <td><input name="usercd" type="text" class="read" /></td>
           <th>LAST NAME:</th>
           <td><input name="lastnm" type="text" class="read" /></td>

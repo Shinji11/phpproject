@@ -5,8 +5,9 @@ $userid = htmlspecialchars($_POST['userid'], ENT_QUOTES, 'UTF-8');
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
   $stt = $db->prepare('SELECT * FROM AM_MEMBER ME 
-  	                      INNER JOIN AM_COM CO 
-  	                              ON CO.BRA_CD = ME.BRA_CD 
+  	                      INNER JOIN AM_COM CO
+                                  ON CO.COM_CD = ME.COM_CD  
+  	                             AND CO.BRA_CD = ME.BRA_CD 
   	                           WHERE ME.USER_ID = :userid');
   $stt->bindValue(':userid', $userid);
   $stt->execute();

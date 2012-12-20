@@ -1,21 +1,24 @@
 @charset "UTF-8";
 
+/*div*/
 #contents {
 	padding-top: 50px;
-	padding-bottom: 30px;
+	padding-bottom: 100px;
 	width: 950px;
 	background: url("../images/background02.jpg") repeat center center fixed;
+	text-align: center;
 
 }
 
+/*div*/
+#monthlist {
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+/*input*/
 #entrybutton {
 	margin-top: 10px;
-}
-
-.color0 {
-	background-color: transparent;
-	width: 30px;
-	height: 22px;
 }
 
 .color1 {
@@ -24,12 +27,7 @@
 	height: 22px;
 }
 
-#calender {
-	overflow: hidden;
-	margin: 0 auto;
-	text-align: center;
-}
-
+/*div*/
 #workschedule {
 	margin: 0 auto;
 	padding-top: 50px;
@@ -37,21 +35,30 @@
 	width: 98%;
 }
 
-#scheduling {
+/*table*/
+#personalscheduletable {
+	background: url("../images/background01.jpg");
 	margin: 0 auto;
-	margin-top: 50px;
-	padding-bottom: 50px;
-	width: 98%;
-}
-
-#date,
-#insertdate {
-	background-color: transparent;
+	width: 830px;
 	color: white;
 }
 
+/*input*/
+#dataname {
+	font-size: 15px;
+	width: 50px;
+}
 
-#table2 {
+/*div*/
+#scheduling {
+	margin: 0 auto;
+	margin-top: 50px;
+	padding-bottom: 100px;
+	width: 98%;
+}
+
+/*table*/
+#schedulingtable {
 	background: url("../images/background01.jpg");
 	margin: 0 auto;
 	width: 100%;
@@ -59,22 +66,12 @@
 	text-align: center;
 }
 
-#personalscheduletable {
-	background: url("../images/background01.jpg");
-	margin: 0 auto;
-	width: 830px;
-	color: white;
-	text-align: center;
-}
-#clickbox {
-	width: 30px;
-	height: 22px;
-}
-tr th {
+
+th {
 	border: none;
 }
 
-tr td.clickbox {
+td.clickbox {
 	padding-top: 0;
 	background: url("../images/background02.jpg");
 	width: 30px;
@@ -82,22 +79,11 @@ tr td.clickbox {
 
 }
 
+/*ここからEDIT */
 .bt {
 	background-color: transparent;
 	border: none;
 	width: 30px;
 	height: 20px;
 }
-
-}
-#name {
-	background-color: transparent;
-	color: white;
-	width: 40px;
-}
-
-#editselect {
-	text-align: center;
-}
-
 

@@ -9,13 +9,15 @@ $lastnm = $_POST['lastnm'];
 $firstnm = $_POST['firstnm'];
 $password = $_POST['password'];
 $adduserid = $comcd.$bracd.$usercd;
+$idnum = strlen($usercd);
 
 $stmt = $db->prepare("INSERT INTO AM_COM
  								  (DEL_FLG, 
  								   COM_CD,
  								   COM_NM,
  								   BRA_CD, 
- 								   BRA_NM,   
+ 								   BRA_NM,
+ 								   ID_NUM,   
  								   ADD_USER_ID, 
  								   ADD_TIMESTAMP, 
  								   UPD_USER_ID, 
@@ -25,6 +27,7 @@ $stmt = $db->prepare("INSERT INTO AM_COM
  						   	       :comnm,
  						   	       :bracd,
  						   	       :branm,
+ 						   	       :idnum,
  						   	       :adduserid,
  						   	       CURRENT_TIMESTAMP,
  						   	       :upduserid,
@@ -33,6 +36,7 @@ $stmt = $db->prepare("INSERT INTO AM_COM
  $stmt->bindValue(':comnm', $comnm);
  $stmt->bindValue(':bracd', $bracd);
  $stmt->bindValue(':branm', $branm);
+ $stmt->bindValue(':idnum', $idnum);
  $stmt->bindValue(':adduserid', $userid);
  $stmt->bindValue(':upduserid', $userid);
  $flag = $stmt->execute();
@@ -76,8 +80,8 @@ $stmt2 = $db->prepare("INSERT INTO AM_MEMBER
  $flag2 = $stmt2->execute();
   
 	if ($flag && $flag2) {
-		$message = "データは正しく登録できました。";
+		$messagelist[] = "データは正しく登録できました。";
 	} else {
-		$message = "データは正しく登録できませんでした。";
+		$messagelist[] = "データは正しく登録できませんでした。";
 	}
  ?>

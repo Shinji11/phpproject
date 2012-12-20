@@ -39,7 +39,7 @@ try {
 		<div id="scheduling">
 			<p class="scheduletitle"><?php print(date_ja($year."/".$month."/".$day)."  ".$usernm); ?></p>
 			<form method="POST" action="personal.php">
-			<table id="table2" border="1">
+			<table id="schedulingtable" border="1">
 				<tr>
 					<th>[DATE]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
@@ -51,7 +51,7 @@ try {
 					<?php } ?>					
 				</tr>
 				<tr id="clickbox">
-					<td><input id="name" name="editdate" class="transparent" type="text" readonly="readonly" value="<?php print($month."/".$day); ?>" /></td>
+					<td><input id="dataname" name="editdate" class="transparent" type="text" readonly="readonly" value="<?php print($month."/".$day); ?>" /></td>
 					<td></td>
 					<?php for ($num = 6; $num < 26; $num++) { ?>
 					<td class="clickbox" colspan="2">
@@ -68,8 +68,8 @@ try {
 			<input type="hidden" name="sqlflg" id="sqlflg" />
 	        <input type="hidden" id="personaldate" name="personaldate" value="<?php print($year."/".$month); ?>"/>
 			<p class="left"><input type="submit" id="returnbutton" class="button" value="" /></p>
-			<p class="right"><input type="submit" id="deletebutton" class="button" value="DELETE" onclick="return changeSqlFlg(3)"/></p>
-			<p class="right"><input type="submit" id="updatebutton" class="button" value="" onclick="changeSqlFlg(2)"/></p>
+			<p class="right"><input type="submit" id="deletebutton" class="button" value="" onclick="return changeSqlFlg(3)"/></p>
+			<p class="right"><input type="submit" id="updatebutton" class="button" value="" onclick="return checkUpdateSchedule(2)"/></p>
 	        </form>
 		</div><!-- scheduling -->
 	</div><!-- contents -->
