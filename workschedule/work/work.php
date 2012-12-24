@@ -7,10 +7,6 @@ $scheduledate = $_POST['scheduledate'];
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
   require("../sql/workschedulesql.php");
-  $stt2->bindValue(':comcd', $_SESSION['comcd']);
-  $stt2->bindValue(':bracd', $_SESSION['bracd']);
-  $stt2->bindValue(':scheduledate', $scheduledate);
-  $stt2->execute();
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
 }
@@ -59,7 +55,9 @@ try {
       ?>
       <div id="workschedule">
         <p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
-        <?php if ($row = $stt2->fetch()) { ?>
+        <?php if ($row = $stt2->fetch()) { 
+            require("../sql/workschedulesql.php");
+        ?>
         <table id="workscheduletable">
           <tr>
             <th>[NAME]</th>

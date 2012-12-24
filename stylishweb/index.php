@@ -4,38 +4,6 @@
 <meta charset="UTF-8">
 <title>slider</title>
 <link rel="stylesheet" href="css/style.css">
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="../jquery-1.6.min.js"></script>
-<script src="js/slider.js"></script>
-<script>
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="js/fitter.js"></script>
-<script src="js/fadechanger.js"></script>
-<script src="js/imgloader.js"></script>
-<script src="js/transition.js"></script>
-<script type="text/javascript"></script>
-<script>
-
-$(function(){
-		// 早送り・巻き戻し
-		$("#slider").slider({
-			direction: "right",
-			time: 24,
-			speed: 3
-		});
-});
-
-$(function(){
-    $("ul.menu").hide();
-        $("ul#ul_menu>li").hover(function(){
-            $("ul:not(:animated)",this).slideUp()
-        },
-        function(){
-            $("ul",this).slideDown();
-        })
-    })
-
-</script>
 </head>
 <body>
 	<div id="wrapper">
@@ -43,11 +11,11 @@ $(function(){
 			<div id="title">
 				<table>
 					<tr>
-						<th colspan="2"><p>BARISTRIDE CORPORATION</p></th>
+						<th colspan="2"><input type="text" id="bc" value="BARISTRIDE CORPORATION"/></th>
 					</tr>
 					<tr>
-						<th><p>RECRUITING INFOMATION FOR STUDENTS GRADUATING IN 2014</p></th>
-						<td><a href="">PRE ENTRY/LOGIN &gt;</a></td>
+						<th><input type="text" id="bar" value="RECRUITING INFOMATION FOR STUDENTS GRADUATING IN 2014"/></th>
+						<td><p id="p"><a id="pre" href="">PRE ENTRY/LOGIN &gt;</a></p></td>
 					</tr>
 				</table>
 			</div>

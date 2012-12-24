@@ -2,7 +2,7 @@
 require_once '../Encode.php';
 session_start();
 $title = "PERSONAL SCHEDULE";
-$pesonaldate = $_POST["personaldate"];
+$personaldate = $_POST["personaldate"];
 $date = explode("/", $_POST["personaldate"]);
 $year = $date[0];
 $month = $date[1];
@@ -11,30 +11,18 @@ $messagelist = array();
 try {	
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
   
-  require("../common/checkpersonalschedule.php");
-
-  if (count($messagelist) == 0) { 
-	  if ($sqlflg == 1) {
-	  require("../sql/insertpersonalschedulesql.php");	
-	  } else if ($sqlflg == 2) {
-	  require("../sql/updatepersonalschedulesql.php");	
-	  } else if ($sqlflg == 3) {
-	  require("../sql/deletepersonalschedulesql.php");	
-	  }
- }
+if ($sqlflg == 1) {
+	require("../common/checkpersonalschedule.php");
+	if (count($messagelist) == 0) { 
+			require("../sql/insertpersonalschedulesql.php");	
+	}
+}
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
   $stt->execute();
 
   require("../sql/personalschedulesql.php");
-  $stt3->bindValue(':userid', $_SESSION['userid']);
-  $stt3->bindValue(':comcd', $_SESSION['comcd']);
-  $stt3->bindValue(':bracd', $_SESSION['bracd']);
-  $stt3->bindValue(':year', $year);
-  $stt3->bindValue(':month', $month);
-  $stt3->execute();
-
 
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
@@ -57,13 +45,18 @@ try {
 	<div id="contents">
 		<div id="monthlist">
 			<form method="POST" action="personal.php"/>
-			<select id="personaldate" name="personaldate" value="<?php print($personaldate); ?>">
+			<select id="personaldate" name="personaldate" >
 				<option value="<?php print(date("Y/m")); ?>" selected><?php print(date("Y/m")); ?></option>
 			    <?php 
 			        for ($i = 1; $i < 6; $i++) {
-			    		$personaldate = date("Y/m", strtotime("+".$i." month"));
-			        	print('<option value="'.$personaldate.'"');
-			        	print('>'.$personaldate.'</option>');
+			    		$selectdate = date("Y/m", strtotime("+".$i." month"));
+			    		if ($selectdate == $personaldate) {
+			    			print('<option value="'.$selectdate.'"');
+			        		print('selected >'.$selectdate.'</option>');
+			    		} else {
+			        		print('<option value="'.$selectdate.'"');
+			        		print('>'.$selectdate.'</option>');
+			        }
 			      }
 			    ?>
 			</select><br/><br/>
@@ -71,7 +64,7 @@ try {
         	</form>
 		</div><!-- calender -->
 
-		<!--  メッセージリスト  -->
+		<!--  メッセージリスト  start-->
 		<?php if (count($messagelist) > 0) { 
 			foreach ($messagelist as $message) {
 			?>
@@ -79,14 +72,16 @@ try {
 				<li><p class="message"><?php print($message); ?></p></li>
 			</ul>
 		<?php } }?>
-
+		<!--  メッセージリスト  end-->
 		
-		<?php if (!($pesonaldate == "")) { 
+		<?php if ($personaldate != "") { 
                 $counter = 0;
         ?>
 		<div id="workschedule">
 			<p class="scheduletitle" ><?php print($year."年".$month."月"); ?></p>
-			<?php if ($row = $stt3->fetch()) { ?>
+			<?php if ($row = $stt3->fetch()) {
+				require("../sql/personalschedulesql.php");
+			 ?>
 			<table id="personalscheduletable">
 				<tr>
 					<th>[DATE]</th>
@@ -101,12 +96,11 @@ try {
 
 				<?php $datenum = 1;
 				while ($row = $stt3->fetch()) { 
-	      			$monthdata = e($row['MONTH']);
-	      			$daydata = e($row['DAY']);
+	      			$monthdata = sprintf("%02d", e($row['MONTH']));
+	      			$daydata = sprintf("%02d", e($row['DAY']));
 	      			$toptag = $monthdata."/".$daydata;
 	      			
-	      			$datelist[$datenum] = $toptag;
-	      			
+	      			$datelist[$datenum] = $toptag;      			
 					require("../common/personalscheduledata.php");
 					$datenum++; } ?>
 				<tr>
@@ -120,22 +114,11 @@ try {
 					<?php } ?>
 				</tr>
 			</table>
-		</div><!-- workschedule -->
-
-		<div id="editselect">
 			<form method="POST" action="personaledit.php">
-			<select id="date" name="editdate">
-			    <?php 
-			        for ($daynum = 1; $daynum < $datenum; $daynum++) {
-			      		print('<option value="'.$datelist[$daynum].'"');
-			        	print('>'.$datelist[$daynum].'</option>');		
-			      }
-			    ?>
-			</select>
-			<input type="hidden" name="edityear" class="button" value="<?php print($year); ?>" />
-			<input type="submit" id="editbutton" class="button" value=""/>
+				<input  type="hidden" name="editdate" value="<?php print($personaldate); ?>"/>
+				<p class="right"><input type="submit" id="editbutton" class="button" value=""/></p>
 			</form>
-		</div><!-- editselect -->
+		</div><!-- workschedule -->
 
 		<?php } else { ?>
 			<p class="scheduletitle">--まだデータは存在しません--</p>
@@ -158,10 +141,23 @@ try {
 				<tr>
 					<td><select id="insertdate" name="insertdate">
 					    <?php 
+					      $count = 0;
 					      for ($day = 1; $day < 32; $day++) {
+					      	$break_flag = false;
+					      	$day2 = sprintf("%02d", $day);
+					      	$date = $month."/".$day2;
+					      	for ($daynum = 1; $daynum < $datenum; $daynum++) {
+			      				if ($datelist[$daynum] == $date) {
+			      					$break_flag = true;
+			      					break;
+			      				}
+			      			}
+			      			if($break_flag) {
+        					continue;
+			      			}
+        					$count++;
 					      	if ($day == 29 && $month == 2) {
 					      		if (($year % 4) == 0) {
-					      			$date = $month."/".$day;
 					      			print('<option value="'.$date.'"');
 					        		print('>'.$date.'</option>');
 					        		break;
@@ -171,10 +167,12 @@ try {
 					      	} else if ($day == 31 && $month == 4) { 
 					      		break;
 					      	}
-					      	$date = $month."/".$day;
 					        print('<option value="'.$date.'"');
 					        print('>'.$date.'</option>');
 					  	}
+					  	if ($count == 0) {
+					   	  	print('<option >'."---NOT--".'</option>');
+					      }
 					    ?>
 					    </select>
 					</td>
@@ -195,7 +193,9 @@ try {
 			<p class="left"><input type="button" id="allbutton" class="button" onclick="allChange()"/></p>
 			<p class="left"><input type="button" id="clearbutton" class="button" onclick="allClear()"/></p>
 			<input type="hidden" name="sqlflg" value="1"/>
+			<?php if($count != 0) { ?>
 			<p class="right"><input type="submit"  id="registerbutton" class="button" value=""/></p>
+			<?php } ?>
 			</form>
 		</div><!-- scheduling -->
 

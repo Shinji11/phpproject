@@ -1,21 +1,5 @@
 <?php
-require("../sql/workschedulesql.php");
-  $stt2->bindValue(':comcd', $_SESSION['comcd']);
-  $stt2->bindValue(':bracd', $_SESSION['bracd']);
-  $stt2->bindValue(':scheduledate', $scheduledate);
-  $stt2->execute();
 
-$insertusercd = $_POST['nameselect'];
-
-
-while ($row = $stt2->fetch()) {
-	$usercd = e($row['USER_CD']);
-	if ($insertusercd ==  $usercd) {
-		$messagelist[] = "登録データの名前が重複しています";
-		break;
-	}
-}
-if ($_POST["nameselect"] != "") {
 $six = $_POST['cb6'];
 $seven = $_POST['cb7'];
 $eight = $_POST['cb8'];
@@ -59,7 +43,5 @@ if ($six == 0
 		&& $one == 0 ) {
 	$messagelist[] = "登録するデータがありません";
 	}
-}
-
 ?>
 

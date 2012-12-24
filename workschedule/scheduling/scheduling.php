@@ -9,26 +9,21 @@ $sqlflg = $_POST['sqlflg'];
 $messagelist = array();
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-    require("../common/checkscheduling.php");
-
-if (count($messagelist) == 0) { 
-  if ($sqlflg == 1) {
-  require("../sql/insertworkschedulesql.php");	
-  } else if ($sqlflg == 2) {
-  require("../sql/updateworkschedulesql.php");	
-  } else if ($sqlflg == 3) {
-  require("../sql/deleteworkschedulesql.php");	
-  }
+if (!$sqlflg == "") {
+	require("../common/checkscheduling.php");
+	if (count($messagelist) == 0) { 
+  		if ($sqlflg == 1) {
+  			require("../sql/insertworkschedulesql.php");	
+  		} 
+  	}
 }
+
   require("../sql/membersql.php");
   $stt->bindValue(':comcd', $_SESSION['comcd']);
   $stt->bindValue(':bracd', $_SESSION['bracd']);
   $stt->execute();
   require("../sql/workschedulesql.php");
-  $stt2->bindValue(':comcd', $_SESSION['comcd']);
-  $stt2->bindValue(':bracd', $_SESSION['bracd']);
-  $stt2->bindValue(':scheduledate', $scheduledate);
-  $stt2->execute();
+  
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
 }
@@ -86,7 +81,9 @@ if (count($messagelist) == 0) {
 		<div id="workschedule">
 			<div id="schedulelist">
 				<p class="scheduletitle" ><?php print(date_ja($scheduledate)); ?></p>
-				<?php if ($row = $stt2->fetch()) { ?> 
+				<?php if ($row = $stt2->fetch()) { 
+					require("../sql/workschedulesql.php");
+				?> 
 				<table id="workscheduletable">
 					<tr>
 						<th>[NAME]</th>
@@ -121,22 +118,11 @@ if (count($messagelist) == 0) {
 						<?php } ?>					
 					</tr>
 				</table>
-			</div><!-- shedulelist -->
-
-			<div id="editselect">
 				<form method="POST" action="scheduleedit.php">
-				<select id="editselect" name="editselect">
-				    <?php 
-				      for ($i = 0; $i < $namenum; $i++) {
-				        print('<option value="'.$usercdlist[$i].'"');
-				        print('>'.$namelist[$i].'</option>');
-				      }
-				    ?>
-				</select>
-				<input type="hidden" id="editdate" name="editdate" value="<?php print($scheduledate); ?>"/>
-				<input type="submit" class="button" id="editbutton" value=""/>
+					<input type="hidden" name="editdate" value="<?php print($scheduledate); ?>"/>
+					<p class="right"><input type="submit" class="button" id="editbutton" value=""/></p>
 				</form>
-			</div><!-- editselect -->
+			</div><!-- shedulelist -->
 
 			<?php } else { ?>
 			<p class="scheduletitle">--まだデータは存在しません--</p>
@@ -159,13 +145,30 @@ if (count($messagelist) == 0) {
 				</tr>
 				<tr id="clickbox">
 					<td><select id="nameselect" name="nameselect">
-					    <?php 
+					    <?php
+					      $count = 0; 
 					      while ($row = $stt->fetch()) {
+			      			$break_flag = false;
 					      	$usercd = e($row['USER_CD']);
 					      	$lastnm = e($row['LAST_NM']);
 					      	$firstnm = e($row['FIRST_NM']);
+					      	$username = $lastnm."  ".$firstnm;
+					      	for ($i = 0; $i < $namenum; $i++) {
+					      		if ($username == $namelist[$i]) {
+			      					$break_flag = true;
+			      					break;
+					      		}				       			 
+				      		}
+				      		if ($break_flag) {
+				      			continue;
+				      		}
+				      		$count++;
 					        print('<option value="'.$usercd.'"');
-					        print('>'.$lastnm."  ".$firstnm.'</option>');
+					        print('>'.$username.'</option>');
+					      }
+					      if ($count == 0) {
+					   	  	print('<option >'."---NOT--".'</option>');
+					   	
 					      }
 					    ?>
 					    </select>
@@ -181,10 +184,12 @@ if (count($messagelist) == 0) {
 					<td></td>
 				</tr>
 				<tr></tr>
-			</table>
+			</table>			
 			<input type="hidden" name="scheduledate" value="<?php print($scheduledate); ?>"/>
 			<input type="hidden" name="sqlflg" value="1"/>
+			<?php if ($count > 0) { ?>
 			<p class="right"><input type="submit" class="button" id="registerbutton" value=""/></p>
+			<?php } ?>
 			</form>
 		</div><!-- scheduling -->
 

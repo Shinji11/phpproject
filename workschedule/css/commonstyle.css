@@ -123,6 +123,13 @@ input.transparent {
 	width: 104px;
 }
 
+#sdeletebutton {
+	background: url("../images/btn_s_delete.png");
+	width: 62px;
+	height: 28px;
+	border: none;
+}
+
 #entrybutton:hover {
 	background: url("../images/btn_work_on.png");
 }
@@ -155,7 +162,7 @@ input.transparent {
 	background: url("../images/btn_delete_on.png");
 }
 
-label.error {
-    color: yellow;
+#sdeletebutton:hover {
+	background: url("../images/btn_s_delete_on.png");
 }
 

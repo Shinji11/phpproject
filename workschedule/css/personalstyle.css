@@ -39,14 +39,14 @@
 #personalscheduletable {
 	background: url("../images/background01.jpg");
 	margin: 0 auto;
-	width: 830px;
+	width: 100%;
 	color: white;
 }
 
 /*input*/
 #dataname {
 	font-size: 15px;
-	width: 50px;
+	width: 60px;
 }
 
 /*div*/

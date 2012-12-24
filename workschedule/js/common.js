@@ -4,6 +4,10 @@ function hidden() {
 	}
 }
 
+function hiddenCheckBox(num) {
+		document.getElementById("cb" + num).style.display = "none";
+}
+
 function changeCheckbox(cb, bt, flg) {
 	var checkbox = document.getElementById(cb);
 	var button = document.getElementById(bt);
@@ -48,19 +52,17 @@ function allClear() {
 	}
 }
 
-function changeEditData(data, num, flg) {
+function changeEditColor(data, num, flg) {
 	if (data == 1) {
 		var checkbox = document.getElementById("cb" + num);
 		var button = document.getElementById("bt" + num);
 		checkbox.checked = true;
 		if (flg == 1) {
-		button.style.backgroundColor = "yellow";
-	} else {
+			button.style.backgroundColor = "yellow";
+		} else {
 		button.style.backgroundColor = "tomato";
-
+		}
 	}
-	}
-
 }
 
 function changeSqlFlg(flg) {
@@ -96,6 +98,20 @@ function checkUpdateSchedule(flg) {
 	   changeSqlFlg(flg);
 	   return true;
 	}
-
 }
 
+function onUpdate() {
+	var sqlflg = document.getElementById("sqlflg");
+	sqlflg.value = 2;
+}
+
+function onDelete(num) {
+	var sqlflg = document.getElementById("sqlflg");
+	var rownum = document.getElementById("rownum");
+	sqlflg.value = 3;
+	rownum.value = num;
+}
+
+function onReturn() {
+	document.returnform.submit();
+}

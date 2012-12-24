@@ -1,8 +1,11 @@
  <?php
+$hours = $six + $seven + $eight + $nine + $ten + $eleven + $twelve + 
+			$thirteen + $fourteen + $fifteen + $sixteen + $seventeen + $eighteen +
+			 $nineteen + $twenty + $twentyone + $twentytwo + $twentythree + $zero + $one;
 $comcd = $_SESSION['comcd'];
 $bracd = $_SESSION['bracd'];
-$usercd = $_POST['nameselect'];
 $userid = $_SESSION['userid'];
+$usercd = $_POST['nameselect'];
 $insertuserid = $comcd.$bracd.$usercd;
 $stmt = $db->prepare("INSERT INTO WORK_SCHEDULE 
  								  (DEL_FLG, 

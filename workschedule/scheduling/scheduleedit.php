@@ -2,21 +2,11 @@
 require_once '../Encode.php';
 session_start();
 $title = "SCHEDULING";
-$editselect = $_POST['editselect'];
-$editdate = $_POST['editdate'];
+$scheduledate = $_POST['editdate'];
+print($scheduledate);
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  require("../sql/editworkschedulesql.php");
-  $stt4->bindValue(':usercd', $editselect);
-  $stt4->bindValue(':comcd', $_SESSION['comcd']);
-  $stt4->bindValue(':bracd', $_SESSION['bracd']);
-  $stt4->bindValue(':scheduledate', $editdate);
-  $stt4->execute();
-  $row = $stt4->fetch();
-  $lastnm = e($row['LAST_NM']);
-  $firstnm = e($row['FIRST_NM']);
-  $usernm = $lastnm."  ".$firstnm;
-  require("../common/editdata.php");
+  require("../sql/workschedulesql.php");
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
 }
@@ -50,18 +40,28 @@ try {
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } ?>					
 				</tr>
+				<?php
+					$rownum = 1; 
+					while ($row = $stt2->fetch()) { 
+					$lastnm = e($row['LAST_NM']);
+				    $firstnm = e($row['FIRST_NM']);
+  					$usernm = $lastnm."  ".$firstnm;
+  					require("../common/editdata.php");
+				?>
 				<tr id="clickbox">
 					<td><input id="editname" type="text" readonly="readonly" value="<?php print($usernm); ?>" /></td>
 					<td></td>
-					<?php for ($num = 6; $num < 26; $num++) { ?>
+					<?php for ($num = 16; $num < 36; $num++) { ?>
 					<td class="clickbox" colspan="2">
-						<input type="button" id="bt<?php print($num); ?>" class="bt" onclick="changeCheckbox('cb<?php print($num); ?>', 'bt<?php print($num); ?>', 1)"/>
-						<input type="hidden" name="cb<?php print($num); ?>" value="0"/>
-						<input type="checkbox" id="cb<?php print($num); ?>" name="cb<?php print($num); ?>" class="checkbox" value="1"/>
+						<input type="button" id="bt<?php print($rownum.$num); ?>" class="bt" onclick="changeCheckbox('cb<?php print($rownum.$num); ?>', 'bt<?php print($rownum.$num); ?>', 1)"/>
+						<input type="hidden" name="cb<?php print($rownum.$num); ?>" value="0"/>
+						<input type="checkbox" id="cb<?php print($rownum.$num); ?>" name="cb<?php print($rownum.$num); ?>" class="checkbox" value="1"/>
 					</td>
 					<?php } ?>
 					<td></td>
-				    </tr>
+					<td><input type="submit" id="sdeletebutton" class="button" value=""/></td>
+				</tr>
+				<?php $rownum++; } ?>
 				<tr>
 				</tr>
 			</table>
@@ -76,13 +76,17 @@ try {
 	</div><!-- contents -->
 
 	<div id="footer">
-		<?php for ($i = 6; $i < 26;  $i++) { ?>
+		<?php 
+		for ($j = 1; $j < $rownum + 1;  $j++) {
+			for ($i = 16; $i < 36;  $i++) { 
+		?>
 		<script type="text/javascript">
 		<!--
-			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>, 1);
+			changeEditColor(<?php print($editdata[$j.$i]); ?>, <?php print($j.$i); ?>, 1);
+			hiddenCheckBox(<?php print($j.$i); ?>);
 		// -->
 		</script>
-		<?php } ?>
+		<?php } } ?>
 	</div><!-- footer -->
 </div><!-- wrapper -->
 </body>

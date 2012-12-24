@@ -1,22 +1,23 @@
 <?php
 require_once '../Encode.php';
 session_start();
+print($_POST["editdate"]);
 $title = "PERSONAL SCHEDULE";
-$year = $_POST['edityear'];
 $date = explode("/", $_POST["editdate"]);
-$month = $date[0];
-$day = $date[1];
+$year = $date[0];
+$month = $date[1];
 $usernm = $_SESSION['username'];
+print($_POST["sqlflg"]);
 try {
   $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  require("../sql/editpersonalschedulesql.php");
-  $stt5->bindValue(':userid', $_SESSION['userid']);
-  $stt5->bindValue(':year', $year);
-  $stt5->bindValue(':month', $month);
-  $stt5->bindValue(':day', $day);
-  $stt5->execute();
-  $row = $stt5->fetch();
-  require("../common/editdata.php");
+  require("../sql/personalschedulesql.php");
+  $stt3->bindValue(':userid', $_SESSION['userid']);
+  $stt3->bindValue(':comcd', $_SESSION['comcd']);
+  $stt3->bindValue(':bracd', $_SESSION['bracd']);
+  $stt3->bindValue(':year', $year);
+  $stt3->bindValue(':month', $month);
+  $stt3->execute();
+
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
 }
@@ -29,7 +30,7 @@ try {
 <?php require("../common/head.php"); ?>
 <link href="../css/personalstyle.css" rel="stylesheet" type="text/css" />
 </head>
-<body onload="hidden()">
+<body>
 <div id="wrapper">
 	<div id="header">
 		<?php require("../common/header.php"); ?>
@@ -37,8 +38,8 @@ try {
 
 	<div id="contents">
 		<div id="scheduling">
-			<p class="scheduletitle"><?php print(date_ja($year."/".$month."/".$day)."  ".$usernm); ?></p>
-			<form method="POST" action="personal.php">
+			<p class="scheduletitle" ><?php print($year."年".$month."月"); ?></p>
+	        <form name="editform" method="POST" action="personaledit.php">
 			<table id="schedulingtable" border="1">
 				<tr>
 					<th>[DATE]</th>
@@ -50,38 +51,69 @@ try {
 					<th colspan="2"><?php print($num); ?></th>
 					<?php } ?>					
 				</tr>
+
+				<?php 
+				$rownum = 1; 
+				while ($row = $stt3->fetch())  { 
+					$monthdata = e($row['MONTH']);
+	      			$daydata = e($row['DAY']);
+	      			$toptag = $monthdata."/".$daydata;
+  					require("../common/editdata.php");
+				?>
 				<tr id="clickbox">
-					<td><input id="dataname" name="editdate" class="transparent" type="text" readonly="readonly" value="<?php print($month."/".$day); ?>" /></td>
+					<td><input id="dataname" name="editrowdate" class="transparent" type="text" readonly="readonly" value="<?php print($toptag); ?>" /></td>
 					<td></td>
-					<?php for ($num = 6; $num < 26; $num++) { ?>
+					<?php for ($num = 16; $num < 36; $num++) { ?>
 					<td class="clickbox" colspan="2">
-						<input type="button" id="bt<?php print($num); ?>" class="bt" onclick="changeCheckbox('cb<?php print($num); ?>', 'bt<?php print($num); ?>', 2)"/>
-						<input type="hidden" name="cb<?php print($num); ?>" value="0"/>
-						<input type="checkbox" id="cb<?php print($num); ?>" name="cb<?php print($num); ?>" class="checkbox" value="1"/>
+						<input type="button" id="bt<?php print($rownum.$num); ?>" class="bt" onclick="changeCheckbox('cb<?php print($rownum.$num); ?>', 'bt<?php print($rownum.$num); ?>', 2)"/>
+						<input type="hidden" name="cb<?php print($rownum.$num); ?>" value="0"/>
+						<input type="checkbox" id="cb<?php print($rownum.$num); ?>" name="cb<?php print($rownum.$num); ?>" class="checkbox" value="1"/>
 					</td>
 					<?php } ?>
 					<td></td>
-				    </tr>
+					<td>
+						<input type="submit" id="sdeletebutton" name="sdeletebutton<?php print($rownum); ?>" value="" />
+					</td>
+				</tr>
+				<?php $rownum++; } ?>
 				<tr>
+					<th>[DATE]</th>
+					<?php for ($num = 6; $num < 24; $num++) { ?>
+					<th colspan="2"><?php print($num); ?></th>
+					<?php } 
+						  for ($num = 0; $num < 3; $num++) {
+					?>
+					<th colspan="2"><?php print($num); ?></th>
+					<?php } ?>					
 				</tr>
 			</table>
-			<input type="hidden" name="sqlflg" id="sqlflg" />
-	        <input type="hidden" id="personaldate" name="personaldate" value="<?php print($year."/".$month); ?>"/>
-			<p class="left"><input type="submit" id="returnbutton" class="button" value="" /></p>
-			<p class="right"><input type="submit" id="deletebutton" class="button" value="" onclick="return changeSqlFlg(3)"/></p>
-			<p class="right"><input type="submit" id="updatebutton" class="button" value="" onclick="return checkUpdateSchedule(2)"/></p>
+			<input type="hidden" name="sqlflg" id="sqlflg"/>
+			<input type="hidden" name="rownum" id="rownum" />
+			<input type="hidden" name="editdate" value="<?php print($year."/".$month); ?>"/>
+			<p class="right"><input type="submit" id="updatebutton" class="button" value="" /></p>
+	        </form>	        
+	        <!-- 仮想フォーム -->
+	        <form name="returnform" method="POST" action="personal.php">
+				<p class="left"><input type="submit" id="returnbutton" class="button" value="" onclick="onReturn()"/></p>
+	        	<input type="hidden" id="personaldate" name="personaldate" value="<?php print($year."/".$month); ?>"/>
 	        </form>
+	        <!-- 仮想フォーム -->
+
 		</div><!-- scheduling -->
 	</div><!-- contents -->
 
 	<div id="footer">
-		<?php for ($i = 6; $i < 26;  $i++) { ?>
+		<?php 
+		for ($j = 1; $j < $rownum + 1;  $j++) {
+			for ($i = 16; $i < 36;  $i++) { 
+		?>
 		<script type="text/javascript">
 		<!--
-			changeEditData(<?php print($editdata[$i]); ?>, <?php print($i); ?>, 2);
+			changeEditColor(<?php print($editdata[$j.$i]); ?>, <?php print($j.$i); ?>, 2);
+			hiddenCheckBox(<?php print($j.$i); ?>);
 		// -->
 		</script>
-		<?php } ?>
+		<?php } } ?>
 	</div><!-- footer -->
 </div><!-- wrapper -->
 </body>
