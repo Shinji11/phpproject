@@ -38,15 +38,20 @@ function allClear() {
 	}
 }
 
-function checkDelete() {
-
+function checkDelete(num) {
+	var rownum = document.getElementById("rownum");
 	if (window.confirm('本当に削除されますか？')) {
-		sqlflg.value = flg;
+		rownum.value = num;
 		return true;
 	} else {
 		window.alert('キャンセルされました');
 		return false;
 	}
+}
+
+function onUpdate() {
+	var sqlflg = document.getElementById("updateflg");
+	sqlflg.value = 2;
 }
 
 function changeEditColor(data, num, flg) {
@@ -85,10 +90,10 @@ function checkUpdateSchedule(flg) {
 	}
 }
 
-function onUpdate() {
-	var sqlflg = document.getElementById("sqlflg");
-	sqlflg.value = 2;
-}
+
+
+
+
 
 function onDelete(num) {
 	var sqlflg = document.getElementById("sqlflg");

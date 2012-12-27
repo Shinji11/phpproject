@@ -2,13 +2,19 @@
 require_once '../Encode.php';
 session_start();
 $title = "SCHEDULING";
-$scheduledate = $_POST['editdate'];
-print($scheduledate);
+$rownum = $_POST["rownum"];
+$scheduledate = $_POST["editdate"];
+$messagelist = array();
 try {
-  $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  require("../sql/workschedulesql.php");
+	$db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+	if ($_POST["updateflg"] == 2) {
+		require("../sql/updateworkschedulesql.php");
+	} else if ($rownum != "") {
+		require("../sql/deleteworkschedulesql.php");
+	}
+	require("../sql/workschedulesql.php");
 } catch(PDOException $e) {
-  die('エラーメッセージ：'.$e->getMessage());
+	die('エラーメッセージ：'.$e->getMessage());
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -27,8 +33,19 @@ try {
 
 	<div id="contents">
 		<div id="scheduling">
-			<p class="scheduletitle"><?php print(date_ja($editdate)."  ".$usernm); ?></p>
-			<form method="POST" action="scheduling.php">
+
+			<!--  メッセージリスト  start-->
+			<?php if (count($messagelist) > 0) {
+				foreach ($messagelist as $message) {
+				?>
+				<ul class="message">
+					<li><p class="message"><?php print($message); ?></p></li>
+				</ul>
+			<?php } }?>
+			<!--  メッセージリスト  end-->
+
+			<p class="scheduletitle"><?php print(date_ja($scheduledate)); ?></p>
+			<form method="POST" action="scheduleedit.php">
 			<table id="schedulingtable" border="1">
 				<tr>
 					<th>[NAME]</th>
@@ -46,10 +63,14 @@ try {
 					$lastnm = e($row['LAST_NM']);
 					$firstnm = e($row['FIRST_NM']);
 					$usernm = $lastnm."  ".$firstnm;
+					$usercd = e($row['USER_CD']);
 					require("../common/editdata.php");
 				?>
 				<tr id="clickbox">
-					<td><input id="editname" type="text" readonly="readonly" value="<?php print($usernm); ?>" /></td>
+					<td>
+						<input type="text" id="editname" readonly="readonly" value="<?php print($usernm); ?>" />
+						<input type="hidden" id="usercd" name="usercd<?php print($rownum); ?>" value="<?php print($usercd); ?>"/>
+					</td>
 					<td></td>
 					<?php for ($num = 16; $num < 36; $num++) { ?>
 					<td class="clickbox" colspan="2">
@@ -59,18 +80,21 @@ try {
 					</td>
 					<?php } ?>
 					<td></td>
-					<td><input type="submit" id="sdeletebutton" class="button" value=""/></td>
+					<td><input type="submit" id="sdeletebutton" name="sdeletebutton<?php print($rownum); ?>" class="button" value="" onclick="return checkDelete(<?php print($rownum); ?>)"/></td>
 				</tr>
 				<?php $rownum++; } ?>
 				<tr>
 				</tr>
 			</table>
-			<input type="hidden" name="sqlflg" id="sqlflg"/>
-			<input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/>
-			<input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/>
-			<P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
-			<p class="right"><input type="submit" class="button" id="deletebutton" value="" onclick="return changeSqlFlg(3)"/></p>
-			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="return checkUpdateSchedule(2)"/></p>
+			<input type="hidden" name="rownum" id="rownum" />
+			<input type="hidden" name="updatenum" id="updatenum" value="<?php print($rownum); ?>"/>
+			<input type="hidden" name="updateflg" id="updateflg"/>
+			<input type="hidden" id="editdate" name="editdate" value="<?php print($scheduledate); ?>"/>
+			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="onUpdate()"/></p>
+			</form>
+			<form name="returnform" method="POST" action="scheduling.php">
+				<p class="left"><input type="submit" id="returnbutton" class="button" value=""/></p>
+				<input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($scheduledate); ?>"/>
 			</form>
 		</div><!-- scheduling -->
 	</div><!-- contents -->

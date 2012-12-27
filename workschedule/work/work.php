@@ -28,20 +28,20 @@ try {
 		<div id="contents">
 			<div class="calender-code">
 			<form action="javascript:void(0);">
-				<input id="calendar_hm3" name="calendar_hm3" readonly="readonly" type="text" value="
-				<?php
-					if ($scheduledate == "") { print(date("Y/m/d"));
+				<input id="calendar_hm3" name="calendar_hm3" readonly="readonly" type="text" value="<?php
+					if ($scheduledate == '') {
+					print(date('Y/m/d'));
 					} else {
 					print($scheduledate);
-				} ?>"/>
+					} ?>"/>
 				<input type="button" id="calendar_hm3_icon" />
 				<script type="text/javascript" id="cal-script3">
 					InputCalendar.createOnLoaded('calendar_hm3',
-					{alignTo: 'calendar_hm3_icon',
-					format: 'yyyy/mm/dd',
-					enableHourMinute: false,
-					lang: 'ja',
-					triggers: ['calendar_hm3_icon']});
+						{alignTo: 'calendar_hm3_icon',
+						format: 'yyyy/mm/dd',
+						enableHourMinute: false,
+						lang: 'ja',
+						triggers: ['calendar_hm3_icon']});
 				</script>
 			</form>
 			<form method="POST" action="work.php"/>

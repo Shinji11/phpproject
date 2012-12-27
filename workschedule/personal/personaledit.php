@@ -2,17 +2,21 @@
 require_once '../Encode.php';
 session_start();
 $title = "PERSONAL SCHEDULE";
+$rownum = $_POST["rownum"];
 $date = explode("/", $_POST["editdate"]);
 $year = $date[0];
 $month = $date[1];
-$rowdate = explode("/", $_POST["editrowdate"]);
+$rowdate = explode("/", $_POST["editrowdate".$rownum]);
 $rowmonth = $rowdate[0];
 $rowday = $rowdate[1];
 $usernm = $_SESSION['username'];
 $messagelist = array();
 try {
+
 	$db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-	if ($_POST["deleteflg"] == 3) {
+	if ($_POST["updateflg"] == 2) {
+		require("../sql/updatepersonalschedulesql.php");
+	} else if ($rownum != "") {
 		require("../sql/deletepersonalschedulesql.php");
 	}
 	require("../sql/personalschedulesql.php");
@@ -74,9 +78,8 @@ try {
 				$toptag = $monthdata."/".$daydata;
 					require("../common/editdata.php");
 				?>
-				<form method="POST" action="personaledit.php">
 				<tr id="clickbox">
-					<td style="border-right: none;"><input type="text" id="dataname" name="editrowdate" class="transparent" readonly="readonly" value="<?php print($toptag); ?>" /></td>
+					<td style="border-right: none;"><input type="text" id="dataname" name="editrowdate<?php print($rownum); ?>" class="transparent" readonly="readonly" value="<?php print($toptag); ?>" /></td>
 					<td style="border-left: none;"></td>
 					<?php for ($num = 16; $num < 36; $num++) { ?>
 					<td class="clickbox" colspan="2">
@@ -87,12 +90,9 @@ try {
 					<?php } ?>
 					<td style="border-right: none;"></td>
 					<td style="border-left: none;">
-						<input type="hidden" name="editdate" value="<?php print($year."/".$month); ?>"/>
-						<input type="hidden"  id="deleteflg" name="deleteflg" value="3"/>
-						<input type="submit" id="sdeletebutton" name="sdeletebutton<?php print($rownum); ?>" value="" onclick="return checkDelete()"/>
+						<input type="submit" id="sdeletebutton" name="sdeletebutton<?php print($rownum); ?>" value="" onclick="return checkDelete(<?php print($rownum); ?>)"/>
 					</td>
 				</tr>
-				</form>
 				<?php $rownum++; } ?>
 				<tr>
 					<th>[DATE]</th>
@@ -105,10 +105,11 @@ try {
 					<?php } ?>
 				</tr>
 			</table>
-			<input type="hidden" name="sqlflg" id="sqlflg"/>
+			<input type="hidden" name="updateflg" id="updateflg"/>
 			<input type="hidden" name="rownum" id="rownum" />
+			<input type="hidden" name="updatenum" id="updatenum" value="<?php print($rownum); ?>"/>
 			<input type="hidden" name="editdate" value="<?php print($year."/".$month); ?>"/>
-			<p class="right"><input type="submit" id="updatebutton" class="button" value="" /></p>
+			<p class="right"><input type="submit" id="updatebutton" class="button" value="" onclick="onUpdate()"/></p>
 		</form>
 
 		<!-- 仮想フォーム -->

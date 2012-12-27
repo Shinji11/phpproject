@@ -11,27 +11,6 @@ $(function(){
 	});
 });
 
-//テーブルの偶数・奇数の行の色を変える
-$(function(){
-	$("tr:odd").addClass("odd");
-});
-
-//アコーディオン
-$(function(){
-	$('.accordion dt').click(function() {
-		$('.accordion dt a').removeClass("selected").next().slideUp(); //←ここ追記
-		$(this).toggleClass("selected").next().slideToggle(); //←ここ追記
-	}).next().hide();
-});
-
-//ツールチップ
-$(function(){
-	$(".tooltip img").hover(function() {
-		$(this).next("span").animate({opacity: "show", top: "70"}, "fast");}, function() {
-			$(this).next("span").animate({opacity: "hide", top: "80"}, "fast");
-	});
-});
-
 //ドロップダウンメニュー
 $(function(){
 	$(".ul_menu .target").hover(function() {

@@ -46,8 +46,8 @@ try {
 		<div class="calender-code">
 			<form action="javascript:void(0);">
 			<input id="calendar_hm3" name="calendar_hm3" readonly="readonly" type="text" value="<?php
-			if ($scheduledate == "") {
-				print(date("Y/m/d"));
+			if ($scheduledate == '') {
+				print(date('Y/m/d'));
 				} else {
 				print($scheduledate);
 				} ?>"/>

@@ -1,21 +1,21 @@
  <?php
- 
-$comcd = $_SESSION['comcd'];
-$bracd = $_SESSION['bracd'];
-$editusercd = $_POST['editusercd'];
+
+$comcd = $_SESSION["comcd"];
+$bracd = $_SESSION["bracd"];
+$editusercd = $_POST["usercd".$rownum];
 $edituserid = $comcd.$bracd.$editusercd;
-$stmt = $db->prepare("DELETE FROM WORK_SCHEDULE 
+$stmt = $db->prepare("DELETE FROM WORK_SCHEDULE
  							WHERE DEL_FLG = '0'
- 						      AND USER_ID = :edituserid 
+ 						      AND USER_ID = :edituserid
  						      AND SCHEDULE_DATE = :scheduledate");
  $stmt->bindValue(':edituserid', $edituserid);
  $stmt->bindValue(':scheduledate', $scheduledate);
  $flag = $stmt->execute();
-  
+
 	if ($flag) {
-		$message = "データは正しく削除されました。";
+		$messagelist[] = "データは正しく削除されました。";
 	} else {
-		$message = "データは正しく削除できませんでした。";
+		$messagelist[] = "データは正しく削除できませんでした。";
 	}
 
  ?>
