@@ -7,26 +7,26 @@ $sqlflg = $_POST['sqlflg'];
 $messagelist = array();
 print($sqlflg);
 try {
-  $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+	$db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
 
 
-if ($sqlflg == 1) {
-	require("../common/checkmanager.php");
-	if (count($messagelist) == 0) {	
-		require("../sql/insertmanagersql.php");
-	}	
-} else if ($sqlflg == 2) {
-	require("../common/checkmanager.php");
-	if (count($messagelist) == 0) {	
-		require("../sql/updatemanagersql.php");
-		}	
-} else if ($sqlflg == 3) {
-	require("../sql/deletemanagersql.php");	
-}
-require("../sql/managersql.php");	
-  
+	if ($sqlflg == 1) {
+		require("../common/checkmanager.php");
+		if (count($messagelist) == 0) {
+			require("../sql/insertmanagersql.php");
+		}
+	} else if ($sqlflg == 2) {
+		require("../common/checkmanager.php");
+		if (count($messagelist) == 0) {
+			require("../sql/updatemanagersql.php");
+			}
+	} else if ($sqlflg == 3) {
+		require("../sql/deletemanagersql.php");
+	}
+	require("../sql/managersql.php");
+
 } catch(PDOException $e) {
-  die('エラーメッセージ：'.$e->getMessage());
+	die('エラーメッセージ：'.$e->getMessage());
 }
 ?>
 <html>
@@ -45,14 +45,16 @@ require("../sql/managersql.php");
 	<div id="contents">
 		<form method="POST" action="master.php">
 		<div id="registerinfo">
-		    <!--  メッセージリスト  -->
-			<?php if (count($messagelist) > 0) { 
+			<!--  メッセージリスト  -->
+			<?php if (count($messagelist) > 0) {
 				foreach ($messagelist as $message) {
 				?>
 				<ul class="message">
 					<li><p class="message"><?php print($message); ?></p></li>
 				</ul>
 			<?php } }?>
+			<!-- メッセージリスト -->
+
 			<table class="registration" >
 				<tr>
 					<th colspan="4">[ NEW MANAGER ]</th>
@@ -66,7 +68,7 @@ require("../sql/managersql.php");
 					<th>COMPANY NAME:</th>
 					<td><input id="comnm" name="comnm" class="read" type="text" value="<?php print(e($row2['COM_NM'])); ?>" /></td>
 				</tr>
-				<tr>	
+				<tr>
 					<th>BRANCH CODE:</th>
 					<td><input id="bracd" name="bracd" class="read" type="text" value="<?php print(e($row2['BRA_CD'])); ?>" /></td>
 					<th>BRANCH NAME:</th>
@@ -74,7 +76,7 @@ require("../sql/managersql.php");
 				</tr>
 			</table>
 			<br/>
-			<table class="registration" >	
+			<table class="registration" >
 				<tr>
 					<th class="registertitle" colspan="6">MANAGER</th>
 				</tr>
@@ -109,7 +111,7 @@ require("../sql/managersql.php");
 					<th>MANAGERNAME</th>
 					<th>EDIT</th>
 				</tr>
-				<?php while ($row = $stt->fetch()) { 
+				<?php while ($row = $stt->fetch()) {
 					$lastname = e($row['LAST_NM']);
 					$firstname = e($row['FIRST_NM']);
 					$comcd = e($row['COM_CD']);
@@ -120,7 +122,7 @@ require("../sql/managersql.php");
 					?>
 				<form method="POST" action="masteredit.php">
 				<tr>
-				    
+
 					<td><?php print($rownum) ?></td>
 					<td><?php print(e($row['COM_NM'])); ?></td>
 					<td><?php print(e($row['BRA_NM'])); ?></td>

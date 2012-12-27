@@ -7,12 +7,12 @@ $sqlflg = $_POST['sqlflg12'];
 $sqlflg23 = $_POST['sqlflg23'];
 print($sqlflg);
 try {
-  $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-	require("../sql/editmastersql.php");	
- 	$row2 = $stt2->fetch();
-  
+	$db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
+	require("../sql/editmastersql.php");
+	$row2 = $stt2->fetch();
+
 } catch(PDOException $e) {
-  die('エラーメッセージ：'.$e->getMessage());
+	die('エラーメッセージ：'.$e->getMessage());
 }
 ?>
 <html>
@@ -31,8 +31,8 @@ try {
 	<div id="contents">
 		<form method="POST" action="master.php">
 		<div id="registerinfo">
-		    <!--  メッセージリスト  -->
-			<?php if (count($messagelist) > 0) { 
+			<!--  メッセージリスト  -->
+			<?php if (count($messagelist) > 0) {
 				foreach ($messagelist as $message) {
 				?>
 				<ul class="message">
@@ -52,7 +52,7 @@ try {
 					<th>COMPANY NAME:</th>
 					<td><input id="comnm" name="comnm" class="read" type="text" value="<?php print(e($row2['COM_NM'])); ?>" /></td>
 				</tr>
-				<tr>	
+				<tr>
 					<th>BRANCH CODE:</th>
 					<td><input id="bracd" name="bracd" class="read" type="text" readonly="readonly" value="<?php print(e($row2['BRA_CD'])); ?>" /></td>
 					<th>BRANCH NAME:</th>
@@ -60,7 +60,7 @@ try {
 				</tr>
 			</table>
 			<br/>
-			<table class="registration" >	
+			<table class="registration" >
 				<tr>
 					<th class="registertitle" colspan="6">MANAGER</th>
 				</tr>
@@ -74,9 +74,9 @@ try {
 				</tr>
 			</table>
 			<input type="hidden" name="sqlflg" id="sqlflg" value="2"/>
-	        <P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
+			<P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
 			<p class="right"><input type="submit" class="button" id="deletebutton" value="" onclick="return changeSqlFlg(3)"/></p>
-			<p class="right"><input type="submit" class="button" id="updatebutton" value=""/></p>			
+			<p class="right"><input type="submit" class="button" id="updatebutton" value=""/></p>
 		</div><!-- registerinfo -->
 		</form>
 	</div><!-- contents -->

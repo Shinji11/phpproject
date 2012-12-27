@@ -4,10 +4,6 @@ function hidden() {
 	}
 }
 
-function hiddenCheckBox(num) {
-		document.getElementById("cb" + num).style.display = "none";
-}
-
 function changeCheckbox(cb, bt, flg) {
 	var checkbox = document.getElementById(cb);
 	var button = document.getElementById(bt);
@@ -20,19 +16,9 @@ function changeCheckbox(cb, bt, flg) {
  			button.style.backgroundColor = "yellow";
  		} else {
  			button.style.backgroundColor = "tomato";
-	 	} 
+	 	}
  	}
  }
- 
- function changeDate() {
-	var date = document.getElementById("calendar_hm3").value;
-	document.getElementById("scheduledate").value = date;
-}
-
-function changeDate() {
-	var date = document.getElementById("calendar_hm3").value;
-	document.getElementById("scheduledate").value = date;
-}
 
 function allChange() {
 	for(var i = 6; i < 26; i = i +1) {
@@ -52,6 +38,17 @@ function allClear() {
 	}
 }
 
+function checkDelete() {
+
+	if (window.confirm('本当に削除されますか？')) {
+		sqlflg.value = flg;
+		return true;
+	} else {
+		window.alert('キャンセルされました');
+		return false;
+	}
+}
+
 function changeEditColor(data, num, flg) {
 	if (data == 1) {
 		var checkbox = document.getElementById("cb" + num);
@@ -65,23 +62,11 @@ function changeEditColor(data, num, flg) {
 	}
 }
 
-function changeSqlFlg(flg) {
-	
-	var sqlflg = document.getElementById("sqlflg");
-	if (flg == 3) {
-		if (window.confirm('本当に削除されますか？')) {
-			sqlflg.value = flg;
-			return true;
-		} else {
-			window.alert('キャンセルされました');
-			return false;
-		}
-	} else {
-		sqlflg.value = flg;
-		return true;
-	}
-
+function hiddenCheckBox(num) {
+		document.getElementById("cb" + num).style.display = "none";
 }
+
+//personalはここまで
 
 function checkUpdateSchedule(flg) {
 	var count = 0;
@@ -114,4 +99,18 @@ function onDelete(num) {
 
 function onReturn() {
 	document.returnform.submit();
+}
+
+
+
+
+
+ function changeDate() {
+	var date = document.getElementById("calendar_hm3").value;
+	document.getElementById("scheduledate").value = date;
+}
+
+function changeDate() {
+	var date = document.getElementById("calendar_hm3").value;
+	document.getElementById("scheduledate").value = date;
 }

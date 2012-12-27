@@ -8,21 +8,21 @@ $year = $date[0];
 $month = $date[1];
 $sqlflg = $_POST["sqlflg"];
 $messagelist = array();
-try {	
-  $db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
-  
-if ($sqlflg == 1) {
-	require("../common/checkpersonalschedule.php");
-	if (count($messagelist) == 0) { 
-			require("../sql/insertpersonalschedulesql.php");	
-	}
-}
-  require("../sql/membersql.php");
-  $stt->bindValue(':comcd', $_SESSION['comcd']);
-  $stt->bindValue(':bracd', $_SESSION['bracd']);
-  $stt->execute();
+try {
+	$db = new PDO('mysql:host=localhost;dbname=workschedule;charset=utf8', 'root', 'root');
 
-  require("../sql/personalschedulesql.php");
+	if ($sqlflg == 1) {
+		require("../common/checkpersonalschedule.php");
+		if (count($messagelist) == 0) {
+				require("../sql/insertpersonalschedulesql.php");
+		}
+	}
+	require("../sql/membersql.php");
+	$stt->bindValue(':comcd', $_SESSION['comcd']);
+	$stt->bindValue(':bracd', $_SESSION['bracd']);
+	$stt->execute();
+
+	require("../sql/personalschedulesql.php");
 
 } catch(PDOException $e) {
   die('エラーメッセージ：'.$e->getMessage());
@@ -47,25 +47,25 @@ if ($sqlflg == 1) {
 			<form method="POST" action="personal.php"/>
 			<select id="personaldate" name="personaldate" >
 				<option value="<?php print(date("Y/m")); ?>" selected><?php print(date("Y/m")); ?></option>
-			    <?php 
-			        for ($i = 1; $i < 6; $i++) {
-			    		$selectdate = date("Y/m", strtotime("+".$i." month"));
-			    		if ($selectdate == $personaldate) {
-			    			print('<option value="'.$selectdate.'"');
-			        		print('selected >'.$selectdate.'</option>');
-			    		} else {
-			        		print('<option value="'.$selectdate.'"');
-			        		print('>'.$selectdate.'</option>');
-			        }
-			      }
-			    ?>
+				<?php
+					for ($i = 1; $i < 6; $i++) {
+						$selectdate = date("Y/m", strtotime("+".$i." month"));
+						if ($selectdate == $personaldate) {
+							print('<option value="'.$selectdate.'"');
+							print('selected >'.$selectdate.'</option>');
+						} else {
+							print('<option value="'.$selectdate.'"');
+							print('>'.$selectdate.'</option>');
+					}
+				}
+				?>
 			</select><br/><br/>
 			<input id="entrybutton" class="button" type="submit" value=""/>
-        	</form>
+	</form>
 		</div><!-- calender -->
 
 		<!--  メッセージリスト  start-->
-		<?php if (count($messagelist) > 0) { 
+		<?php if (count($messagelist) > 0) {
 			foreach ($messagelist as $message) {
 			?>
 			<ul class="message">
@@ -73,10 +73,10 @@ if ($sqlflg == 1) {
 			</ul>
 		<?php } }?>
 		<!--  メッセージリスト  end-->
-		
-		<?php if ($personaldate != "") { 
-                $counter = 0;
-        ?>
+
+		<?php if ($personaldate != "") {
+			$counter = 0;
+		?>
 		<div id="workschedule">
 			<p class="scheduletitle" ><?php print($year."年".$month."月"); ?></p>
 			<?php if ($row = $stt3->fetch()) {
@@ -87,7 +87,7 @@ if ($sqlflg == 1) {
 					<th>[DATE]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } 
+					<?php }
 						  for ($num = 0; $num < 3; $num++) {
 					?>
 					<th colspan="2"><?php print($num); ?></th>
@@ -95,19 +95,19 @@ if ($sqlflg == 1) {
 				</tr>
 
 				<?php $datenum = 1;
-				while ($row = $stt3->fetch()) { 
-	      			$monthdata = sprintf("%02d", e($row['MONTH']));
-	      			$daydata = sprintf("%02d", e($row['DAY']));
-	      			$toptag = $monthdata."/".$daydata;
-	      			
-	      			$datelist[$datenum] = $toptag;      			
+				while ($row = $stt3->fetch()) {
+					$monthdata = sprintf("%02d", e($row['MONTH']));
+					$daydata = sprintf("%02d", e($row['DAY']));
+					$toptag = $monthdata."/".$daydata;
+
+					$datelist[$datenum] = $toptag;
 					require("../common/personalscheduledata.php");
 					$datenum++; } ?>
 				<tr>
 					<th></th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } 
+					<?php }
 						  for ($num = 0; $num < 3; $num++) {
 					?>
 					<th colspan="2"><?php print($num); ?></th>
@@ -132,49 +132,50 @@ if ($sqlflg == 1) {
 					<th>[DATE]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } 
-						  for ($num = 0; $num < 3; $num++) {
+					<?php }
+
+						for ($num = 0; $num < 3; $num++) {
 					?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } ?>					
+					<?php } ?>
 				</tr>
 				<tr>
 					<td><select id="insertdate" name="insertdate">
-					    <?php 
-					      $count = 0;
-					      for ($day = 1; $day < 32; $day++) {
-					      	$break_flag = false;
-					      	$day2 = sprintf("%02d", $day);
-					      	$date = $month."/".$day2;
-					      	for ($daynum = 1; $daynum < $datenum; $daynum++) {
-			      				if ($datelist[$daynum] == $date) {
-			      					$break_flag = true;
-			      					break;
-			      				}
-			      			}
-			      			if($break_flag) {
-        					continue;
-			      			}
-        					$count++;
-					      	if ($day == 29 && $month == 2) {
-					      		if (($year % 4) == 0) {
-					      			print('<option value="'.$date.'"');
-					        		print('>'.$date.'</option>');
-					        		break;
-					      		} else {
-					      			break;	
-					      		}
-					      	} else if ($day == 31 && $month == 4) { 
-					      		break;
-					      	}
-					        print('<option value="'.$date.'"');
-					        print('>'.$date.'</option>');
-					  	}
-					  	if ($count == 0) {
-					   	  	print('<option >'."---NOT--".'</option>');
-					      }
-					    ?>
-					    </select>
+						<?php
+							$count = 0;
+							for ($day = 1; $day < 32; $day++) {
+							$break_flag = false;
+							$day2 = sprintf("%02d", $day);
+							$date = $month."/".$day2;
+							for ($daynum = 1; $daynum < $datenum; $daynum++) {
+								if ($datelist[$daynum] == $date) {
+									$break_flag = true;
+									break;
+								}
+							}
+							if($break_flag) {
+								continue;
+							}
+								$count++;
+							if ($day == 29 && $month == 2) {
+								if (($year % 4) == 0) {
+									print('<option value="'.$date.'"');
+									print('>'.$date.'</option>');
+									break;
+								} else {
+									break;
+								}
+							} else if ($day == 31 && $month == 4) {
+								break;
+							}
+							print('<option value="'.$date.'"');
+							print('>'.$date.'</option>');
+						}
+						if ($count == 0) {
+							print('<option >'."---NOT--".'</option>');
+						}
+						?>
+						</select>
 					</td>
 					<td></td>
 					<?php for ($num = 6; $num < 26; $num++) { ?>
@@ -185,7 +186,7 @@ if ($sqlflg == 1) {
 					</td>
 					<?php } ?>
 					<td></td>
-				    </tr>
+					</tr>
 				<tr>
 				</tr>
 			</table>

@@ -14,7 +14,7 @@ try {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional-dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head> 
+<head>
 <title>SCHEDULING</title>
 <?php require("../common/head.php"); ?>
 <link href="../css/schedulingstyle.css" rel="stylesheet" type="text/css" />
@@ -34,19 +34,19 @@ try {
 					<th>[NAME]</th>
 					<?php for ($num = 6; $num < 24; $num++) { ?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } 
+					<?php }
 						  for ($num = 0; $num < 3; $num++) {
 					?>
 					<th colspan="2"><?php print($num); ?></th>
-					<?php } ?>					
+					<?php } ?>
 				</tr>
 				<?php
-					$rownum = 1; 
-					while ($row = $stt2->fetch()) { 
+					$rownum = 1;
+					while ($row = $stt2->fetch()) {
 					$lastnm = e($row['LAST_NM']);
-				    $firstnm = e($row['FIRST_NM']);
-  					$usernm = $lastnm."  ".$firstnm;
-  					require("../common/editdata.php");
+					$firstnm = e($row['FIRST_NM']);
+					$usernm = $lastnm."  ".$firstnm;
+					require("../common/editdata.php");
 				?>
 				<tr id="clickbox">
 					<td><input id="editname" type="text" readonly="readonly" value="<?php print($usernm); ?>" /></td>
@@ -66,9 +66,9 @@ try {
 				</tr>
 			</table>
 			<input type="hidden" name="sqlflg" id="sqlflg"/>
-	        <input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/>
-	        <input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/>
-	        <P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
+			<input type="hidden" id="editusercd" name="editusercd" value="<?php print($editselect); ?>"/>
+			<input type="hidden" id="scheduledate" name="scheduledate" value="<?php print($editdate); ?>"/>
+			<P class="left"><input type="submit" class="button" id="returnbutton" value=""/></P>
 			<p class="right"><input type="submit" class="button" id="deletebutton" value="" onclick="return changeSqlFlg(3)"/></p>
 			<p class="right"><input type="submit" class="button" id="updatebutton" value="" onclick="return checkUpdateSchedule(2)"/></p>
 			</form>
@@ -76,9 +76,9 @@ try {
 	</div><!-- contents -->
 
 	<div id="footer">
-		<?php 
+		<?php
 		for ($j = 1; $j < $rownum + 1;  $j++) {
-			for ($i = 16; $i < 36;  $i++) { 
+			for ($i = 16; $i < 36;  $i++) {
 		?>
 		<script type="text/javascript">
 		<!--

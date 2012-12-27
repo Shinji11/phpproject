@@ -1,0 +1,191 @@
+@charset "utf-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+
+
+/* body */
+body {
+	background-color: black;
+}
+
+/* wrapper */
+#wrapper {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+/* header */
+header {
+	height: 0;
+}
+
+#visual {
+	margin: 0 auto;
+	width: 1000px;
+	height: 600px;
+}
+
+#img {
+	z-index: -1;
+	position: fixed;
+	margin: 0 auto;
+	width: 1000px;
+	height: 600px;
+}
+
+/* contents */
+#contents {
+	height: 2000px;
+}
+
+#title {
+	text-align: center;
+}
+
+h1 {
+	font-size: 70px;
+}
+
+#intro {
+	padding-top: 100px;
+	padding-left: 800px;
+	padding-bottom: 200px;
+}
+
+img.fade:hover {
+	opacity: 0.8;
+}
+
+#nav {
+	font-size: 0;
+	line-height: 0; }
+#nav ul.ul_nav {
+	width: 960px;
+	position: relative;
+	margin: 0 auto;
+	background: url("images/bgi_global_01.png") repeat-y left top;
+	zoom: 1; }
+#nav ul.ul_nav:after {
+	display: block;
+	clear: both;
+	content: ""; }
+li.li_nav {
+	width: 114px;
+	height: 50px;
+	position: relative;
+	z-index: 10;
+	padding: 5px 0;
+	font-size: 10px;
+	line-height: 10px;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	list-style: outside;
+	list-style-type: none;
+	border-left: 1px solid #333;
+}
+li.li_nav a {
+	color: white;
+	text-decoration: none;
+	display: block; }
+li.li_nav img {
+	margin-bottom: 10px; }
+div.menu {
+	display: none;
+	min-width: 120px;
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	bottom: 60px;
+	padding-bottom: 10px;
+}
+div.menu ul {
+	font-size: 1.2em;
+	line-height: 1.5em;
+	text-align: left;
+	white-space: nowrap;
+	padding: 25px 25px 15px 20px;
+	background: #000;
+	border: 1px solid #333;
+}
+div.menu ul li {
+	margin-bottom: 10px;
+	padding-left: 15px;
+}
+
+#nav.fixed {
+	width: 100%;
+	height: 79px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	background: #000;
+	border-bottom: 1px solid #fff;
+}
+
+#nav.down ul.ul_nav li.li_nav div.menu {
+	left: 0;
+	top: 60px;
+	padding-top: 10px;
+	background: url("images/bgi_local_01.gif") no-repeat 50px top;
+}
+
+
+div.menu ul li a {
+	text-decoration: none;
+}
+
+div.menu ul li a:hover {
+	text-decoration: underline;
+}
+
+li.li_nav:hover a.a_nav {
+	text-decoration: underline;
+}
+
+#nav.fixed > ul {
+	top: 10px;
+}
+
+p {
+	text-align: center;
+}
+
+#top1 {
+	position: fixed;
+	bottom: 0;
+	left: 570px;
+}
+
+footer {
+	height: 80px;
+}
+
+footer p {
+	width: 100px;
+}
+
+footer #logo_com {
+	color: white;
+	width: 100%;
+}
+
+#com {
+	width: 100%;
+}
+
+#com tr.bottom {
+	font-size: 11px;
+}
+
+#com td {
+	border-right: 1px solid #333;
+}
+
+#com td a {
+	color: white;
+	text-decoration: none;
+}
